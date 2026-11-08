@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>መጽሐፍ ቅዱስ | ተዋሕዶ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --brown: #24140b;
+  --dark: #180d07;
+  --gold: #d9a747;
+  --light-gold: #f1c875;
+  --parchment: #f2dfb9;
+  --ink: #38200e;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--brown);
+  color: var(--parchment);
+  font-family: 'Noto Serif Ethiopic', serif;
+}
+
+/* HEADER */
+
+header {
+  min-height: 100px;
+  padding: 15px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 3px double var(--gold);
+  background: linear-gradient(
+    110deg,
+    #180d07,
+    #382013,
+    #180d07
+  );
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 3px double var(--gold);
+  overflow: hidden;
+  background: #382013;
+  box-shadow: 0 0 15px #d9a74755;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.brand h2 {
+  color: var(--light-gold);
+  font-size: clamp(17px, 4vw, 27px);
+}
+
+.header-label {
+  color: var(--gold);
+  font-size: 14px;
+}
+
+/* COPTIC CROSS */
+
+.coptic-cross {
+  width: 52px;
+  height: 52px;
+  fill: var(--light-gold);
+  filter: drop-shadow(0 0 5px #d9a74755);
+}
+
+.ornament {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin: 22px auto;
+}
+
+.ornament span {
+  width: min(25%, 220px);
+  height: 2px;
+  background: var(--gold);
+}
+
+/* MAIN */
+
+main {
+  max-width: 1050px;
+  margin: auto;
+  padding: 35px 22px;
+}
+
+/* HERO */
+
+.hero {
+  text-align: center;
+  padding: 65px 15px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid var(--gold);
+  background: linear-gradient(
+    135deg,
+    #180d07,
+    #392316,
+    #180d07
+  );
+}
+
+.hero h1 {
+  color: #f5dfae;
+  font-size: clamp(34px, 8vw, 68px);
+  text-shadow: 0 4px 12px #000;
+}
+
+.hero p {
+  color: var(--light-gold);
+  font-size: clamp(13px, 3vw, 20px);
+  line-height: 2;
+}
+
+/* BIBLE SELECTION */
+
+.bible-box {
+  background: linear-gradient(
+    #f4e4c7,
+    #ead3a7
+  );
+  color: var(--ink);
+  border: 5px double #a97930;
+  outline: 1px solid var(--gold);
+  outline-offset: -12px;
+  padding: 42px 30px;
+  border-radius: 8px;
+}
+
+.bible-box h2 {
+  text-align: center;
+  font-size: clamp(21px, 5vw, 34px);
+  margin-bottom: 25px;
+}
+
+.search {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #b58a50;
+  background: #fff8eb;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 16px;
+  margin-bottom: 25px;
+  outline-color: var(--gold);
+}
+
+.sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.book-section {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+  background: linear-gradient(
+    #f5cf82,
+    #dca94e
+  );
+  border: 4px double #8b5c20;
+  border-radius: 12px;
+  padding: 30px 15px;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.book-section:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.08);
+}
+
+.book-section h3 {
+  font-size: clamp(16px, 3vw, 25px);
+  margin-bottom: 8px;
+}
+
+.book-section p {
+  font-size: 13px;
+  color: #69502e;
+}
+
+/* ABOUT */
+
+.info {
+  margin-top: 40px;
+  padding: 35px 20px;
+  text-align: center;
+  border: 3px double var(--gold);
+  background: #1b0f08;
+}
+
+.info h3 {
+  color: var(--light-gold);
+  font-size: 25px;
+}
+
+.info p {
+  color: var(--parchment);
+  line-height: 2.3;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 30px 15px;
+  border-top: 2px solid var(--gold);
+  color: var(--light-gold);
+  font-size: 14px;
+}
+
+footer .coptic-cross {
+  width: 35px;
+  height: 35px;
+  margin-bottom: 12px;
+}
+
+/* MOBILE */
+
+@media(max-width: 550px) {
+  header {
+    padding: 12px;
+  }
+
+  .logo {
+    width: 55px;
+    height: 55px;
+  }
+
+  .brand {
+    gap: 10px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  .hero {
+    padding: 50px 10px;
+  }
+
+  .bible-box {
+    padding: 35px 18px;
+  }
+
+  .sections {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">
+      <img src="christ-icon.jpg"
+           alt="Christ Pantocrator">
+    </div>
+
+    <h2>መጽሐፍ ቅዱስ</h2>
+  </div>
+
+  <div class="header-label">
+    ተዋሕዶ
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+
+  <h1>ቅዱስ መጽሐፍ</h1>
+
+  <div class="ornament">
+    <span></span>
+
+    <svg class="coptic-cross"
+         viewBox="0 0 100 100">
+      <path d="
+        M39 5 H61
+        V34 H95
+        L85 50 L95 66
+        H61 V95 H39
+        V66 H5 L15 50
+        L5 34 H39 Z
+      "/>
+      <circle cx="50" cy="50" r="7"/>
+    </svg>
+
+    <span></span>
+  </div>
+
+  <p>
+    የኢትዮጵያ ኦርቶዶክስ
+    ተዋሕዶ ቤተ ክርስቲያን
+  </p>
+
+</section>
+
+<section class="bible-box">
+
+  <h2>መጽሐፍ ይምረጡ</h2>
+
+  <input
+    class="search"
+    id="search"
+    type="search"
+    placeholder="መጽሐፍ ፈልግ..."
+  >
+
+  <div class="sections">
+
+    <a class="book-section" href="#old-testament">
+      <h3>ብሉይ ኪዳን</h3>
+      <p>Old Testament</p>
+    </a>
+
+    <a class="book-section" href="#new-testament">
+      <h3>ሐዲስ ኪዳን</h3>
+      <p>New Testament</p>
+    </a>
+
+  </div>
+
+</section>
+
+<section class="info">
+
+  <div class="ornament">
+    <span></span>
+
+    <svg class="coptic-cross"
+         viewBox="0 0 100 100">
+      <path d="
+        M39 5 H61
+        V34 H95
+        L85 50 L95 66
+        H61 V95 H39
+        V66 H5 L15 50
+        L5 34 H39 Z
+      "/>
+    </svg>
+
+    <span></span>
+  </div>
+
+  <h3>ስለ ፕሮጀክቱ</h3>
+
+  <p>
+    የቅዱሳት መጻሕፍትን
+    ቃል ለማንበብና
+    ለማጥናት የተዘጋጀ
+    የኢትዮጵያ ኦርቶዶክስ
+    ተዋሕዶ የመጽሐፍ ቅዱስ
+    ፕሮጀክት።
+  </p>
+
+</section>
+
+</main>
+
+<footer>
+
+  <svg class="coptic-cross"
+       viewBox="0 0 100 100">
+    <path d="
+      M39 5 H61
+      V34 H95
+      L85 50 L95 66
+      H61 V95 H39
+      V66 H5 L15 50
+      L5 34 H39 Z
+    "/>
+  </svg>
+
+  <p>በእምነት · በቃሉ · በትውፊት</p>
+
+</footer>
+
+</body>
+</html>
