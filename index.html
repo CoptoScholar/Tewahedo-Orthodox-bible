@@ -60,302 +60,62 @@ main{max-width:1100px;margin:auto;padding:25px 16px}.hero{text-align:center;padd
 "use strict";
 const SOURCE_URL="https://raw.githubusercontent.com/EtkAppsAdmin/Bibles-1/master/Amharic__Amharic_NT__amharic__LTR.txt";
 const OLD_SOURCE_BASE="https://raw.githubusercontent.com/magna25/amharic-bible-json/main/individual_books/";
-
 const newBooks=[
 ["ማቴዎስ","Matthew","40N"],["ማርቆስ","Mark","41N"],["ሉቃስ","Luke","42N"],["ዮሐንስ","John","43N"],["የሐዋርያት ሥራ","Acts","44N"],["ሮሜ","Romans","45N"],["1 ቆሮንቶስ","1 Corinthians","46N"],["2 ቆሮንቶስ","2 Corinthians","47N"],["ገላትያ","Galatians","48N"],["ኤፌሶን","Ephesians","49N"],["ፊልጵስዩስ","Philippians","50N"],["ቆላስይስ","Colossians","51N"],["1 ተሰሎንቄ","1 Thessalonians","52N"],["2 ተሰሎንቄ","2 Thessalonians","53N"],["1 ጢሞቴዎስ","1 Timothy","54N"],["2 ጢሞቴዎስ","2 Timothy","55N"],["ቲቶ","Titus","56N"],["ፊልሞና","Philemon","57N"],["ዕብራውያን","Hebrews","58N"],["ያዕቆብ","James","59N"],["1 ጴጥሮስ","1 Peter","60N"],["2 ጴጥሮስ","2 Peter","61N"],["1 ዮሐንስ","1 John","62N"],["2 ዮሐንስ","2 John","63N"],["3 ዮሐንስ","3 John","64N"],["ይሁዳ","Jude","65N"],["ራእይ","Revelation","66N"]];
-
 const oldBooks=[
 ["ዘፍጥረት","Genesis"],["ዘጸአት","Exodus"],["ዘሌዋውያን","Leviticus"],["ዘኍልቍ","Numbers"],["ዘዳግም","Deuteronomy"],["ኢያሱ","Joshua"],["መሳፍንት","Judges"],["ሩት","Ruth"],["1 ሳሙኤል","1 Samuel (1 Kingdoms)"],["2 ሳሙኤል","2 Samuel (2 Kingdoms)"],["1 ነገሥት","1 Kings (3 Kingdoms)"],["2 ነገሥት","2 Kings (4 Kingdoms)"],["1 ዜና መዋዕል","1 Chronicles"],["2 ዜና መዋዕል","2 Chronicles"],["መጽሐፈ ኩፋሌ","Jubilees"],["ሄኖክ","Enoch"],["ዕዝራ","Ezra"],["ነህምያ","Nehemiah"],["1 ዕዝራ","1 Esra"],["2 ዕዝራ","2 Ezra"],["ዕዝራ-ሸዓልቲኤል","Ezra-Shealtiel"],["ጦቢት","Tobit"],["ዮዲት","Judith"],["1 መቃብያን","1 Meqabyan"],["2 መቃብያን","2 Meqabyan"],["3 መቃብያን","3 Meqabyan"],["ኢዮብ","Job"],["መዝሙረ ዳዊት","Psalms"],["ምሳሌ","Proverbs (1–24)"],["ተግሣጽ","Reproof (Proverbs 25–31)"],["ጥበብ","Wisdom of Solomon"],["መክብብ","Ecclesiastes"],["መኃልየ መኃልይ","Song of Solomon"],["ሲራክ","Sirach"],["ኢሳይያስ","Isaiah"],["ኤርምያስ","Jeremiah"],["ሰቆቃው ኤርምያስ","Lamentations"],["ሕዝቅኤል","Ezekiel"],["ዳንኤል","Daniel"],["ሆሴዕ","Hosea"],["አሞጽ","Amos"],["ሚክያስ","Micah"],["ኢዮኤል","Joel"],["አብድዩ","Obadiah"],["ዮናስ","Jonah"],["ናሆም","Nahum"],["ዕንባቆም","Habakkuk"],["ሶፎንያስ","Zephaniah"],["ሐጌ","Haggai"],["ዘካርያስ","Zechariah"],["ሚልክያስ","Malachi"],["አስቴር","Esther"]];
-
 const oldDataFiles={
 "Genesis":"01_ኦሪት ዘፍጥረት.json","Exodus":"02_ኦሪት ዘጸአት.json","Leviticus":"03_ኦሪት ዘሌዋውያን.json","Numbers":"04_ኦሪት ዘኍልቍ.json","Deuteronomy":"05_ኦሪት ዘዳግም.json","Joshua":"06_መጽሐፈ ኢያሱ ወልደ ነዌ.json","Judges":"07_መጽሐፈ መሣፍንት.json","Ruth":"08_መጽሐፈ ሩት.json","1 Samuel (1 Kingdoms)":"09_መጽሐፈ ሳሙኤል ቀዳማዊ.json","2 Samuel (2 Kingdoms)":"10_መጽሐፈ ሳሙኤል ካል.json","1 Kings (3 Kingdoms)":"11_መጽሐፈ ነገሥት ቀዳማዊ።.json","2 Kings (4 Kingdoms)":"12_መጽሐፈ ነገሥት ካልዕ።.json","1 Chronicles":"13_መጽሐፈ ዜና መዋዕል ቀዳማዊ።.json","2 Chronicles":"14_መጽሐፈ ዜና መዋዕል ካልዕ።.json","Ezra":"15_መጽሐፈ ዕዝራ።.json","Nehemiah":"16_መጽሐፈ ነህምያ።.json","Esther":"17_መጽሐፈ አስቴር።.json","Job":"18_መጽሐፈ ኢዮብ።.json","Psalms":"19_መዝሙረ ዳዊት.json","Proverbs (1–24)":"20_መጽሐፈ ምሳሌ.json","Reproof (Proverbs 25–31)":"20_መጽሐፈ ምሳሌ.json","Ecclesiastes":"21_መጽሐፈ መክብብ.json","Song of Solomon":"22_መኃልየ መኃልይ ዘሰሎሞን.json","Isaiah":"23_ትንቢተ ኢሳይያስ.json","Jeremiah":"24_ትንቢተ ኤርምያስ.json","Lamentations":"25_ሰቆቃው ኤርምያስ.json","Ezekiel":"26_ትንቢተ ሕዝቅኤል.json","Daniel":"27_ትንቢተ ዳንኤል.json","Hosea":"28_ትንቢተ ሆሴዕ.json","Joel":"29_ትንቢተ ኢዮኤል.json","Amos":"30_ትንቢተ አሞጽ.json","Obadiah":"31_ትንቢተ አብድዩ.json","Jonah":"32_ትንቢተ ዮናስ.json","Micah":"33_ትንቢተ ሚክያስ.json","Nahum":"34_ትንቢተ ናሆም.json","Habakkuk":"35_ትንቢተ ዕንባቆም.json","Zephaniah":"36_ትንቢተ ሶፎንያስ.json","Haggai":"37_ትንቢተ ሐጌ.json","Zechariah":"38_ትንቢተ ዘካርያስ.json","Malachi":"39_ትንቢተ ሚልክያ.json"};
-
 const chapterCounts={"Genesis":50,"Exodus":40,"Leviticus":27,"Numbers":36,"Deuteronomy":34,"Joshua":24,"Judges":21,"Ruth":4,"1 Samuel (1 Kingdoms)":31,"2 Samuel (2 Kingdoms)":24,"1 Kings (3 Kingdoms)":22,"2 Kings (4 Kingdoms)":25,"1 Chronicles":29,"2 Chronicles":36,"Jubilees":50,"Enoch":108,"Ezra":10,"Nehemiah":13,"Job":42,"Psalms":151,"Proverbs (1–24)":24,"Reproof (Proverbs 25–31)":7,"Ecclesiastes":12,"Song of Solomon":8,"Isaiah":66,"Jeremiah":52,"Lamentations":5,"Ezekiel":48,"Daniel":12,"Hosea":14,"Amos":9,"Micah":7,"Joel":3,"Obadiah":1,"Jonah":4,"Nahum":3,"Habakkuk":3,"Zephaniah":3,"Haggai":2,"Zechariah":14,"Malachi":4};
-
 let scriptureData={},selectedBook=null;
 const oldScriptureCache={};
-
-function renderBooks(books,id,isNew){
- const container=document.getElementById(id);
- container.innerHTML="";
- books.forEach(([amharic,english,bookId])=>{
-  const b=document.createElement("button");
-  b.className="book-button";
-  b.dataset.search=(amharic+" "+english).toLowerCase();
-  const a=document.createElement("span");
-  a.className="amharic";
-  a.textContent=amharic;
-  const e=document.createElement("span");
-  e.className="english";
-  e.textContent=english;
-  b.append(a,e);
-  b.onclick=()=>isNew?openBook(amharic,english,bookId):openOldBook(amharic,english);
-  container.appendChild(b);
- });
-}
-
-function showTestament(which,button){
- document.getElementById("oldPanel").classList.toggle("hidden",which!=="old");
- document.getElementById("newPanel").classList.toggle("hidden",which!=="new");
- document.querySelectorAll(".testament-button").forEach(b=>b.classList.remove("active"));
- button.classList.add("active");
-}
-
-function setScreen(screen){
- document.getElementById("booksScreen").classList.toggle("hidden",screen!=="books");
- document.getElementById("chaptersScreen").classList.toggle("hidden",screen!=="chapters");
- document.getElementById("readingScreen").classList.toggle("hidden",screen!=="reading");
- window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function buildChapterButtons(chapters){
- const grid=document.getElementById("chapterGrid");
- grid.innerHTML="";
- chapters.forEach(ch=>{
-  const b=document.createElement("button");
-  b.className="chapter-button";
-  b.textContent=ch;
-  b.onclick=()=>openChapter(ch);
-  grid.appendChild(b);
- });
-}
-
-function openBook(amharic,english,id){
- selectedBook={amharic,english,id,old:false};
- const chapters=scriptureData[id]||{};
- buildChapterButtons(Object.keys(chapters).map(Number).sort((a,b)=>a-b));
- document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;
- setScreen("chapters");
-}
-
+function renderBooks(books,id,isNew){const container=document.getElementById(id);container.innerHTML="";books.forEach(([amharic,english,bookId])=>{const b=document.createElement("button");b.className="book-button";b.dataset.search=(amharic+" "+english).toLowerCase();const a=document.createElement("span");a.className="amharic";a.textContent=amharic;const e=document.createElement("span");e.className="english";e.textContent=english;b.append(a,e);b.onclick=()=>isNew?openBook(amharic,english,bookId):openOldBook(amharic,english);container.appendChild(b);});}
+function showTestament(which,button){document.getElementById("oldPanel").classList.toggle("hidden",which!=="old");document.getElementById("newPanel").classList.toggle("hidden",which!=="new");document.querySelectorAll(".testament-button").forEach(b=>b.classList.remove("active"));button.classList.add("active");}
+function setScreen(screen){document.getElementById("booksScreen").classList.toggle("hidden",screen!=="books");document.getElementById("chaptersScreen").classList.toggle("hidden",screen!=="chapters");document.getElementById("readingScreen").classList.toggle("hidden",screen!=="reading");window.scrollTo({top:0,behavior:"smooth"});}
+function buildChapterButtons(chapters){const grid=document.getElementById("chapterGrid");grid.innerHTML="";chapters.forEach(ch=>{const b=document.createElement("button");b.className="chapter-button";b.textContent=ch;b.onclick=()=>openChapter(ch);grid.appendChild(b);});}
+function openBook(amharic,english,id){selectedBook={amharic,english,id,old:false};const chapters=scriptureData[id]||{};buildChapterButtons(Object.keys(chapters).map(Number).sort((a,b)=>a-b));document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;setScreen("chapters");}
 function openOldBook(amharic,english){
- selectedBook={
-  amharic,
-  english,
-  old:true,
-  dataFile:oldDataFiles[english]||null,
-  chapterOffset:english==="Reproof (Proverbs 25–31)"?24:0
- };
-
- const chapters=english==="Jeremiah"
-  ?[
-    ...Array.from({length:24},(_,i)=>String(i+1)),
-    "LXX 25",
-    "25b",
-    ...Array.from({length:20},(_,i)=>String(i+26)),
-    ...Array.from({length:6},(_,i)=>"LXX "+(i+26)),
-    "52"
-   ]
-  :Array.from({length:chapterCounts[english]||1},(_,i)=>String(i+1));
-
- buildChapterButtons(chapters);
- document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;
- setScreen("chapters");
+ selectedBook={amharic,english,old:true,dataFile:oldDataFiles[english]||null,chapterOffset:english==="Reproof (Proverbs 25–31)"?24:0};
+ const chapters=english==="Jeremiah"?[...Array.from({length:24},(_,i)=>String(i+1)),"LXX 25",...Array.from({length:6},(_,i)=>"LXX "+(i+26)),"25b",...Array.from({length:20},(_,i)=>String(i+26)),"52"]:Array.from({length:chapterCounts[english]||1},(_,i)=>String(i+1));
+ buildChapterButtons(chapters);document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;setScreen("chapters");
 }
-
-function addVerses(container,verses){
- verses.forEach((v,i)=>{
-  const row=document.createElement("div");
-  row.className="verse";
-  const n=document.createElement("span");
-  n.className="verse-number";
-  n.textContent=String(v&&typeof v==="object"&&"number" in v?v.number:i+1);
-  const t=document.createElement("span");
-  t.className="verse-text";
-  t.textContent=(v&&typeof v==="object"&&"text" in v?v.text:v)||"";
-  row.append(n,t);
-  container.appendChild(row);
- });
-}
-
+function addVerses(container,verses){verses.forEach((v,i)=>{const row=document.createElement("div");row.className="verse";const n=document.createElement("span");n.className="verse-number";n.textContent=String(v&&typeof v==="object"&&"number" in v?v.number:i+1);const t=document.createElement("span");t.className="verse-text";t.textContent=(v&&typeof v==="object"&&"text" in v?v.text:v)||"";row.append(n,t);container.appendChild(row);});}
 function getJeremiahDisplayVerses(data,label){
- const sourceChapter=number=>
-  data.chapters.find(x=>Number(x.chapter)===number)?.verses||[];
-
- const range=(chapter,first,last)=>{
-  const verses=sourceChapter(chapter);
-  return verses.slice(first-1,last).map((text,index)=>({
-   number:first+index,
-   text:typeof text==="string"?text:(text.text||text.verse||text.content||"")
-  }));
- };
-
+ const sourceChapter=(number)=>data.chapters.find(x=>Number(x.chapter)===number)?.verses||[];
+ const range=(chapter,first,last)=>{const verses=sourceChapter(chapter);return verses.slice(first-1,last).map((text,index)=>({number:first+index,text}));};
  if(label==="25b")return range(25,15,38);
-
- if(label==="LXX 25"){
-  const original25a=range(25,1,13);
-  const elamOracles=range(49,34,39);
-  return [...original25a,...elamOracles].map((verse,index)=>({
-   number:index+1,
-   text:verse.text
-  }));
- }
-
+ if(label==="LXX 25")return [...range(25,1,13),...range(49,34,39)].map((verse,index)=>({...verse,number:index+1}));
  if(label==="LXX 26")return range(46,1,28);
- if(label==="LXX 27")return sourceChapter(50).map((text,index)=>({number:index+1,text:typeof text==="string"?text:(text.text||text.verse||text.content||"")}));
- if(label==="LXX 28")return sourceChapter(51).map((text,index)=>({number:index+1,text:typeof text==="string"?text:(text.text||text.verse||text.content||"")}));
+ if(label==="LXX 27")return sourceChapter(50).map((text,index)=>({number:index+1,text}));
+ if(label==="LXX 28")return sourceChapter(51).map((text,index)=>({number:index+1,text}));
  if(label==="LXX 29")return range(47,1,7);
-
- if(label==="LXX 30"){
-  return [
-   ...range(49,7,22),
-   ...range(49,1,6),
-   ...range(49,28,33),
-   ...range(49,23,27)
-  ];
- }
-
- if(label==="LXX 31")return sourceChapter(48).map((text,index)=>({number:index+1,text:typeof text==="string"?text:(text.text||text.verse||text.content||"")}));
-
+ if(label==="LXX 30")return [...range(49,7,22),...range(49,1,6),...range(49,28,33),...range(49,23,27)];
+ if(label==="LXX 31")return sourceChapter(48).map((text,index)=>({number:index+1,text}));
  const chapter=Number(label);
- if(chapter>=1&&chapter<=24)return sourceChapter(chapter).map((text,index)=>({number:index+1,text:typeof text==="string"?text:(text.text||text.verse||text.content||"")}));
- if(chapter>=26&&chapter<=45)return sourceChapter(chapter).map((text,index)=>({number:index+1,text:typeof text==="string"?text:(text.text||text.verse||text.content||"")}));
- if(chapter===52)return sourceChapter(52).map((text,index)=>({number:index+1,text:typeof text==="string"?text:(text.text||text.verse||text.content||"")}));
+ if(chapter>=1&&chapter<=24)return sourceChapter(chapter).map((text,index)=>({number:index+1,text}));
+ if(chapter>=26&&chapter<=45)return sourceChapter(chapter).map((text,index)=>({number:index+1,text}));
+ if(chapter===52)return sourceChapter(52).map((text,index)=>({number:index+1,text}));
  return [];
 }
-
 async function openChapter(chapter){
- const book=selectedBook;
- document.getElementById("readingBookTitle").textContent=book.amharic+" — "+book.english;
- document.getElementById("readingChapterTitle").textContent="ምዕራፍ "+chapter;
- const content=document.getElementById("readingContent");
- content.innerHTML="";
-
+ const book=selectedBook;document.getElementById("readingBookTitle").textContent=book.amharic+" — "+book.english;document.getElementById("readingChapterTitle").textContent="ምዕራፍ "+chapter;
+ const content=document.getElementById("readingContent");content.innerHTML="";
  if(book.old){
-  if(!book.dataFile){
-   const p=document.createElement("div");
-   p.className="reader-placeholder";
-   p.textContent="የዚህ መጽሐፍ የአማርኛ ጽሑፍ ገና አልተገናኘም።";
-   content.appendChild(p);
-   setScreen("reading");
-   return;
-  }
-
-  const loading=document.createElement("div");
-  loading.className="reader-placeholder";
-  loading.textContent="ጽሑፉን በመጫን ላይ...";
-  content.appendChild(loading);
-  setScreen("reading");
-
-  try{
-   const key=book.dataFile;
-   if(!oldScriptureCache[key]){
-    const response=await fetch(OLD_SOURCE_BASE+encodeURIComponent(key));
-    if(!response.ok)throw Error("HTTP "+response.status);
-    oldScriptureCache[key]=await response.json();
-   }
-
-   if(selectedBook!==book)return;
-
-   const label=String(chapter);
-   const isJeremiah=book.english==="Jeremiah";
-   const wanted=Number(chapter)+(book.chapterOffset||0);
-   const ch=oldScriptureCache[key].chapters.find(x=>Number(x.chapter)===wanted);
-
-   content.innerHTML="";
-
-   const verses=isJeremiah
-    ?getJeremiahDisplayVerses(oldScriptureCache[key],label)
-    :(ch&&Array.isArray(ch.verses)?ch.verses:null);
-
-   if(!verses||!verses.length){
-    const p=document.createElement("div");
-    p.className="reader-placeholder";
-    p.textContent="ይህ ምዕራፍ በተገኘው የጽሑፍ ምንጭ ውስጥ የለም።";
-    content.appendChild(p);
-   }else{
-    addVerses(content,verses);
-   }
-  }catch(error){
-   content.innerHTML="";
-   const p=document.createElement("div");
-   p.className="reader-placeholder";
-   p.textContent="የአማርኛ ጽሑፉን መጫን አልተቻለም። ኢንተርኔትዎን ያረጋግጡና እንደገና ይሞክሩ።";
-   content.appendChild(p);
-  }
+  if(!book.dataFile){const p=document.createElement("div");p.className="reader-placeholder";p.textContent="የዚህ መጽሐፍ የአማርኛ ጽሑፍ ገና አልተገናኘም።";content.appendChild(p);setScreen("reading");return;}
+  const loading=document.createElement("div");loading.className="reader-placeholder";loading.textContent="ጽሑፉን በመጫን ላይ...";content.appendChild(loading);setScreen("reading");
+  try{const key=book.dataFile;if(!oldScriptureCache[key]){const response=await fetch(OLD_SOURCE_BASE+encodeURIComponent(key));if(!response.ok)throw Error("HTTP "+response.status);oldScriptureCache[key]=await response.json();}
+   if(selectedBook!==book)return;const label=String(chapter);const isJeremiah=book.english==="Jeremiah";const wanted=Number(chapter)+(book.chapterOffset||0);const ch=oldScriptureCache[key].chapters.find(x=>Number(x.chapter)===wanted);content.innerHTML="";
+   const verses=isJeremiah?getJeremiahDisplayVerses(oldScriptureCache[key],label):(ch&&Array.isArray(ch.verses)?ch.verses:null);
+   if(!verses||!verses.length){const p=document.createElement("div");p.className="reader-placeholder";p.textContent="ይህ ምዕራፍ በተገኘው የጽሑፍ ምንጭ ውስጥ የለም።";content.appendChild(p);}else addVerses(content,verses);
+  }catch(error){content.innerHTML="";const p=document.createElement("div");p.className="reader-placeholder";p.textContent="የአማርኛ ጽሑፉን መጫን አልተቻለም። ኢንተርኔትዎን ያረጋግጡና እንደገና ይሞክሩ።";content.appendChild(p);}
   return;
  }
-
- const verses=scriptureData[book.id]?.[chapter];
- if(verses?.length){
-  verses.sort((a,b)=>a.number-b.number).forEach(v=>{
-   const row=document.createElement("div");
-   row.className="verse";
-   const n=document.createElement("span");
-   n.className="verse-number";
-   n.textContent=v.number;
-   const t=document.createElement("span");
-   t.className="verse-text";
-   t.textContent=v.text;
-   row.append(n,t);
-   content.appendChild(row);
-  });
- }else{
-  const p=document.createElement("div");
-  p.className="reader-placeholder";
-  p.textContent="የዚህ ምዕራፍ ጽሑፍ አልተገኘም።";
-  content.appendChild(p);
- }
- setScreen("reading");
+ const verses=scriptureData[book.id]?.[chapter];if(verses?.length){verses.sort((a,b)=>a.number-b.number).forEach(v=>{const row=document.createElement("div");row.className="verse";const n=document.createElement("span");n.className="verse-number";n.textContent=v.number;const t=document.createElement("span");t.className="verse-text";t.textContent=v.text;row.append(n,t);content.appendChild(row);});}else{const p=document.createElement("div");p.className="reader-placeholder";p.textContent="የዚህ ምዕራፍ ጽሑፍ አልተገኘም።";content.appendChild(p);}setScreen("reading");
 }
-
-function goToBooks(){setScreen("books");}
-function goToChapters(){setScreen("chapters");}
-
-function searchBooks(){
- const q=document.getElementById("search").value.toLowerCase().trim();
- document.querySelectorAll(".book-button").forEach(b=>
-  b.classList.toggle("hidden",!b.dataset.search.includes(q))
- );
- if(q){
-  document.getElementById("oldPanel").classList.remove("hidden");
-  document.getElementById("newPanel").classList.remove("hidden");
- }else{
-  document.getElementById("oldPanel").classList.add("hidden");
-  document.getElementById("newPanel").classList.remove("hidden");
- }
-}
-
-async function loadScripture(){
- const status=document.getElementById("loadStatus");
- try{
-  const response=await fetch(SOURCE_URL,{cache:"no-store"});
-  if(!response.ok)throw Error("HTTP "+response.status);
-  const raw=await response.text();
-  const parsed={};
-  let count=0;
-
-  raw.split(/\r?\n/).forEach(line=>{
-   if(!line.trim())return;
-   const p=line.split("||");
-   if(p.length<4)return;
-   const [id,ct,vt,...rest]=p;
-   const ch=Number(ct);
-   const num=Number(vt);
-   const text=rest.join("||");
-   if(!/^(4[0-9]|5[0-9]|6[0-6])N$/.test(id)||
-      !Number.isInteger(ch)||!Number.isInteger(num)||!text)return;
-   parsed[id]??={};
-   parsed[id][ch]??=[];
-   parsed[id][ch].push({number:num,text});
-   count++;
-  });
-
-  const books=Object.keys(parsed).length;
-  const chapters=Object.values(parsed).reduce((n,b)=>n+Object.keys(b).length,0);
-
-  if(books!==27||chapters!==260||count!==7656)throw Error("NT validation failed");
-
-  scriptureData=parsed;
-  status.textContent="የሐዲስ ኪዳን ጽሑፍ ተጭኗል።";
- }catch(e){
-  status.textContent="የሐዲስ ኪዳን ጽሑፍን መጫን አልተቻለም።";
- }
-}
-
-renderBooks(oldBooks,"oldBooks",false);
-renderBooks(newBooks,"newBooks",true);
-loadScripture();
+function goToBooks(){setScreen("books");}function goToChapters(){setScreen("chapters");}
+function searchBooks(){const q=document.getElementById("search").value.toLowerCase().trim();document.querySelectorAll(".book-button").forEach(b=>b.classList.toggle("hidden",!b.dataset.search.includes(q)));if(q){document.getElementById("oldPanel").classList.remove("hidden");document.getElementById("newPanel").classList.remove("hidden");}else{document.getElementById("oldPanel").classList.add("hidden");document.getElementById("newPanel").classList.remove("hidden");}}
+async function loadScripture(){const status=document.getElementById("loadStatus");try{const response=await fetch(SOURCE_URL,{cache:"no-store"});if(!response.ok)throw Error("HTTP "+response.status);const raw=await response.text(),parsed={};let count=0;raw.split(/\r?\n/).forEach(line=>{if(!line.trim())return;const p=line.split("||");if(p.length<4)return;const [id,ct,vt,...rest]=p;const ch=Number(ct),num=Number(vt),text=rest.join("||");if(!/^(4[0-9]|5[0-9]|6[0-6])N$/.test(id)||!Number.isInteger(ch)||!Number.isInteger(num)||!text)return;parsed[id]??={};parsed[id][ch]??=[];parsed[id][ch].push({number:num,text});count++;});const books=Object.keys(parsed).length,chapters=Object.values(parsed).reduce((n,b)=>n+Object.keys(b).length,0);if(books!==27||chapters!==260||count!==7656)throw Error("NT validation failed");scriptureData=parsed;status.textContent="የሐዲስ ኪዳን ጽሑፍ ተጭኗል።";}catch(e){status.textContent="የሐዲስ ኪዳን ጽሑፍን መጫን አልተቻለም።";}}
+renderBooks(oldBooks,"oldBooks",false);renderBooks(newBooks,"newBooks",true);loadScripture();
 </script>
 </body>
 </html>
