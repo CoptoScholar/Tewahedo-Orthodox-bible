@@ -296,6 +296,7 @@ footer {
 
  <section class="book-panel hidden" id="oldPanel">
   <h2 class="panel-heading">ብሉይ ኪዳን</h2>
+  <div class="status" id="oldStatus">የብሉይ ኪዳን ጽሑፍ ከመረጡት መጽሐፍ ጋር ይጫናል።</div>
   <div class="book-grid" id="oldBooks"></div>
  </section>
 
@@ -335,6 +336,7 @@ footer {
  Every non-commercial work using this data in any form must fully include this copyright statement.
  Every commercial use of parts or the complete data in any form needs written permission of the Bible Society of Ethiopia.
  </p>
+ <p>Old Testament JSON text source: Henok Hailemariam, amharic-bible-json (MIT License, 2020).</p>
 </footer>
 
 <script>
@@ -342,6 +344,9 @@ footer {
 
 const SOURCE_URL =
 "https://raw.githubusercontent.com/EtkAppsAdmin/Bibles-1/master/Amharic__Amharic_NT__amharic__LTR.txt";
+
+const OLD_SOURCE_BASE =
+"https://raw.githubusercontent.com/magna25/amharic-bible-json/main/individual_books/";
 
 const newBooks = [
 ["ማቴዎስ","Matthew","40N"],
@@ -424,8 +429,52 @@ const oldBooks = [
 ["ሶፎንያስ","Zephaniah"],
 ["ሐጌ","Haggai"],
 ["ዘካርያስ","Zechariah"],
-["ሚልክያስ","Malachi"]
+["ሚልክያስ","Malachi"],
+["አስቴር","Esther"]
 ];
+
+const oldDataFiles = {
+"Genesis":"01_ኦሪት ዘፍጥረት.json",
+"Exodus":"02_ኦሪት ዘጸአት.json",
+"Leviticus":"03_ኦሪት ዘሌዋውያን.json",
+"Numbers":"04_ኦሪት ዘኍልቍ.json",
+"Deuteronomy":"05_ኦሪት ዘዳግም.json",
+"Joshua":"06_መጽሐፈ ኢያሱ ወልደ ነዌ.json",
+"Judges":"07_መጽሐፈ መሣፍንት.json",
+"Ruth":"08_መጽሐፈ ሩት.json",
+"1 Samuel (1 Kingdoms)":"09_መጽሐፈ ሳሙኤል ቀዳማዊ.json",
+"2 Samuel (2 Kingdoms)":"10_መጽሐፈ ሳሙኤል ካል.json",
+"1 Kings (3 Kingdoms)":"11_መጽሐፈ ነገሥት ቀዳማዊ።.json",
+"2 Kings (4 Kingdoms)":"12_መጽሐፈ ነገሥት ካልዕ።.json",
+"1 Chronicles":"13_መጽሐፈ ዜና መዋዕል ቀዳማዊ።.json",
+"2 Chronicles":"14_መጽሐፈ ዜና መዋዕል ካልዕ።.json",
+"Ezra":"15_መጽሐፈ ዕዝራ።.json",
+"Nehemiah":"16_መጽሐፈ ነህምያ።.json",
+"Esther":"17_መጽሐፈ አስቴር።.json",
+"Job":"18_መጽሐፈ ኢዮብ።.json",
+"Psalms":"19_መዝሙረ ዳዊት.json",
+"Proverbs (1–24)":"20_መጽሐፈ ምሳሌ.json",
+"Reproof (Proverbs 25–31)":"20_መጽሐፈ ምሳሌ.json",
+"Ecclesiastes":"21_መጽሐፈ መክብብ.json",
+"Song of Solomon":"22_መኃልየ መኃልይ ዘሰሎሞን.json",
+"Isaiah":"23_ትንቢተ ኢሳይያስ.json",
+"Jeremiah":"24_ትንቢተ ኤርምያስ.json",
+"Lamentations":"25_ሰቆቃው ኤርምያስ.json",
+"Ezekiel":"26_ትንቢተ ሕዝቅኤል.json",
+"Daniel":"27_ትንቢተ ዳንኤል.json",
+"Hosea":"28_ትንቢተ ሆሴዕ.json",
+"Joel":"29_ትንቢተ ኢዮኤል.json",
+"Amos":"30_ትንቢተ አሞጽ.json",
+"Obadiah":"31_ትንቢተ አብድዩ.json",
+"Jonah":"32_ትንቢተ ዮናስ.json",
+"Micah":"33_ትንቢተ ሚክያስ.json",
+"Nahum":"34_ትንቢተ ናሆም.json",
+"Habakkuk":"35_ትንቢተ ዕንባቆም.json",
+"Zephaniah":"36_ትንቢተ ሶፎንያስ.json",
+"Haggai":"37_ትንቢተ ሐጌ.json",
+"Zechariah":"38_ትንቢተ ዘካርያስ.json",
+"Malachi":"39_ትንቢተ ሚልክያ.json"
+};
 
 const chapterCounts = {
 "Genesis":50,"Exodus":40,"Leviticus":27,"Numbers":36,
@@ -444,31 +493,23 @@ const chapterCounts = {
 
 let scriptureData = {};
 let selectedBook = null;
+const oldScriptureCache = {};
 
 function renderBooks(books,id,isNew) {
  const container=document.getElementById(id);
  container.innerHTML="";
-
  books.forEach(([amharic,english,bookId])=>{
   const button=document.createElement("button");
   button.className="book-button";
   button.dataset.search=(amharic+" "+english).toLowerCase();
-
   const am=document.createElement("span");
   am.className="amharic";
   am.textContent=amharic;
-
   const en=document.createElement("span");
   en.className="english";
   en.textContent=english;
-
   button.append(am,en);
-
-  button.onclick=()=>{
-   if(isNew) openBook(amharic,english,bookId);
-   else openOldBook(amharic,english);
-  };
-
+  button.onclick=()=>isNew?openBook(amharic,english,bookId):openOldBook(amharic,english);
   container.appendChild(button);
  });
 }
@@ -476,10 +517,7 @@ function renderBooks(books,id,isNew) {
 function showTestament(which,button) {
  document.getElementById("oldPanel").classList.toggle("hidden",which!=="old");
  document.getElementById("newPanel").classList.toggle("hidden",which!=="new");
-
- document.querySelectorAll(".testament-button")
- .forEach(b=>b.classList.remove("active"));
-
+ document.querySelectorAll(".testament-button").forEach(b=>b.classList.remove("active"));
  button.classList.add("active");
 }
 
@@ -490,38 +528,9 @@ function setScreen(screen) {
  window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function openBook(amharic,english,id) {
- selectedBook={amharic,english,id,old:false};
-
- const chapters=scriptureData[id]||{};
-
- buildChapterButtons(
-  Object.keys(chapters).map(Number).sort((a,b)=>a-b)
- );
-
- document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;
-
- setScreen("chapters");
-}
-
-function openOldBook(amharic,english) {
- selectedBook={amharic,english,old:true};
-
- const count=chapterCounts[english]||1;
-
- buildChapterButtons(
-  Array.from({length:count},(_,i)=>i+1)
- );
-
- document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;
-
- setScreen("chapters");
-}
-
 function buildChapterButtons(chapters) {
  const grid=document.getElementById("chapterGrid");
  grid.innerHTML="";
-
  chapters.forEach(ch=>{
   const button=document.createElement("button");
   button.className="chapter-button";
@@ -531,65 +540,130 @@ function buildChapterButtons(chapters) {
  });
 }
 
-function openChapter(chapter) {
- document.getElementById("readingBookTitle").textContent=
- selectedBook.amharic+" — "+selectedBook.english;
-
- document.getElementById("readingChapterTitle").textContent="ምዕራፍ "+chapter;
-
- const content=document.getElementById("readingContent");
- content.innerHTML="";
-
- if(selectedBook.old) {
-  const p=document.createElement("div");
-  p.className="reader-placeholder";
-  p.textContent="የዚህ ምዕራፍ የአማርኛ ጽሑፍ ገና አልተገናኘም።";
-  content.appendChild(p);
- } else {
-  const verses=scriptureData[selectedBook.id]?.[chapter];
-
-  if(verses&&verses.length) {
-   verses.sort((a,b)=>a.number-b.number).forEach(verse=>{
-    const row=document.createElement("div");
-    row.className="verse";
-
-    const number=document.createElement("span");
-    number.className="verse-number";
-    number.textContent=verse.number;
-
-    const text=document.createElement("span");
-    text.className="verse-text";
-    text.textContent=verse.text;
-
-    row.append(number,text);
-    content.appendChild(row);
-   });
-  } else {
-   const p=document.createElement("div");
-   p.className="reader-placeholder";
-   p.textContent="የዚህ ምዕራፍ ጽሑፍ አልተገኘም።";
-   content.appendChild(p);
-  }
- }
-
- setScreen("reading");
-}
-
-function goToBooks() {
- setScreen("books");
-}
-
-function goToChapters() {
+function openBook(amharic,english,id) {
+ selectedBook={amharic,english,id,old:false};
+ const chapters=scriptureData[id]||{};
+ buildChapterButtons(Object.keys(chapters).map(Number).sort((a,b)=>a-b));
+ document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;
  setScreen("chapters");
 }
 
+function openOldBook(amharic,english) {
+ selectedBook={
+  amharic,english,old:true,
+  dataFile:oldDataFiles[english]||null,
+  chapterOffset:english==="Reproof (Proverbs 25–31)"?24:0
+ };
+ const count=chapterCounts[english]||1;
+ buildChapterButtons(Array.from({length:count},(_,i)=>i+1));
+ document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;
+ setScreen("chapters");
+}
+
+function addVerses(container,verses) {
+ verses.forEach((verseText,index)=>{
+  const row=document.createElement("div");
+  row.className="verse";
+  const number=document.createElement("span");
+  number.className="verse-number";
+  number.textContent=String(index+1);
+  const text=document.createElement("span");
+  text.className="verse-text";
+  text.textContent=verseText||"";
+  row.append(number,text);
+  container.appendChild(row);
+ });
+}
+
+async function openChapter(chapter) {
+ const book=selectedBook;
+ document.getElementById("readingBookTitle").textContent=book.amharic+" — "+book.english;
+ document.getElementById("readingChapterTitle").textContent="ምዕራፍ "+chapter;
+ const content=document.getElementById("readingContent");
+ content.innerHTML="";
+
+ if(book.old) {
+  if(!book.dataFile) {
+   const p=document.createElement("div");
+   p.className="reader-placeholder";
+   p.textContent="የዚህ መጽሐፍ የአማርኛ ጽሑፍ ገና አልተገናኘም።";
+   content.appendChild(p);
+   setScreen("reading");
+   return;
+  }
+
+  const loading=document.createElement("div");
+  loading.className="reader-placeholder";
+  loading.textContent="ጽሑፉን በመጫን ላይ...";
+  content.appendChild(loading);
+  setScreen("reading");
+
+  try {
+   const key=book.dataFile;
+   if(!oldScriptureCache[key]) {
+    const response=await fetch(OLD_SOURCE_BASE+encodeURIComponent(key));
+    if(!response.ok) throw new Error("HTTP "+response.status);
+    oldScriptureCache[key]=await response.json();
+   }
+
+   if(selectedBook!==book) return;
+
+   const wantedChapter=chapter+(book.chapterOffset||0);
+   const chapterData=oldScriptureCache[key].chapters.find(
+    item=>Number(item.chapter)===wantedChapter
+   );
+
+   content.innerHTML="";
+
+   if(!chapterData||!Array.isArray(chapterData.verses)) {
+    const p=document.createElement("div");
+    p.className="reader-placeholder";
+    p.textContent="ይህ ምዕራፍ በተገኘው የጽሑፍ ምንጭ ውስጥ የለም።";
+    content.appendChild(p);
+   } else {
+    addVerses(content,chapterData.verses);
+   }
+  } catch(error) {
+   content.innerHTML="";
+   const p=document.createElement("div");
+   p.className="reader-placeholder";
+   p.textContent="የአማርኛ ጽሑፉን መጫን አልተቻለም። ኢንተርኔትዎን ያረጋግጡና እንደገና ይሞክሩ።";
+   content.appendChild(p);
+  }
+  return;
+ }
+
+ const verses=scriptureData[book.id]?.[chapter];
+ if(verses&&verses.length) {
+  verses.sort((a,b)=>a.number-b.number).forEach(verse=>{
+   const row=document.createElement("div");
+   row.className="verse";
+   const number=document.createElement("span");
+   number.className="verse-number";
+   number.textContent=verse.number;
+   const text=document.createElement("span");
+   text.className="verse-text";
+   text.textContent=verse.text;
+   row.append(number,text);
+   content.appendChild(row);
+  });
+ } else {
+  const p=document.createElement("div");
+  p.className="reader-placeholder";
+  p.textContent="የዚህ ምዕራፍ ጽሑፍ አልተገኘም።";
+  content.appendChild(p);
+ }
+ setScreen("reading");
+}
+
+function goToBooks(){setScreen("books");}
+function goToChapters(){setScreen("chapters");}
+
 function searchBooks() {
  const query=document.getElementById("search").value.toLowerCase().trim();
-
  document.querySelectorAll(".book-button").forEach(button=>{
   button.classList.toggle("hidden",!button.dataset.search.includes(query));
  });
-
  if(query) {
   document.getElementById("oldPanel").classList.remove("hidden");
   document.getElementById("newPanel").classList.remove("hidden");
@@ -601,32 +675,23 @@ function searchBooks() {
 
 async function loadScripture() {
  const status=document.getElementById("loadStatus");
-
  try {
   const response=await fetch(SOURCE_URL,{cache:"no-store"});
-
   if(!response.ok) throw new Error("HTTP "+response.status);
-
   const raw=await response.text();
   const parsed={};
   let verseCount=0;
 
   raw.split(/\r?\n/).forEach(line=>{
    if(!line.trim()) return;
-
    const parts=line.split("||");
    if(parts.length<4) return;
-
    const [bookId,chapterText,verseText,...verseParts]=parts;
    const chapter=Number(chapterText);
    const number=Number(verseText);
    const text=verseParts.join("||");
-
-   if(!/^(4[0-9]|5[0-9]|6[0-6])N$/.test(bookId) ||
-      !Number.isInteger(chapter) ||
-      !Number.isInteger(number) ||
-      !text) return;
-
+   if(!/^(4[0-9]|5[0-9]|6[0-6])N$/.test(bookId)||
+      !Number.isInteger(chapter)||!Number.isInteger(number)||!text) return;
    parsed[bookId]??={};
    parsed[bookId][chapter]??=[];
    parsed[bookId][chapter].push({number,text});
@@ -635,7 +700,7 @@ async function loadScripture() {
 
   const bookCount=Object.keys(parsed).length;
   const chapterCount=Object.values(parsed).reduce(
-   (n,b)=>n+Object.keys(b).length,0
+   (total,book)=>total+Object.keys(book).length,0
   );
 
   if(bookCount!==27||chapterCount!==260||verseCount!==7656) {
@@ -643,9 +708,7 @@ async function loadScripture() {
   }
 
   scriptureData=parsed;
-
   status.textContent="የሐዲስ ኪዳን ጽሑፍ ተጭኗል።";
-
  } catch(error) {
   status.textContent="የሐዲስ ኪዳን ጽሑፍን መጫን አልተቻለም።";
  }
@@ -654,7 +717,6 @@ async function loadScripture() {
 renderBooks(oldBooks,"oldBooks",false);
 renderBooks(newBooks,"newBooks",true);
 loadScripture();
-
 </script>
 </body>
 </html>
