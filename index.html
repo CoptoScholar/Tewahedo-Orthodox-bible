@@ -76,25 +76,26 @@ function buildChapterButtons(chapters){const grid=document.getElementById("chapt
 function openBook(amharic,english,id){selectedBook={amharic,english,id,old:false};const chapters=scriptureData[id]||{};buildChapterButtons(Object.keys(chapters).map(Number).sort((a,b)=>a-b));document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;setScreen("chapters");}
 function openOldBook(amharic,english){
  selectedBook={amharic,english,old:true,dataFile:oldDataFiles[english]||null,chapterOffset:english==="Reproof (Proverbs 25–31)"?24:0};
- const chapters=english==="Jeremiah"?[...Array.from({length:24},(_,i)=>String(i+1)),"LXX 25",...Array.from({length:6},(_,i)=>"LXX "+(i+26)),"25b",...Array.from({length:20},(_,i)=>String(i+26)),"52"]:Array.from({length:chapterCounts[english]||1},(_,i)=>String(i+1));
+ const chapters=english==="Jeremiah"?[...Array.from({length:24},(_,i)=>String(i+1)),...Array.from({length:19},(_,i)=>"LXX "+(i+25)),...Array.from({length:9},(_,i)=>String(i+37)),"52"]:Array.from({length:chapterCounts[english]||1},(_,i)=>String(i+1));
  buildChapterButtons(chapters);document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;setScreen("chapters");
 }
 function addVerses(container,verses){verses.forEach((v,i)=>{const row=document.createElement("div");row.className="verse";const n=document.createElement("span");n.className="verse-number";n.textContent=String(v&&typeof v==="object"&&"number" in v?v.number:i+1);const t=document.createElement("span");t.className="verse-text";t.textContent=(v&&typeof v==="object"&&"text" in v?v.text:v)||"";row.append(n,t);container.appendChild(row);});}
 function getJeremiahDisplayVerses(data,label){
  const sourceChapter=(number)=>data.chapters.find(x=>Number(x.chapter)===number)?.verses||[];
- const range=(chapter,first,last)=>{const verses=sourceChapter(chapter);return verses.slice(first-1,last).map((text,index)=>({number:first+index,text}));};
- if(label==="25b")return range(25,15,38);
+ const range=(chapter,first,last)=>{const verses=sourceChapter(chapter);return verses.slice(first-1,last).map((verse,index)=>({number:index+1,text:verse&&typeof verse==="object"&&"text" in verse?verse.text:verse}));};
+ const wholeChapter=(chapter)=>sourceChapter(chapter).map((verse,index)=>({number:index+1,text:verse&&typeof verse==="object"&&"text" in verse?verse.text:verse}));
  if(label==="LXX 25")return [...range(25,1,13),...range(49,34,39)].map((verse,index)=>({...verse,number:index+1}));
  if(label==="LXX 26")return range(46,1,28);
- if(label==="LXX 27")return sourceChapter(50).map((text,index)=>({number:index+1,text}));
- if(label==="LXX 28")return sourceChapter(51).map((text,index)=>({number:index+1,text}));
+ if(label==="LXX 27")return wholeChapter(50);
+ if(label==="LXX 28")return wholeChapter(51);
  if(label==="LXX 29")return range(47,1,7);
- if(label==="LXX 30")return [...range(49,7,22),...range(49,1,6),...range(49,28,33),...range(49,23,27)];
- if(label==="LXX 31")return sourceChapter(48).map((text,index)=>({number:index+1,text}));
+ if(label==="LXX 30")return [...range(49,7,22),...range(49,1,6),...range(49,28,33),...range(49,23,27)].map((verse,index)=>({...verse,number:index+1}));
+ if(label==="LXX 31")return wholeChapter(48);
+ if(label==="LXX 32")return range(25,15,38).map((verse,index)=>({...verse,number:index+1}));
+ const lxxNumber=Number(label.replace("LXX ",""));
+ if(lxxNumber>=33&&lxxNumber<=43)return wholeChapter(lxxNumber-7);
  const chapter=Number(label);
- if(chapter>=1&&chapter<=24)return sourceChapter(chapter).map((text,index)=>({number:index+1,text}));
- if(chapter>=26&&chapter<=45)return sourceChapter(chapter).map((text,index)=>({number:index+1,text}));
- if(chapter===52)return sourceChapter(52).map((text,index)=>({number:index+1,text}));
+ if(chapter>=1&&chapter<=24)return wholeChapter(chapter);
  return [];
 }
 async function openChapter(chapter){
