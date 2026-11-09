@@ -1,81 +1,554 @@
-async function openChapter(chapter){
- selectedChapter=chapter;
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>መጽሐፍ ቅዱስ | ተዋሕዶ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+<style>
+:root {
+ --bg:#160f0b;
+ --panel:#241810;
+ --gold:#c9a45b;
+ --gold-light:#e6c77d;
+ --paper:#e9d9b5;
+ --text:#f3e9d5;
+ --muted:#bca987;
+ --border:#70532d;
+}
+
+* { box-sizing:border-box; }
+
+body {
+ margin:0;
+ color:var(--text);
+ background:linear-gradient(rgba(18,11,7,.88),rgba(18,11,7,.94)),url("church-background.jpg") center/cover fixed;
+ font-family:"Noto Serif Ethiopic",serif;
+}
+
+header {
+ padding:24px 18px;
+ text-align:center;
+ background:rgba(20,12,8,.96);
+ border-bottom:1px solid var(--gold);
+}
+
+header h1 {
+ margin:0;
+ color:var(--gold-light);
+ font-size:25px;
+}
+
+header p {
+ margin:7px 0 0;
+ color:var(--muted);
+ font-size:13px;
+}
+
+main {
+ max-width:1100px;
+ margin:auto;
+ padding:25px 16px;
+}
+
+.hero {
+ text-align:center;
+ padding:40px 15px 30px;
+}
+
+.hero h2 {
+ color:var(--gold-light);
+ font-size:29px;
+ margin:5px 0;
+}
+
+.hero p { color:var(--muted); }
+
+.search-box {
+ margin:20px auto 28px;
+ max-width:650px;
+}
+
+input {
+ width:100%;
+ padding:15px;
+ border:1px solid var(--gold);
+ border-radius:8px;
+ background:var(--panel);
+ color:var(--text);
+ font-family:inherit;
+ font-size:16px;
+}
+
+.testament-buttons {
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:15px;
+ margin-bottom:22px;
+}
+
+.testament-button {
+ padding:20px 10px;
+ background:linear-gradient(145deg,#3a2819,#21150e);
+ border:1px solid var(--gold);
+ border-radius:9px;
+ color:var(--gold-light);
+ font-family:inherit;
+ font-size:19px;
+ cursor:pointer;
+}
+
+.testament-button:hover,
+.testament-button.active {
+ background:#594025;
+ border-color:var(--gold-light);
+}
+
+.book-panel,.chapter-panel,.reading-panel {
+ background:rgba(35,24,16,.96);
+ border:1px solid var(--border);
+ border-radius:10px;
+ padding:20px;
+ margin-bottom:22px;
+}
+
+.panel-heading {
+ color:var(--gold-light);
+ text-align:center;
+}
+
+.book-grid {
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:10px;
+}
+
+.book-button {
+ padding:13px 12px;
+ background:#302116;
+ border:1px solid #6f512d;
+ border-radius:6px;
+ color:var(--text);
+ text-align:left;
+ font-family:inherit;
+ cursor:pointer;
+}
+
+.book-button:hover {
+ background:#594025;
+ border-color:var(--gold-light);
+ color:var(--gold-light);
+}
+
+.book-button .amharic {
+ display:block;
+ font-size:15px;
+}
+
+.book-button .english {
+ display:block;
+ color:var(--muted);
+ font-size:12px;
+ margin-top:4px;
+}
+
+.chapter-grid {
+ display:grid;
+ grid-template-columns:repeat(auto-fill,minmax(65px,1fr));
+ gap:12px;
+ margin-top:25px;
+}
+
+.chapter-button {
+ min-height:58px;
+ background:#302116;
+ border:1px solid var(--border);
+ border-radius:7px;
+ color:var(--gold-light);
+ font-family:inherit;
+ font-size:18px;
+ cursor:pointer;
+}
+
+.chapter-button:hover {
+ background:#594025;
+ border-color:var(--gold-light);
+}
+
+.back-button {
+ padding:11px 18px;
+ background:#302116;
+ border:1px solid var(--gold);
+ border-radius:6px;
+ color:var(--gold-light);
+ font-family:inherit;
+ font-size:14px;
+ cursor:pointer;
+ margin-bottom:20px;
+}
+
+.screen-title {
+ color:var(--gold-light);
+ text-align:center;
+ margin:10px 0 5px;
+ font-size:24px;
+}
+
+.screen-subtitle {
+ color:var(--muted);
+ text-align:center;
+ margin-bottom:25px;
+ font-size:14px;
+}
+
+.reading-content {
+ min-height:250px;
+ padding:20px 10px;
+ color:var(--paper);
+ line-height:2.2;
+ font-size:18px;
+}
+
+.verse {
+ display:flex;
+ gap:13px;
+ align-items:flex-start;
+ padding:9px 5px;
+ border-bottom:1px solid rgba(112,83,45,.25);
+}
+
+.verse-number {
+ flex-shrink:0;
+ color:var(--gold-light);
+ font-weight:700;
+ min-width:25px;
+}
+
+.verse-text {
+ flex:1;
+ white-space:pre-wrap;
+}
+
+.reader-placeholder {
+ text-align:center;
+ color:var(--muted);
+ padding:45px 10px;
+ line-height:2;
+}
+
+.status {
+ text-align:center;
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.8;
+ padding:12px;
+}
+
+.hidden { display:none!important; }
+
+footer {
+ text-align:center;
+ padding:25px 15px;
+ margin-top:35px;
+ background:rgba(15,9,6,.95);
+ border-top:1px solid var(--gold);
+ color:var(--muted);
+ font-size:12px;
+ line-height:1.9;
+}
+
+@media(max-width:600px) {
+ header h1 { font-size:21px; }
+ .hero h2 { font-size:23px; }
+ .testament-buttons { grid-template-columns:1fr; }
+ .book-grid { grid-template-columns:1fr; }
+ .chapter-grid { grid-template-columns:repeat(4,1fr); }
+ .reading-content { font-size:17px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <h1>መጽሐፍ ቅዱስ | ተዋሕዶ</h1>
+ <p>በእምነት · በቃሉ · በትውፊት</p>
+</header>
+
+<main>
+
+<section id="booksScreen">
+
+ <section class="hero">
+  <h2>ቅዱሳት መጻሕፍት</h2>
+  <p>የቅዱሳት መጻሕፍትን ቃል ለማንበብና ለማጥናት</p>
+ </section>
+
+ <div class="search-box">
+  <input type="search" id="search" placeholder="መጽሐፍ ፈልግ / Search books..." oninput="searchBooks()">
+ </div>
+
+ <div class="testament-buttons">
+  <button class="testament-button" onclick="showTestament('old',this)">ብሉይ ኪዳን</button>
+  <button class="testament-button active" onclick="showTestament('new',this)">ሐዲስ ኪዳን</button>
+ </div>
+
+ <section class="book-panel hidden" id="oldPanel">
+  <h2 class="panel-heading">ብሉይ ኪዳን</h2>
+  <div class="book-grid" id="oldBooks"></div>
+ </section>
+
+ <section class="book-panel" id="newPanel">
+  <h2 class="panel-heading">ሐዲስ ኪዳን</h2>
+  <div class="status" id="loadStatus">የሐዲስ ኪዳን ጽሑፍ በመጫን ላይ...</div>
+  <div class="book-grid" id="newBooks"></div>
+ </section>
+
+</section>
+
+<section id="chaptersScreen" class="chapter-panel hidden">
+ <button class="back-button" onclick="goToBooks()">← ወደ መጻሕፍት ተመለስ</button>
+ <h2 class="screen-title" id="chapterBookTitle"></h2>
+ <p class="screen-subtitle">ምዕራፍ ይምረጡ</p>
+ <div class="chapter-grid" id="chapterGrid"></div>
+</section>
+
+<section id="readingScreen" class="reading-panel hidden">
+ <button class="back-button" onclick="goToChapters()">← ወደ ምዕራፎች ተመለስ</button>
+ <h2 class="screen-title" id="readingBookTitle"></h2>
+ <p class="screen-subtitle" id="readingChapterTitle"></p>
+ <div class="reading-content" id="readingContent"></div>
+</section>
+
+</main>
+
+<footer>
+ <strong>መጽሐፍ ቅዱስ | ተዋሕዶ</strong>
+ <p>በእምነት · በቃሉ · በትውፊት</p>
+ <p>
+ Amharic NT. Revised Amharic Bible in XML (2003).
+ Printed version by United Bible Societies (© 1962).
+ E-text in transliterated ASCII format by Lapsley/Brooks Foundation (1994).
+ Unicode UTF-8 transformation and XML-tagging by Dirk Röckmann (2003).
+ With kind permission of the Bible Society of Ethiopia.
+ Every non-commercial work using this data in any form must fully include this copyright statement.
+ Every commercial use of parts or the complete data in any form needs written permission of the Bible Society of Ethiopia.
+ </p>
+</footer>
+
+<script>
+"use strict";
+
+const SOURCE_URL =
+"https://raw.githubusercontent.com/EtkAppsAdmin/Bibles-1/master/Amharic__Amharic_NT__amharic__LTR.txt";
+
+const newBooks = [
+["ማቴዎስ","Matthew","40N"],
+["ማርቆስ","Mark","41N"],
+["ሉቃስ","Luke","42N"],
+["ዮሐንስ","John","43N"],
+["የሐዋርያት ሥራ","Acts","44N"],
+["ሮሜ","Romans","45N"],
+["1 ቆሮንቶስ","1 Corinthians","46N"],
+["2 ቆሮንቶስ","2 Corinthians","47N"],
+["ገላትያ","Galatians","48N"],
+["ኤፌሶን","Ephesians","49N"],
+["ፊልጵስዩስ","Philippians","50N"],
+["ቆላስይስ","Colossians","51N"],
+["1 ተሰሎንቄ","1 Thessalonians","52N"],
+["2 ተሰሎንቄ","2 Thessalonians","53N"],
+["1 ጢሞቴዎስ","1 Timothy","54N"],
+["2 ጢሞቴዎስ","2 Timothy","55N"],
+["ቲቶ","Titus","56N"],
+["ፊልሞና","Philemon","57N"],
+["ዕብራውያን","Hebrews","58N"],
+["ያዕቆብ","James","59N"],
+["1 ጴጥሮስ","1 Peter","60N"],
+["2 ጴጥሮስ","2 Peter","61N"],
+["1 ዮሐንስ","1 John","62N"],
+["2 ዮሐንስ","2 John","63N"],
+["3 ዮሐንስ","3 John","64N"],
+["ይሁዳ","Jude","65N"],
+["ራእይ","Revelation","66N"]
+];
+
+const oldBooks = [
+["ዘፍጥረት","Genesis"],
+["ዘጸአት","Exodus"],
+["ዘሌዋውያን","Leviticus"],
+["ዘኍልቍ","Numbers"],
+["ዘዳግም","Deuteronomy"],
+["ኢያሱ","Joshua"],
+["መሳፍንት","Judges"],
+["ሩት","Ruth"],
+["1 ሳሙኤል","1 Samuel (1 Kingdoms)"],
+["2 ሳሙኤል","2 Samuel (2 Kingdoms)"],
+["1 ነገሥት","1 Kings (3 Kingdoms)"],
+["2 ነገሥት","2 Kings (4 Kingdoms)"],
+["1 ዜና መዋዕል","1 Chronicles"],
+["2 ዜና መዋዕል","2 Chronicles"],
+["መጽሐፈ ኩፋሌ","Jubilees"],
+["ሄኖክ","Enoch"],
+["ዕዝራ","Ezra"],
+["ነህምያ","Nehemiah"],
+["1 ዕዝራ","1 Esra"],
+["2 ዕዝራ","2 Ezra"],
+["ዕዝራ-ሸዓልቲኤል","Ezra-Shealtiel"],
+["ጦቢት","Tobit"],
+["ዮዲት","Judith"],
+["1 መቃብያን","1 Meqabyan"],
+["2 መቃብያን","2 Meqabyan"],
+["3 መቃብያን","3 Meqabyan"],
+["ኢዮብ","Job"],
+["መዝሙረ ዳዊት","Psalms"],
+["ምሳሌ","Proverbs (1–24)"],
+["ተግሣጽ","Reproof (Proverbs 25–31)"],
+["ጥበብ","Wisdom of Solomon"],
+["መክብብ","Ecclesiastes"],
+["መኃልየ መኃልይ","Song of Solomon"],
+["ሲራክ","Sirach"],
+["ኢሳይያስ","Isaiah"],
+["ኤርምያስ","Jeremiah"],
+["ሰቆቃው ኤርምያስ","Lamentations"],
+["ሕዝቅኤል","Ezekiel"],
+["ዳንኤል","Daniel"],
+["ሆሴዕ","Hosea"],
+["አሞጽ","Amos"],
+["ሚክያስ","Micah"],
+["ኢዮኤል","Joel"],
+["አብድዩ","Obadiah"],
+["ዮናስ","Jonah"],
+["ናሆም","Nahum"],
+["ዕንባቆም","Habakkuk"],
+["ሶፎንያስ","Zephaniah"],
+["ሐጌ","Haggai"],
+["ዘካርያስ","Zechariah"],
+["ሚልክያስ","Malachi"]
+];
+
+const chapterCounts = {
+"Genesis":50,"Exodus":40,"Leviticus":27,"Numbers":36,
+"Deuteronomy":34,"Joshua":24,"Judges":21,"Ruth":4,
+"1 Samuel (1 Kingdoms)":31,"2 Samuel (2 Kingdoms)":24,
+"1 Kings (3 Kingdoms)":22,"2 Kings (4 Kingdoms)":25,
+"1 Chronicles":29,"2 Chronicles":36,"Jubilees":50,"Enoch":108,
+"Ezra":10,"Nehemiah":13,"Job":42,"Psalms":151,
+"Proverbs (1–24)":24,"Reproof (Proverbs 25–31)":7,
+"Ecclesiastes":12,"Song of Solomon":8,"Isaiah":66,
+"Jeremiah":52,"Lamentations":5,"Ezekiel":48,"Daniel":12,
+"Hosea":14,"Amos":9,"Micah":7,"Joel":3,"Obadiah":1,
+"Jonah":4,"Nahum":3,"Habakkuk":3,"Zephaniah":3,
+"Haggai":2,"Zechariah":14,"Malachi":4
+};
+
+let scriptureData = {};
+let selectedBook = null;
+
+function renderBooks(books,id,isNew) {
+ const container=document.getElementById(id);
+ container.innerHTML="";
+
+ books.forEach(([amharic,english,bookId])=>{
+  const button=document.createElement("button");
+  button.className="book-button";
+  button.dataset.search=(amharic+" "+english).toLowerCase();
+
+  const am=document.createElement("span");
+  am.className="amharic";
+  am.textContent=amharic;
+
+  const en=document.createElement("span");
+  en.className="english";
+  en.textContent=english;
+
+  button.append(am,en);
+
+  button.onclick=()=>{
+   if(isNew) openBook(amharic,english,bookId);
+   else openOldBook(amharic,english);
+  };
+
+  container.appendChild(button);
+ });
+}
+
+function showTestament(which,button) {
+ document.getElementById("oldPanel").classList.toggle("hidden",which!=="old");
+ document.getElementById("newPanel").classList.toggle("hidden",which!=="new");
+
+ document.querySelectorAll(".testament-button")
+ .forEach(b=>b.classList.remove("active"));
+
+ button.classList.add("active");
+}
+
+function setScreen(screen) {
+ document.getElementById("booksScreen").classList.toggle("hidden",screen!=="books");
+ document.getElementById("chaptersScreen").classList.toggle("hidden",screen!=="chapters");
+ document.getElementById("readingScreen").classList.toggle("hidden",screen!=="reading");
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function openBook(amharic,english,id) {
+ selectedBook={amharic,english,id,old:false};
+
+ const chapters=scriptureData[id]||{};
+
+ buildChapterButtons(
+  Object.keys(chapters).map(Number).sort((a,b)=>a-b)
+ );
+
+ document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;
+
+ setScreen("chapters");
+}
+
+function openOldBook(amharic,english) {
+ selectedBook={amharic,english,old:true};
+
+ const count=chapterCounts[english]||1;
+
+ buildChapterButtons(
+  Array.from({length:count},(_,i)=>i+1)
+ );
+
+ document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;
+
+ setScreen("chapters");
+}
+
+function buildChapterButtons(chapters) {
+ const grid=document.getElementById("chapterGrid");
+ grid.innerHTML="";
+
+ chapters.forEach(ch=>{
+  const button=document.createElement("button");
+  button.className="chapter-button";
+  button.textContent=ch;
+  button.onclick=()=>openChapter(ch);
+  grid.appendChild(button);
+ });
+}
+
+function openChapter(chapter) {
  document.getElementById("readingBookTitle").textContent=
-  selectedBook.amharic+" — "+selectedBook.english;
+ selectedBook.amharic+" — "+selectedBook.english;
 
- document.getElementById("readingChapterTitle").textContent=
-  "ምዕራፍ "+chapter;
+ document.getElementById("readingChapterTitle").textContent="ምዕራፍ "+chapter;
 
  const content=document.getElementById("readingContent");
  content.innerHTML="";
 
- if(selectedBook.old){
+ if(selectedBook.old) {
   const p=document.createElement("div");
   p.className="reader-placeholder";
-  p.textContent="የምዕራፉን ጽሑፍ በመጫን ላይ...";
+  p.textContent="የዚህ ምዕራፍ የአማርኛ ጽሑፍ ገና አልተገናኘም።";
   content.appendChild(p);
-
-  const sourceId=oldSourceBooks[selectedBook.english];
-
-  if(!sourceId){
-   p.textContent="የዚህ መጽሐፍ ጽሑፍ ገና አልተገናኘም።";
-   setScreen("reading");
-   return;
-  }
-
-  try{
-   const url=
-    "https://www.wordproject.org/bibles/am/"+
-    sourceId+"/"+chapter+".htm";
-
-   const response=await fetch(url);
-
-   if(!response.ok) throw new Error("Unable to load chapter");
-
-   const html=await response.text();
-   const parsed=new DOMParser().parseFromString(html,"text/html");
-
-   const mainText=parsed.querySelector(
-    "body"
-   );
-
-   if(!mainText) throw new Error("Chapter text not found");
-
-   const text=mainText.innerText.trim();
-
-   content.innerHTML="";
-   const verse=document.createElement("div");
-   verse.className="verse";
-   const verseText=document.createElement("span");
-   verseText.className="verse-text";
-   verseText.textContent=text;
-   verse.appendChild(verseText);
-   content.appendChild(verse);
-
-  }catch(error){
-   content.innerHTML="";
-   const message=document.createElement("div");
-   message.className="reader-placeholder";
-   message.textContent=
-    "ጽሑፉን መጫን አልተቻለም። እባክዎ እንደገና ይሞክሩ።";
-   content.appendChild(message);
-
-   const link=document.createElement("a");
-   link.className="source-link";
-   link.href=
-    "https://www.wordproject.org/bibles/am/"+
-    sourceId+"/"+chapter+".htm";
-   link.target="_blank";
-   link.rel="noopener noreferrer";
-   link.textContent="ምዕራፉን በምንጩ ይክፈቱ";
-   content.appendChild(link);
-  }
-
- }else{
+ } else {
   const verses=scriptureData[selectedBook.id]?.[chapter];
 
-  if(verses&&verses.length){
+  if(verses&&verses.length) {
    verses.sort((a,b)=>a.number-b.number).forEach(verse=>{
     const row=document.createElement("div");
     row.className="verse";
@@ -91,7 +564,7 @@ async function openChapter(chapter){
     row.append(number,text);
     content.appendChild(row);
    });
-  }else{
+  } else {
    const p=document.createElement("div");
    p.className="reader-placeholder";
    p.textContent="የዚህ ምዕራፍ ጽሑፍ አልተገኘም።";
@@ -101,3 +574,87 @@ async function openChapter(chapter){
 
  setScreen("reading");
 }
+
+function goToBooks() {
+ setScreen("books");
+}
+
+function goToChapters() {
+ setScreen("chapters");
+}
+
+function searchBooks() {
+ const query=document.getElementById("search").value.toLowerCase().trim();
+
+ document.querySelectorAll(".book-button").forEach(button=>{
+  button.classList.toggle("hidden",!button.dataset.search.includes(query));
+ });
+
+ if(query) {
+  document.getElementById("oldPanel").classList.remove("hidden");
+  document.getElementById("newPanel").classList.remove("hidden");
+ } else {
+  document.getElementById("oldPanel").classList.add("hidden");
+  document.getElementById("newPanel").classList.remove("hidden");
+ }
+}
+
+async function loadScripture() {
+ const status=document.getElementById("loadStatus");
+
+ try {
+  const response=await fetch(SOURCE_URL,{cache:"no-store"});
+
+  if(!response.ok) throw new Error("HTTP "+response.status);
+
+  const raw=await response.text();
+  const parsed={};
+  let verseCount=0;
+
+  raw.split(/\r?\n/).forEach(line=>{
+   if(!line.trim()) return;
+
+   const parts=line.split("||");
+   if(parts.length<4) return;
+
+   const [bookId,chapterText,verseText,...verseParts]=parts;
+   const chapter=Number(chapterText);
+   const number=Number(verseText);
+   const text=verseParts.join("||");
+
+   if(!/^(4[0-9]|5[0-9]|6[0-6])N$/.test(bookId) ||
+      !Number.isInteger(chapter) ||
+      !Number.isInteger(number) ||
+      !text) return;
+
+   parsed[bookId]??={};
+   parsed[bookId][chapter]??=[];
+   parsed[bookId][chapter].push({number,text});
+   verseCount++;
+  });
+
+  const bookCount=Object.keys(parsed).length;
+  const chapterCount=Object.values(parsed).reduce(
+   (n,b)=>n+Object.keys(b).length,0
+  );
+
+  if(bookCount!==27||chapterCount!==260||verseCount!==7656) {
+   throw new Error("New Testament source validation failed");
+  }
+
+  scriptureData=parsed;
+
+  status.textContent="የሐዲስ ኪዳን ጽሑፍ ተጭኗል።";
+
+ } catch(error) {
+  status.textContent="የሐዲስ ኪዳን ጽሑፍን መጫን አልተቻለም።";
+ }
+}
+
+renderBooks(oldBooks,"oldBooks",false);
+renderBooks(newBooks,"newBooks",true);
+loadScripture();
+
+</script>
+</body>
+</html>
