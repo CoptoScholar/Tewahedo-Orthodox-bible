@@ -76,7 +76,7 @@ function buildChapterButtons(chapters){const grid=document.getElementById("chapt
 function openBook(amharic,english,id){selectedBook={amharic,english,id,old:false};const chapters=scriptureData[id]||{};buildChapterButtons(Object.keys(chapters).map(Number).sort((a,b)=>a-b));document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;setScreen("chapters");}
 function openOldBook(amharic,english){
  selectedBook={amharic,english,old:true,dataFile:oldDataFiles[english]||null,chapterOffset:english==="Reproof (Proverbs 25–31)"?24:0};
- const chapters=english==="Jeremiah"?[...Array.from({length:24},(_,i)=>String(i+1)),...Array.from({length:27},(_,i)=>"LXX "+(i+25)),...Array.from({length:7},(_,i)=>String(i+46)),"52"]:Array.from({length:chapterCounts[english]||1},(_,i)=>String(i+1));
+ const chapters=english==="Jeremiah"?[...Array.from({length:24},(_,i)=>String(i+1)),...Array.from({length:27},(_,i)=>"LXX "+(i+25)),"{52}"]:Array.from({length:chapterCounts[english]||1},(_,i)=>String(i+1));
  buildChapterButtons(chapters);document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;setScreen("chapters");
 }
 function addVerses(container,verses){verses.forEach((v,i)=>{const row=document.createElement("div");row.className="verse";const n=document.createElement("span");n.className="verse-number";n.textContent=String(v&&typeof v==="object"&&"number" in v?v.number:i+1);const t=document.createElement("span");t.className="verse-text";t.textContent=(v&&typeof v==="object"&&"text" in v?v.text:v)||"";row.append(n,t);container.appendChild(row);});}
@@ -95,7 +95,8 @@ function getJeremiahDisplayVerses(data,label){
  const lxxNumber=Number(label.replace("LXX ",""));
  if(lxxNumber>=33&&lxxNumber<=51)return wholeChapter(lxxNumber-7);
  const chapter=Number(label);
- if((chapter>=1&&chapter<=24)||(chapter>=46&&chapter<=52))return wholeChapter(chapter);
+ if(chapter>=1&&chapter<=24)return wholeChapter(chapter);
+ if(label==="{52}")return wholeChapter(52);
  return [];
 }
 async function openChapter(chapter){
