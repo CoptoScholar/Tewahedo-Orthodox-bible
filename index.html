@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="am">
 <head>
@@ -17,247 +18,109 @@
  --muted:#bca987;
  --border:#70532d;
 }
-
 * { box-sizing:border-box; }
-
 body {
  margin:0;
  color:var(--text);
  background:linear-gradient(rgba(18,11,7,.88),rgba(18,11,7,.94)),url("church-background.jpg") center/cover fixed;
  font-family:"Noto Serif Ethiopic",serif;
 }
-
 header {
  padding:24px 18px;
  text-align:center;
  background:rgba(20,12,8,.96);
  border-bottom:1px solid var(--gold);
 }
-
-header h1 {
- margin:0;
- color:var(--gold-light);
- font-size:25px;
-}
-
-header p {
- margin:7px 0 0;
- color:var(--muted);
- font-size:13px;
-}
-
-main {
- max-width:1100px;
- margin:auto;
- padding:25px 16px;
-}
-
-.hero {
- text-align:center;
- padding:40px 15px 30px;
-}
-
-.hero h2 {
- color:var(--gold-light);
- font-size:29px;
- margin:5px 0;
-}
-
+header h1 { margin:0; color:var(--gold-light); font-size:25px; }
+header p { margin:7px 0 0; color:var(--muted); font-size:13px; }
+main { max-width:1100px; margin:auto; padding:25px 16px; }
+.hero { text-align:center; padding:40px 15px 30px; }
+.hero h2 { color:var(--gold-light); font-size:29px; margin:5px 0; }
 .hero p { color:var(--muted); }
-
-.search-box {
- margin:20px auto 28px;
- max-width:650px;
-}
-
+.search-box { margin:20px auto 28px; max-width:650px; }
 input {
- width:100%;
- padding:15px;
- border:1px solid var(--gold);
- border-radius:8px;
- background:var(--panel);
- color:var(--text);
- font-family:inherit;
- font-size:16px;
+ width:100%; padding:15px; border:1px solid var(--gold);
+ border-radius:8px; background:var(--panel); color:var(--text);
+ font-family:inherit; font-size:16px;
 }
-
 .testament-buttons {
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:15px;
- margin-bottom:22px;
+ display:grid; grid-template-columns:repeat(2,1fr);
+ gap:15px; margin-bottom:22px;
 }
-
 .testament-button {
- padding:20px 10px;
- background:linear-gradient(145deg,#3a2819,#21150e);
- border:1px solid var(--gold);
- border-radius:9px;
- color:var(--gold-light);
- font-family:inherit;
- font-size:19px;
- cursor:pointer;
+ padding:20px 10px; background:linear-gradient(145deg,#3a2819,#21150e);
+ border:1px solid var(--gold); border-radius:9px;
+ color:var(--gold-light); font-family:inherit; font-size:19px; cursor:pointer;
 }
-
-.testament-button:hover,
-.testament-button.active {
- background:#594025;
- border-color:var(--gold-light);
+.testament-button:hover,.testament-button.active {
+ background:#594025; border-color:var(--gold-light);
 }
-
 .book-panel,.chapter-panel,.reading-panel {
- background:rgba(35,24,16,.96);
- border:1px solid var(--border);
- border-radius:10px;
- padding:20px;
- margin-bottom:22px;
+ background:rgba(35,24,16,.96); border:1px solid var(--border);
+ border-radius:10px; padding:20px; margin-bottom:22px;
 }
-
-.panel-heading {
- color:var(--gold-light);
- text-align:center;
-}
-
+.panel-heading { color:var(--gold-light); text-align:center; }
 .book-grid {
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
- gap:10px;
+ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px;
 }
-
 .book-button {
- padding:13px 12px;
- background:#302116;
- border:1px solid #6f512d;
- border-radius:6px;
- color:var(--text);
- text-align:left;
- font-family:inherit;
- cursor:pointer;
+ padding:13px 12px; background:#302116; border:1px solid #6f512d;
+ border-radius:6px; color:var(--text); text-align:left;
+ font-family:inherit; cursor:pointer;
 }
-
 .book-button:hover {
- background:#594025;
- border-color:var(--gold-light);
- color:var(--gold-light);
+ background:#594025; border-color:var(--gold-light); color:var(--gold-light);
 }
-
-.book-button .amharic {
- display:block;
- font-size:15px;
-}
-
+.book-button .amharic { display:block; font-size:15px; }
 .book-button .english {
- display:block;
- color:var(--muted);
- font-size:12px;
- margin-top:4px;
+ display:block; color:var(--muted); font-size:12px; margin-top:4px;
 }
-
 .chapter-grid {
- display:grid;
- grid-template-columns:repeat(auto-fill,minmax(65px,1fr));
- gap:12px;
- margin-top:25px;
+ display:grid; grid-template-columns:repeat(auto-fill,minmax(65px,1fr));
+ gap:12px; margin-top:25px;
 }
-
 .chapter-button {
- min-height:58px;
- background:#302116;
- border:1px solid var(--border);
- border-radius:7px;
- color:var(--gold-light);
- font-family:inherit;
- font-size:18px;
- cursor:pointer;
+ min-height:58px; background:#302116; border:1px solid var(--border);
+ border-radius:7px; color:var(--gold-light); font-family:inherit;
+ font-size:18px; cursor:pointer;
 }
-
-.chapter-button:hover {
- background:#594025;
- border-color:var(--gold-light);
-}
-
+.chapter-button:hover { background:#594025; border-color:var(--gold-light); }
 .back-button {
- padding:11px 18px;
- background:#302116;
- border:1px solid var(--gold);
- border-radius:6px;
- color:var(--gold-light);
- font-family:inherit;
- font-size:14px;
- cursor:pointer;
- margin-bottom:20px;
+ padding:11px 18px; background:#302116; border:1px solid var(--gold);
+ border-radius:6px; color:var(--gold-light); font-family:inherit;
+ font-size:14px; cursor:pointer; margin-bottom:20px;
 }
-
 .screen-title {
- color:var(--gold-light);
- text-align:center;
- margin:10px 0 5px;
- font-size:24px;
+ color:var(--gold-light); text-align:center; margin:10px 0 5px; font-size:24px;
 }
-
 .screen-subtitle {
- color:var(--muted);
- text-align:center;
- margin-bottom:25px;
- font-size:14px;
+ color:var(--muted); text-align:center; margin-bottom:25px; font-size:14px;
 }
-
 .reading-content {
- min-height:250px;
- padding:20px 10px;
- color:var(--paper);
- line-height:2.2;
- font-size:18px;
+ min-height:250px; padding:20px 10px; color:var(--paper);
+ line-height:2.2; font-size:18px;
 }
-
 .verse {
- display:flex;
- gap:13px;
- align-items:flex-start;
- padding:9px 5px;
+ display:flex; gap:13px; align-items:flex-start; padding:9px 5px;
  border-bottom:1px solid rgba(112,83,45,.25);
 }
-
 .verse-number {
- flex-shrink:0;
- color:var(--gold-light);
- font-weight:700;
- min-width:25px;
+ flex-shrink:0; color:var(--gold-light); font-weight:700; min-width:25px;
 }
-
-.verse-text {
- flex:1;
- white-space:pre-wrap;
-}
-
+.verse-text { flex:1; white-space:pre-wrap; }
 .reader-placeholder {
- text-align:center;
- color:var(--muted);
- padding:45px 10px;
- line-height:2;
+ text-align:center; color:var(--muted); padding:45px 10px; line-height:2;
 }
-
 .status {
- text-align:center;
- color:var(--muted);
- font-size:13px;
- line-height:1.8;
- padding:12px;
+ text-align:center; color:var(--muted); font-size:13px;
+ line-height:1.8; padding:12px;
 }
-
 .hidden { display:none!important; }
-
 footer {
- text-align:center;
- padding:25px 15px;
- margin-top:35px;
- background:rgba(15,9,6,.95);
- border-top:1px solid var(--gold);
- color:var(--muted);
- font-size:12px;
- line-height:1.9;
+ text-align:center; padding:25px 15px; margin-top:35px;
+ background:rgba(15,9,6,.95); border-top:1px solid var(--gold);
+ color:var(--muted); font-size:12px; line-height:1.9;
 }
-
 @media(max-width:600px) {
  header h1 { font-size:21px; }
  .hero h2 { font-size:23px; }
@@ -270,16 +133,13 @@ footer {
 </head>
 
 <body>
-
 <header>
  <h1>መጽሐፍ ቅዱስ | ተዋሕዶ</h1>
  <p>በእምነት · በቃሉ · በትውፊት</p>
 </header>
 
 <main>
-
 <section id="booksScreen">
-
  <section class="hero">
   <h2>ቅዱሳት መጻሕፍት</h2>
   <p>የቅዱሳት መጻሕፍትን ቃል ለማንበብና ለማጥናት</p>
@@ -305,7 +165,6 @@ footer {
   <div class="status" id="loadStatus">የሐዲስ ኪዳን ጽሑፍ በመጫን ላይ...</div>
   <div class="book-grid" id="newBooks"></div>
  </section>
-
 </section>
 
 <section id="chaptersScreen" class="chapter-panel hidden">
@@ -321,7 +180,6 @@ footer {
  <p class="screen-subtitle" id="readingChapterTitle"></p>
  <div class="reading-content" id="readingContent"></div>
 </section>
-
 </main>
 
 <footer>
@@ -548,31 +406,87 @@ function openBook(amharic,english,id) {
  setScreen("chapters");
 }
 
+/* JEREMIAH CHAPTER ARRANGEMENT */
+function getJeremiahChapters() {
+ return [
+  ...Array.from({length:24},(_,i)=>String(i+1)),
+  "25a","25b",
+  ...Array.from({length:20},(_,i)=>String(i+26)),
+  "LXX 25","LXX 26","LXX 27","LXX 28",
+  "LXX 29","LXX 30","LXX 31",
+  "52"
+ ];
+}
+
+function getJeremiahDisplayChapter(data,label) {
+ const chapters=data.chapters || [];
+
+ function getRange(chapterNumber,start,end) {
+  const chapter=chapters.find(item=>Number(item.chapter)===chapterNumber);
+  if(!chapter || !Array.isArray(chapter.verses)) return [];
+
+  return chapter.verses
+   .map((verse,index)=>({
+    number:index+1,
+    text:typeof verse==="string" ? verse : (verse.text || verse.verse || "")
+   }))
+   .filter(verse=>verse.number>=start && verse.number<=end);
+ }
+
+ if(label==="25a") return getRange(25,1,13);
+ if(label==="25b") return getRange(25,15,38);
+
+ const maps={
+  "LXX 25":[[49,34,39]],
+  "LXX 26":[[46,1,999]],
+  "LXX 27":[[50,1,999]],
+  "LXX 28":[[51,1,999]],
+  "LXX 29":[[47,1,999]],
+  "LXX 30":[[49,7,22],[49,1,6],[49,28,33],[49,23,27]],
+  "LXX 31":[[48,1,999]]
+ };
+
+ if(maps[label]) {
+  let verses=[];
+  maps[label].forEach(([chapter,start,end])=>{
+   verses.push(...getRange(chapter,start,end));
+  });
+  return verses.map((verse,index)=>({number:index+1,text:verse.text}));
+ }
+
+ return getRange(Number(label),1,999);
+}
+
 function openOldBook(amharic,english) {
  selectedBook={
   amharic,english,old:true,
   dataFile:oldDataFiles[english]||null,
   chapterOffset:english==="Reproof (Proverbs 25–31)"?24:0
  };
- const count=chapterCounts[english]||1;
- buildChapterButtons(Array.from({length:count},(_,i)=>i+1));
+
+ if(english==="Jeremiah") {
+  buildChapterButtons(getJeremiahChapters());
+ } else {
+  const count=chapterCounts[english]||1;
+  buildChapterButtons(Array.from({length:count},(_,i)=>i+1));
+ }
+
  document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;
  setScreen("chapters");
 }
 
 function addVerses(container,verses) {
- verses.forEach((verseText,index)=>{
+ verses.forEach((verse,index)=>{
   const row=document.createElement("div");
   row.className="verse";
   const number=document.createElement("span");
   number.className="verse-number";
-  number.textContent=String(index+1);
+  number.textContent=String(verse.number ?? index+1);
   const text=document.createElement("span");
   text.className="verse-text";
-  text.textContent=verseText||"";
+  text.textContent=verse.text ?? verse ?? "";
   row.append(number,text);
   container.appendChild(row);
- });
 }
 
 async function openChapter(chapter) {
@@ -605,23 +519,32 @@ async function openChapter(chapter) {
     if(!response.ok) throw new Error("HTTP "+response.status);
     oldScriptureCache[key]=await response.json();
    }
-
    if(selectedBook!==book) return;
 
-   const wantedChapter=chapter+(book.chapterOffset||0);
-   const chapterData=oldScriptureCache[key].chapters.find(
-    item=>Number(item.chapter)===wantedChapter
-   );
+   const data=oldScriptureCache[key];
+   let verses=[];
+
+   if(book.english==="Jeremiah") {
+    verses=getJeremiahDisplayChapter(data,String(chapter));
+   } else {
+    const wantedChapter=chapter+(book.chapterOffset||0);
+    const chapterData=data.chapters.find(item=>Number(item.chapter)===wantedChapter);
+    if(chapterData && Array.isArray(chapterData.verses)) {
+     verses=chapterData.verses.map((verse,index)=>({
+      number:index+1,
+      text:typeof verse==="string" ? verse : (verse.text || verse.verse || "")
+     }));
+    }
+   }
 
    content.innerHTML="";
-
-   if(!chapterData||!Array.isArray(chapterData.verses)) {
+   if(!verses.length) {
     const p=document.createElement("div");
     p.className="reader-placeholder";
     p.textContent="ይህ ምዕራፍ በተገኘው የጽሑፍ ምንጭ ውስጥ የለም።";
     content.appendChild(p);
    } else {
-    addVerses(content,chapterData.verses);
+    addVerses(content,verses);
    }
   } catch(error) {
    content.innerHTML="";
