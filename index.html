@@ -67,7 +67,7 @@ const oldBooks=[
 ["ዘፍጥረት","Genesis"],["ዘጸአት","Exodus"],["ዘሌዋውያን","Leviticus"],["ዘኍልቍ","Numbers"],["ዘዳግም","Deuteronomy"],["ኢያሱ","Joshua"],["መሳፍንት","Judges"],["ሩት","Ruth"],["1 ሳሙኤል","1 Samuel (1 Kingdoms)"],["2 ሳሙኤል","2 Samuel (2 Kingdoms)"],["1 ነገሥት","1 Kings (3 Kingdoms)"],["2 ነገሥት","2 Kings (4 Kingdoms)"],["1 ዜና መዋዕል","1 Chronicles"],["2 ዜና መዋዕል","2 Chronicles"],["መጽሐፈ ኩፋሌ","Jubilees"],["ሄኖክ","Enoch"],["ዕዝራ","Ezra"],["ነህምያ","Nehemiah"],["1 ዕዝራ","1 Esra"],["2 ዕዝራ","2 Ezra"],["ዕዝራ-ሸዓልቲኤል","Ezra-Shealtiel"],["ጦቢት","Tobit"],["ዮዲት","Judith"],["1 መቃብያን","1 Meqabyan"],["2 መቃብያን","2 Meqabyan"],["3 መቃብያን","3 Meqabyan"],["ኢዮብ","Job"],["መዝሙረ ዳዊት","Psalms"],["ምሳሌ","Proverbs (1–24)"],["ተግሣጽ","Reproof (Proverbs 25–31)"],["ጥበብ","Wisdom of Solomon"],["መክብብ","Ecclesiastes"],["መኃልየ መኃልይ","Song of Solomon"],["ሲራክ","Sirach"],["ኢሳይያስ","Isaiah"],["ኤርምያስ","Jeremiah"],["ሰቆቃው ኤርምያስ","Lamentations"],["ሕዝቅኤል","Ezekiel"],["ዳንኤል","Daniel"],["ሆሴዕ","Hosea"],["አሞጽ","Amos"],["ሚክያስ","Micah"],["ኢዮኤል","Joel"],["አብድዩ","Obadiah"],["ዮናስ","Jonah"],["ናሆም","Nahum"],["ዕንባቆም","Habakkuk"],["ሶፎንያስ","Zephaniah"],["ሐጌ","Haggai"],["ዘካርያስ","Zechariah"],["ሚልክያስ","Malachi"],["አስቴር","Esther"]];
 const oldDataFiles={
 "Genesis":"01_ኦሪት ዘፍጥረት.json","Exodus":"02_ኦሪት ዘጸአት.json","Leviticus":"03_ኦሪት ዘሌዋውያን.json","Numbers":"04_ኦሪት ዘኍልቍ.json","Deuteronomy":"05_ኦሪት ዘዳግም.json","Joshua":"06_መጽሐፈ ኢያሱ ወልደ ነዌ.json","Judges":"07_መጽሐፈ መሣፍንት.json","Ruth":"08_መጽሐፈ ሩት.json","1 Samuel (1 Kingdoms)":"09_መጽሐፈ ሳሙኤል ቀዳማዊ.json","2 Samuel (2 Kingdoms)":"10_መጽሐፈ ሳሙኤል ካል.json","1 Kings (3 Kingdoms)":"11_መጽሐፈ ነገሥት ቀዳማዊ።.json","2 Kings (4 Kingdoms)":"12_መጽሐፈ ነገሥት ካልዕ።.json","1 Chronicles":"13_መጽሐፈ ዜና መዋዕል ቀዳማዊ።.json","2 Chronicles":"14_መጽሐፈ ዜና መዋዕል ካልዕ።.json","Ezra":"15_መጽሐፈ ዕዝራ።.json","Nehemiah":"16_መጽሐፈ ነህምያ።.json","Esther":"17_መጽሐፈ አስቴር።.json","Job":"18_መጽሐፈ ኢዮብ።.json","Psalms":"19_መዝሙረ ዳዊት.json","Proverbs (1–24)":"20_መጽሐፈ ምሳሌ.json","Reproof (Proverbs 25–31)":"20_መጽሐፈ ምሳሌ.json","Ecclesiastes":"21_መጽሐፈ መክብብ.json","Song of Solomon":"22_መኃልየ መኃልይ ዘሰሎሞን.json","Isaiah":"23_ትንቢተ ኢሳይያስ.json","Jeremiah":"24_ትንቢተ ኤርምያስ.json","Lamentations":"25_ሰቆቃው ኤርምያስ.json","Ezekiel":"26_ትንቢተ ሕዝቅኤል.json","Daniel":"27_ትንቢተ ዳንኤል.json","Hosea":"28_ትንቢተ ሆሴዕ.json","Joel":"29_ትንቢተ ኢዮኤል.json","Amos":"30_ትንቢተ አሞጽ.json","Obadiah":"31_ትንቢተ አብድዩ.json","Jonah":"32_ትንቢተ ዮናስ.json","Micah":"33_ትንቢተ ሚክያስ.json","Nahum":"34_ትንቢተ ናሆም.json","Habakkuk":"35_ትንቢተ ዕንባቆም.json","Zephaniah":"36_ትንቢተ ሶፎንያስ.json","Haggai":"37_ትንቢተ ሐጌ.json","Zechariah":"38_ትንቢተ ዘካርያስ.json","Malachi":"39_ትንቢተ ሚልክያ.json"};
-const chapterCounts={"Genesis":50,"Exodus":40,"Leviticus":27,"Numbers":36,"Deuteronomy":34,"Joshua":24,"Judges":21,"Ruth":4,"1 Samuel (1 Kingdoms)":31,"2 Samuel (2 Kingdoms)":24,"1 Kings (3 Kingdoms)":22,"2 Kings (4 Kingdoms)":25,"1 Chronicles":29,"2 Chronicles":36,"Jubilees":50,"Enoch":108,"Ezra":10,"Nehemiah":13,"Job":42,"Psalms":151,"Proverbs (1–24)":24,"Reproof (Proverbs 25–31)":7,"Ecclesiastes":12,"Song of Solomon":8,"Isaiah":66,"Jeremiah":52,"Lamentations":5,"Ezekiel":48,"Daniel":12,"Hosea":14,"Amos":9,"Micah":7,"Joel":3,"Obadiah":1,"Jonah":4,"Nahum":3,"Habakkuk":3,"Zephaniah":3,"Haggai":2,"Zechariah":14,"Malachi":4};
+const chapterCounts={"Genesis":50,"Exodus":40,"Leviticus":27,"Numbers":36,"Deuteronomy":34,"Joshua":24,"Judges":21,"Ruth":4,"1 Samuel (1 Kingdoms)":31,"2 Samuel (2 Kingdoms)":24,"1 Kings (3 Kingdoms)":22,"2 Kings (4 Kingdoms)":25,"1 Chronicles":29,"2 Chronicles":36,"Jubilees":50,"Enoch":108,"Ezra":10,"Nehemiah":13,"Job":42,"Psalms":151,"Proverbs (1–24)":24,"Reproof (Proverbs 25–31)":7,"Ecclesiastes":12,"Song of Solomon":8,"Isaiah":66,"Jeremiah":52,"Lamentations":5,"Ezekiel":48,"Daniel":13,"Hosea":14,"Amos":9,"Micah":7,"Joel":3,"Obadiah":1,"Jonah":4,"Nahum":3,"Habakkuk":3,"Zephaniah":3,"Haggai":2,"Zechariah":14,"Malachi":4};
 let scriptureData={},selectedBook=null;
 const oldScriptureCache={};
 
@@ -78,10 +78,7 @@ const psalm151Amharic = [
 "እርሱ መልአኩን ልኮ አዳነኝ፥ የአባቴን በጎች ከምጠብቅበት ወሰደኝ፤ የተቀደሰ ቅባትን ቀባኝ፤",
 "ወንድሞቼ ግን፥ ያማሩና ያደጉ ነበሩ። እግዚአብሔር ግን በእነርሱ ደስ አላለውም።",
 "ልዩ ወገንን ልገጥመው ወጣሁ። በረከሱ ጣዖቶቹም ረገመኝ።",
-"እኔም ከወንዝ ሦስት ድንጋዮችን አነሣሁ፥ ግንባሩንም በወንጭፍ መታሁት። ያንጊዜም በእግዚአብሔር ኀይል ወደቀ።",
-"በላዩ የነበረውንም ሰይፍ ወሰድሁ፥ የጎልያድንም ቸብቸቦ ቈረጥሁ። ከእስራኤል ልጆችም ስድብን አራቅሁ።"
-].map((text, i) => ({number:i+1, text}));
-
+"እኔም ከወንዝ ሦስት ድንጋዮችን አነሣሁ፥ ግንባሩንም በወንጭፍ መታሁት። ያንጊዜም በእግዚአብሔር ኀይል ወደቀ። በላዩ የነበረውንም ሰይፍ ወሰድሁ፥ የጎልያድንም ቸብቸቦ ቈረጥሁ። ከእስራኤል ልጆችም ስድብን አራቅሁ።"
 const prayerOfManassehAmharic = [
 "ዓለምን ሁሉ የምትገዛ፣ የአባቶቻችን የአብርሃምና የይስሐቅ የያዕቆብም የጻድቃን ልጆቻቸውም አምላክ ሆይ፣",
 "ሰማይንና ምድርን ከዓለሞቻቸው ጋር የፈጠርህ፣",
@@ -100,18 +97,153 @@ const prayerOfManassehAmharic = [
 "በየጊዜውና በሕይወቴ ዘመን ሁሉ አመሰግንሃለሁ። የሰማያት ኃይል ሁሉ አንተን ያመሰግናሉና። ለዘላለምም ምስጋና ለአንተ ይገባል። አሜን።"
 ].map((text, i) => ({number:i+1, text}));
 
+const susannaDaniel13 = [
+{number:1,text:"በባቢሎን የሚኖር ስሙ ኢዮአቄም የሚባል አንድ ሰው ነበር። ስሟ ሶስና የምትባል ሚስት አግብቶ ነበር። ይቺውም የኬልቅዮስ ልጅ ናት እጅግ መልክ መልካም ነበረች ፈጣሪዋ እግዚአብሔርንም ትፈራው ነበር እናት አባቷም ደጋግ ሰዎች ነበሩ። ለልጃቸውም ሙሴ የጻፋት ኦሪትን አስተምረዋት ነበር። ባሏ ኢዮአቄም ግን እጅግ ባለጸጋ ነበር በቤቱም አጠገብ የተክል ቦታ ነበረው ከሁሉ እሱ ይከብር ነበርና አይሁድም ወደሱ ይመጡ ነበር።"},
+{number:2,text:"ኃጢአት ከባቢሎን እንደ መጣች ሕዝቡን እንጠብቃቸዋለን ከሚሉ ከግብዞች ወገኖችም እንደ ወጣች እግዚአብሔር ስለነሱ የተናገረባቸው ግብዞች የሚሆኑ ሁለት መምህራን በዚያ ወራት ታዩ። እነሱም በኢዮአቄም ቤት ያገለግሉ ነበር የሚፈራረዱ ሰዎችም ሁሉ ወደሱ ይመጡ ነበር። ሕዝቡ ሁሉ ወደ ቤታቸው ከገቡ በኋላ ቀትር በሆነ ጊዜ ሶስና ወደ ባሏ ተክላ ቦታ ገብታ በዚያ  ትመላለስ ነበር። ገብታ በተመላለሰች ጊዜ እነዚያ መምህራን ሁለጊዜ ያይዋት ነበር እሷንም ወደዷት።"},
+{number:3,text:"ልቡናቸውን ለወጡ ሰማይንም እንዳያዩ ዓይናቸውን ግልብጥብጥ አደረጉ /ሰማያዊ እግዚአብሔርን እንዳያስቡ/ እውነተኛ ሕግንም አላሰቡም። ሁለቱም ሁሉ ወደዷት ፈቃዳቸውን መናገር አፍረዋልና። እስበሳቸው በልቡናቸው ያለውን ነገር አልተናገሩም ይደርሱባት ዘንድ ይወዱ ነበር። ያገኟት ዘንድ ሁለጊዜ ይጠብቋት ነበር። አንዱ አንዱን የምሳ ጊዜ ነውና ወደ ቤታችን አንግባ አለው። እየራሳቸው ተለያይተው ሄዱ። ተመልሰውም በጎዳና አንድነት ተገናኙ ሁለቱ ሁሉ ተያዩ። ያንጊዜም ፈቃዳቸውን ተነጋገሩ። ብቻ ለብቻ እሷን የሚያገኙበትን ጊዜ ተቃጠሩ።"},
+{number:4,text:"ከዚህ በኋላ ቀን ሲጠብቋት ሶስና ሁለጊዜም ትገባ እንደ ነበር ከሁለቱ ደንገጡፎቿ ጋራ ገባች አልቧታልና በተክል ውስጥ ትታጠብ ዘንድ ወደደች። ተሠውረው ከሚጠብቋት ከሁለቱ መምህራን በቀር በዚያ ማንም ማን አልነበረም። ዘይት አምጥተው ያጥቧት ዘንድ ልትታጠብ የተክሉንም ደጃፍ በር ይዘጉ ዘንድ ደንገጡሮቿን አዘዘቻቸው። እነሱም እንዳዘዘቻቸው አደረጉ የተክሉን ደጃፍ ዘግተው ያዘዘቻቸውን ያመጡ ዘንድ በሥርጥ ጎዳና ወጡ የተሠወሩ  እነዚያን መምህራን ግን አላይዋቸውም ነበር። እነዚያ ደንገጡሮች ከወጡ በኋላ እነዚያ ሁለቱ መምህራን ተነሥተው ወደሷ ሮጡ። እነሆ የተክሉ ደጃፍ ተዘግቷል የሚያይ የለም እንደርስብሽ ዘንድ እንወዳለን እሺ በዩን።"},
+{number:5,text:"ይሀ ካልሆነ ካንቺ ጋራ ሰውን እንዳገኘን ተናግረን እናጣላሻለን ስለዚህ ነገር ደንገጡሮችሽን ካንቺ አስወጥተሽ ሰደድሽ አሏት። ሶስናም አለቀሰች በሁሉም ፈጽሜ ተጨነቅሁ ባደረገውም እሞታለሁ ባላደረገውም አልድንም ከእጃቸው ማምለጥንም አልችልም። እግዚአብሔርን ከምበድል ኃጢአትስ ልሠራ በእጃቸው መውደቅ ይሻለኛል አለች። ሶስና ቃሏን አሰምታ ጮኸች እነዚያም መምህራን ከሷ ጋራ ጮሁ። አንዱ ሮጦ ሄደ የተከሉን ደጃፍ ከፈተ። በቤቷም ያሉ ሰዎች በተክል መካከል ጩኸትን ሰምተው ወጡ ምንም እንደ ሆነች ያዩ ዘንድ በሥርጥ ጎዳናም ሮጡ። እነዚህ ሁለቱ መምህራን ይህንን ነገር በተናገሩ ጊዜ በሶስና እንደዚህ ያለ ነገር ፈጽሞ ተሰምሮ አያውቅም ነበርና ዘመዶቿና ባሮቿ እጅግ አፈሩ።"},
+{number:6,text:"በማግሥቱ ሕዝቡ በባሏ በኢዮአቄም ዘንድ በተሰበሰቡ ጊዜ እነዚያ ሁለቱ መምህራን ሶስናን ይገድሏት ዘንድ ካመፀኛ ልቡናቸው ጋራ መጡ በሕዝቡም ሁሉ ፊት። ያመጧት ዘንድ ወደ ኢዮአቄም ሚስት ወደ ሶስና ላኩ አሉ ወደሷም ላኩባት። እሷም ከናት ካባቷ ከወገኖቿ ከዘመዶቿም ሁሉ ጋራ መጣች። ሶስና ግን እጅግ ደመ ግቡ ነበረች። መልኳም ያማረ ነበር። ዓመፀኞች የሚሆኑ እነዚያም ሁለቱ መምህራን መልኳን ለመጥገብ ክንብንቧንም ይገልጧት ዘንድ አዘዙ። እንብንቧንም ገለጧት። አባቷ  እናቷ ቤተ ሰቦቿ የሚያውቋትም ሁሉ አለቀሱላት። እነዚያም ሁለቱ መምህራን በሕዝቤ መካከል ተነሥተው እጆቻቸውን በራሷ ላይ አኖሩ። እሷ ግን ልቡናዋ በእግዚአብሔር አምኗልና እያለቀሰች ወደ ሰማይ አየች። እነዚያም መምህራን ብቻችንን በተክል ውስጥ ስንመላለስ እሷ ከሁለቱ ደንገጡጎቿ ጋራ ገባች ደንገጡሮቿን ልካቸዋለችና የተክሉን ደጃፍ ዘግተው ሄዱ ደንገጡሮቿን ከላከቻቸውም በኋላ።"},
+{number:7,text:"አንድ ጐልማሳ ከተሠወረበት መጥቶ ደረሰባት። እኛ ግን በዚያ ተክል ዳርቻ ሆነ ኃጢአታቸውን አየን ወደነሳቸውም ሮጠን ሄድን አንድነት ተኝተው አገኘናቸው። እኛ ግን እሱን መያዝ ተሳነን እሱ በርትቶብናልና አመለጠን የተክሉን ደጃፍ ከፍቶ ወጣ። እሷን ግን ያዝናት ሰውየው ማን አንደሆነ ጠየቅናት ነገር ግን አልነገረችንም አሉ። የሕዝቡ መምህራን ናቸውና ገዢዎች ናቸውና ባደባባይ የተሰበሰቡ ሰዎች ነገራቸውን አመኗቸው ትሞት ዘንድ ፈረዱባት።"},
+{number:8,text:"ሶስናም ቃሏን አሰምታ ጮኸች ዘለዓለም ጸንተህ ያምትኖር የተሠወረውን የምታውቅ የሚደረገውን ሁሉ ሳይደረግ የምታውቅ ፈጣሪ ሆይ። በሐሰት እንደ ጣሉኝ አንተ ታውቃለህ እነዚህ መምህራን ክፉ ነገርን ባደረጉብኝ ገንዘብ የሠራሁት ኃጢአት ሳይኖር እነሆ እሞታለሁ አለች። እግዚአብሔርም ቃሏን ሰማት። ይገድሏት ዘንድ ሲወስዷት እግዚአብሔር ስሙ ዳንኤል የሚባል የልጅ ልቡናህ አነሣሣ። እኔ ከዚህ ሴት ደም ንጹሕ ነኝ ብሎ ቃሉን አሰምቶ ተናገረ። ሕዝቡም ሁሉ ወደሱ ተመለሱ አንተ የምትናገረው ይህ ነገር ምንድነው አሉ። ዳንኤልም በመካከላቸው ቁም አላዋቆች የምትሆኑ እናንተ የእስራኤል ልጆች ሳትመረምሩ ነገሩን ሳትረዱ በእስራኤል ልጅ እንዲህ አድርጋችሁ እንደዚህ ያለ ፍርድን ትፈርዳላችሁን። እነዚህ መምህራን በሐሰት አጣልተዋታልና ወደ አደባባይ ተመለሱ አላቸው። ሕዝቡም ሁሉ እየሮጡ ወደ አደባባይ ተመለሱ አለቆችም ዳንኤልን እግዚአብሔር አንተን አልቆሃልና በመካከላችን ተቀምጠህ ንገረን አሉት።"},
+{number:9,text:"ዳንኤልም እየራሳቸው አራርቃችሁ አቁሟቸው እኔም ልመርምራቸው አላቸው። አንዱንም አንዱንም አራርቀው አቆሟቸው ከነሳቸውም አንዱን ጠርቶ ዘመንህ አርጅቷል እነዚህም ክፉዎች ናቸው ቀድሞ የሠራሃቸው ኃጢአቶችህ ፍዳውን ይዘው ደረሱብህ። የሐሰት ፍርድን ፈርደሃልና ይሞት በቃውን ይድን በቃ ብለህ ፈርደሃልና ጻድቁን ንጹሑን አትግደል ብሎ እግዚአብሔር የከለከለውን ይድን በቃውን ይሞት በቃ ብለህ ፈርደሃለና ኃጢአቶችህ ፍዳውን ይዘው ደረሱብህ።"},
+{number:10,text:"አሁንም ይቺን ሴት ካየሃት ሁለቱን ሁሉ በምኑ እንጨት ሥር ሲነጋገሩ አየህ ንገረኝ አለው በኮክ ሥር ሲነጋገሩ አየኋቸው አለ። ዳንኤልም በውነት ሐሰትን ተናገርህ የደምህ ፍዳ በራስህ ነው ከመካከልህ ይሰነጥቅ ዘንድ እግዚአብሔር የላከው መልአክ እነሆ ከእግዚአብሔር ታዘዘ አለው። ያን መርምሮ እልፍ አደረገው ሁለተኛውን ያመጡት ዘንድ አዘዘ አመጡት አንተ የይሁዳ ዘር ያይደህ የከነዓን ዘርነህ መልክ አሳተህን ክፉ ፈቃድስ ልቡናህን ግልብጥብጥ አደረገችህን። እሷ እናንተን መከራከር አልቻለችምና የይሁዳ ልጅ እናንተን ፈርታለችና በደላችሁንም ታግሣለችና እናንተ ግን በድላችኋታልና የእስራኤልን ልጅ እንዲህ ታደርግታለችሁን።"},
+{number:11,text:"አሁንም ሁለቱ ሲነጋገሩ ያየህበት እንጨት ምንድነው ነገረኝ አለው ሮማን በሚባል እንጨት ሥር አየኋት አለው። ዳንኤልም አንተም በውነት ሐሰትን ተናገርህ የደምህም ፍዳ በራስህ ነው ሁለታችሁንም ሊያጠፋችሁ ከእኩሌታ ወገብህ ያሰነጥቅህ ዘንድ እነሆ እግዚአብሔር የላከው መልአክ ይጠብቅሃል አለው። ሕዝቡም ሁሉ ቃላቸውን አሰምተው ጮሁ ያመነችበት ሶስና ያዳናት እግዚአብሔርንም አመሰገኑት።"},
+{number:12,text:"ከቃላቸው የተነሣ ዳንኤል ነቅፋቸዋልና መምክርነታቸውንም ሐሰት አድርጎባቸዋልና በነዚያ በሁለቱም መምህራን ላይ በጠላትነት ተነሡባቸው በባልንጀራቸው ክፉ ሥራን እንደ ሠሩ በነሳቸውም በሙሴ ሥርዓት ክፉ ሥራን ሠሩባቸው። በዚያችም ቀን ንጹሕ ደምን አዳኑ። በሷ ክፉ ሥራ አልተገኘምና ስለ ልጃቸው ስለ ሶስና ሚስቱና ኬልቅዩ ከዘመዶቿ ሁሉና ከባሏ ከኢዮአቄም ጋራ እግዚአብሔርን አመሰገኑት። ዳንኤልም ከዚች ቀን ጀምሮ እስከ ጊዜ ሞቱ ድረስ በሕዝቡና በእግዚአብሔር ፊት ገናና ሆነ።"}
+];
+
+const manassehIntro = "የንጉሡ የሕዝቅያስ ልጅ ምናሴም ጸለየ፤ እንዲህም አለ፦";
+const manassehOutro = "እርሱም ተለመነው፥ ጸሎቱንም ሰማው፥ ወደ መንግሥቱም ወደ ኢየሩሳሌም መለሰው፤ ምናሴም እግዚአብሔር እርሱ አምላክ እንደ ሆነ አወቀ።";
+const belAndDragonAmharic = [
+  {
+    "number": 1,
+    "text": "ንጉሡ ዳርዮስ ሙቶ ባባቶቹ መቃብር ከተቀበረ በኋላ የፋርሱ ንጉሥ ቂሮስ መንግሥቱን ያዘ። ዳንኤልም የንጉሡ የቂሮስ እልፍኝ አሽከር ነበር ከባለሟሎቹም ሁሉ እሱ ይከብር ነበር። የባቢሎን ሰዎች የሚያመልኩት ምስል ነበር ምግቡንም ሁል ጊዜ አሥራ ሁለት ጫን በሚፈጅ ቻል አሥራ ሁለት መስፈሪያ ስንዴ አርባ በግ ሰባት ፊቀን ወይን እያወጣጡ ይሰጡት ነበር። ንጉሡም ያመልከው ነበር ሁልጊዜም ወደሱ እየሄደ ይሰግድለት ነበር ዳንኤል ግን ለፈጣሪው ይሰግድ ነበር። ንጉሡም ዳንኤልን ለቤል የማትሰግድ ለምንድነው አለው።"
+  },
+  {
+    "number": 2,
+    "text": "ዳንኤልም ንጉሡን እኔስ ምድርና ሰማይን የፈጠረ በሕያውነት የሚኖር ፈጣሪዬን አመልካለሁ እንጂ የሰው እጅ የሠራው ጣዖትን አላመልክም ፍጥረትን ሁሉ የሚገዛ እሱ ነው አለው። ንጉሡም ቤል ሕያው ያልሆነ አምላክ ይመስልሃልን እየነጋ እንዲበላ እንዲጠጣ አታይምን አለው። ዳንኤልም በንጉሡ ሳቀበት ንጉሥ ሆይ ይበላል ይጠጣል እያሉ አያስቱህ ይህስ ውስጠ ጭቃ ላዩ ናስ ነው ፈጽሞ አይበላም አይጠጣም አለው።"
+  },
+  {
+    "number": 3,
+    "text": "ንጉሡም ተቈጣ ካህናተ ጣዖቱንም ጠርቶ ይህንን የቤልን ምግብ ማንም እንዲበላው ካልነገራችሁኝ ትሞታላችሁ። ቤል እንዲበላ ዳንኤልን ብትረቱልኝ ግን ቤልን የሰደበ ዳንኤል ይሞታል አላቸው ዳንኤልም ንጉሡን እንዳልክ ይሁን አለው። ከሴቶችና ከልጆች በቀር ካህናተ ጣዖቱ ሰብዓ ይሆኑ ነበር ዳንኤልና ንጉሡም ወደ ጣዖቱ ቤት ሄዱ።"
+  },
+  {
+    "number": 4,
+    "text": "ካህናተ ጣዖቱም እነሆ እኛ ወደ ውጭ እንሔዳለን ንጉሥ አንተ ማዕዱን ሠራ ወይኑንም ቀድተህ አዘጋጅተህ አኑር ደጃፉን ዘግተህ በማኅተም ኣትመው። ሲነጋም ገሥግሠህ ሂድ ቤል ሁሉን በልቶ ቢገኝ እንጂ ሳይበላ ቢገኝ እኛ እንሞታለን በልቶ ቢገኝ ግን በእኛ ላይ ሐሰትን የተናገረ ዳንኤል ይሞታል አሉት። እነሱ ግን የሚያደርጉትን ያውቃሉ በማዕዱ በታች የተሠራ ጐዳና ነበራቸው ሁልጊዜ በዚያ እየገቡ ይበሉ ይጠጡ ነበር።"
+  },
+  {
+    "number": 5,
+    "text": "እነሱ ከወጡ በኋላ ንጉሡ ለቤል የሚበላውን አዘጋጀ ዳንኤልም ብላቴናውን አመድ ያመጣ ዘንድ አዘዘው በንጉሡ ብቻ ፊት በቤቱ ሁሉ ነሰነሰው ከወጡም በኋላ ደጃፉን ዘግተው ዳንኤልም ንጉሡ በማኅተም አተሙት። እነሱ ከሄዱ በኋላ ካናተ ጣዖቱ እንደልማዳቸው ከልጆቻቸው ጋራና ከሚስቶቻቸው ጋራ ሌሊት ገብተው ሁሉንም በሉ ጠጡ። ዳንኤልና ንጉሡም ሲነጋ ገሥግሠው ሄዱ። ንጉሡም ዳንኤልን ማኅተምህ ደኅና ነውን አለው ዳንኤልም ንጉሥ አወን ደኅና ነው አለው።"
+  },
+  {
+    "number": 6,
+    "text": "ከዚህም በኋላ ደጃፉን በከፈተ ጊዜ ንጉሡ ካናተ ጣዖቱ ማዕዱን ፈጽመው በልተውት አገኘ ቃሉን አሰምቶ ደነፋ ቤል አንተ ገናና ፈጣሪ ነህ ተንኰልም የለብህም አለ። ዳንኤልም ሳቀበት ንጉሡን ያዘው ወደ ውስጥም እንዳይገባ ከለከለው እስኪ ወደ ምድር ተመልከት ይህ የምን ፍለጋ ይመስልሃል አለው። ንጉሡም የሴቶችና የወንዶችን የልጆችን ፍለጋ አያለሁ አለ ንጉሡም ተቈጣ። ያንጊዜም ካህናተ ጣዖቱን ልጆቻቸውንና ሚስቶቻቸውንም ያዛቸው በማዕዱ የተዘጋጀውን ይበሉ ይጠጡ ዘንድ የሚገቡበትን ሰርጥ ጐዳና አሳዩት።"
+  },
+  {
+    "number": 7,
+    "text": "ንጉሡም ገደላቸው ለዳንኤልም ቤልን ሰጠው ዳንኤልም ሰበረው ቤቱንም አፈረሰው። የባሊሎን ሰዎች የሚያመልኩት ዘንዶም ነበር። ንጉሡም ዳንኤልን ይህንንም ናስ ነው ትለዋለህን እነሆ ደኅነኛ አምላክ ነው ይበላል ይጣጠል ደኅና አምላክ አይደለም ትለው ዘንድ አትችልም ስገድለት አለው። ዳንኤልም በሕያውነት የሚኖር ፈጣሪ እሱ ነውና ለፈጣሪዬ ለእግዚአብሔር እሰግዳለሁ።  ንጉሥ አንተ ይህን ዘንዶ ያለ ሰይፍና ያለበትር እገድለው ዘንድ አሰናብተኝ አለው ንጉሥም ዳንኤልን አሰናበትኩህ አለው።"
+  },
+  {
+    "number": 8,
+    "text": "ዳንኤልም ጠጉርና አደሮ ማር ስብ አምጥቶ አንድነት ቀቀለው ልህሉህ አደረገው ለዘንዶውም ባፉ አጐረሰው ያም ዘንዶ በጐረሰው ጊዜ ተሰንጥቆ ሞተ ዳንኤልም ጣዖታችሁን እዩ አላቸው። ከዚህ በኋላ የባቢሎን ሰዎች በሰሙ ጊዜ እጅግ ተቈጡ ወደ ንጉሡም በነገር ተመለሱ ቤልን ሰበረ ካህናቱንም ገደለ ዘንዶውንም ገደለ ንጉሥ መንግሥቱን ተቀማ ተቀማ አሉ። ዳንኤል ይሰጠን ዘንድ ኑ ወደ ንጉሥ እንሂድ። ይህ ካልሆነ እንገድለሃለን ገንዘብህንም እንዘርፍሃለን ቤትህንም በእሣት እናቃጥላለን እንለዋለን አሉ።"
+  },
+  {
+    "number": 9,
+    "text": "ንጉሥም እጅግ እንዳስጨቁት ባየ ጊዜ ለንጉሡም ግድ በሆነበት ጊዜ ዳንኤልን ሰጣቸው። ወደ አንበሶች ጉድጓድ ጣሉት በዚያም ሰባት ቀን ተቀመጠ። በዚያም ሰባት አንበሶች ነበሩ። ሁል ጊዜ ሁለት ሰው ሁለት በግ ይመግቧቸው ነበር ያን ጊዜ ግን ዳንኤልን ይበሉት ዘንድ ምንምን አልሰጧቸውም ነበር። ነቢዩ ዕንባቆምም በይሁዳ ነበር የምስር ንፍሮ አስቀቀለ እንጀራ አሰጋገረ በቅርጫት አድርጎ እህል ለሚያጭዱ ሰዎች ይዞ ወደ ምድረ በዳ ሄደ።"
+  },
+  {
+    "number": 10,
+    "text": "እግዚአብሔር የላከው መልአክም ዕንባቆ ምን ይህንን ምሳ በባሊሎን በአንበሶች ጉድጓድ ላለ ለዳንኤል ውሰድ አለው። ዕንባቆምም አቤቱ ባቢሎንን አላውቅም የአንበሶችም ጉድጓድ ወዴትም እንደሆነ አላውቅም አለው። እግዚአብሔር የላከው መልአክም ጉተናውን ያዘው በራሱም ጸጉር ተሸክሞ በመንፈስ ቅዱስ ኃይል በባሊሎን ወዳለ ወደ አንበሶች ጉድጓድ አደረሰው።"
+  },
+  {
+    "number": 11,
+    "text": "ዕንባቆምም አሰምቶ ጮኸ ዳንኤል ዳንኤል እግዚአብሔር የሰጠህ ይህንን ምሳ ተቀበል አለ። ዳንኤልም ወዳጆቹን የማይዘነጋቸው እግዚአብሔር አሰበኝን አለ። ዳንኤልም ተነሥቶ ተቀብሎ በላ እግዚአብሔር የላከው መልአክም ዕንባቆምን ያን ጊዜ መዳገሩ መለሰው። ንጉሡም በሰባተኛዩቱ ቀን መጥቶ ለዳንኤል አለቀሰለት ወደ አንበሶቹም ጉድጓድ በቀረበ ጊዜ ዳንኤልን በአንበሶቹ መካከል ተቀምጦ አየው።"
+  },
+  {
+    "number": 12,
+    "text": "ንጉሡም ቃልን አሰምቶ ጮኸ የዳንኤል ፈጣሪ እግዚአብሔር አንተ ገናና ነህ ያላንተም ሌላ ፈጣሪ የለም አለ። ዳንኤልንም ያንጊዜ ከአንበሶቹ ጉድጓድ አወጣው። ዳንኤልን ይገድሉት ዘንድ የወደዱ እነዚያን ሰዎች ግን ይዘው በአንበሶች ጉድጓድ ጣላቸው አንበሶቹም ያን ጊዜ በፊቱ በሏቸው። ያንጊዜም ንጉሡ የሚያድን እሱ ነውና በምድርና በሰማይ ምልክትን ድንቅ ተአምራትን ያደርጋልና ደንኤልንም ከአንበሶች ጉድጓድ አድኖታልና ሁሉም የዳንኤልን ፈጣሪ ያመልኩት አለ። ለእግዚአብሔር ክብር ምስጋና ይግባውና ነቢዩ ዳንኤል የተናገረው ነገር ተፈጸመ።"
+const holyChildrenAmharic = [
+  {
+    "number": 1,
+    "text": "በጉድጓድ እሳት መካከልም ተመላለሱ እግዚአብሔርንም ፈጽመው አመሰገኑት። አዛርያም በእሳቱ መካከል ቁም እንዲህ ብሎ ጸለየ በእሳቱም መካከል ምስጋናን ጀመረ፦"
+  },
+  {
+    "number": 2,
+    "text": "የአባቶቻችን ፈጣሪ እግዚአብሔር ይከበር ይመስገን ስምህም ለዘላለም የተመሰገነ የከበረ ነው አለ። ባመጣህብን መከራ ሁሉ አንተ ጻድቅ ነህና ሥራህ ሁሉ የታመነ ነው ሥርዓትህም ሁሉ የቀና ነው ፍርድህም ሁሉ እውነት ነው። ባደረግህብን ነገር ሁሉ ፍት ርት አደረግህ በእውነተኛ ፍርድህ ስለ ኃጢአታችን ይህን ሁሉ መከራ አምጥተሀብናልና በከበረች በአባቶቻችን አገር በኢየሩሳሌምም ፍት ርት አደረግህ። የተውንህ እኛ በድለናል ስተናልና በሁሉ በደልን ትእዛዝህንም አልሰማንም በጎ ረድኤት ይደረግልን ዘንድ እንዳዘዝኸን ሕግህን አልጠበቅንም ትእዛዝህንም አላደረግንም።"
+  },
+  {
+    "number": 3,
+    "text": "ያመጣህብንን ያደረግህብንን መከራ ሁሉ በእውነተኛ ፍርድህ አደረግህብን። ኃጢአተኞች ወንጀለኖች በሚሆኑ በአንተ ፈጽመው በራቁ በጠላቶቻችን እጅ ጣልኸን ከሰው ሁሉ ዓመፀኛ ክፉ በሆነ በብልጣሶርም እጃ አሳልፈህ ጣልኸን። አሁንም አፋችንን ከፍተን እናመሰግን ዘንድ አገባባችን አይደለም በምንፈራህ በኛ በባሪያዎችህ ያተደረገብንን ጉስቁልናችንና ኃፍረታችን አይተህ። ስሜ ይቅር ባይ ነው ስላልህ ፈጽመህ ለመከራ አትስጠን ቃል ኪዳንህንም አትለውጥብን። ስለ ባለምዋልህ ስለ ይስሐቅና ስለ ወዳጅህ ስለ አብርሃም ስላከበርግኸው ስለ ያዕቆብም ቸርነትህን ከእኛ አታርቅ። እነርሱ ከአሕዛብ ሁሉ ጥቂቶች ነበሩና ልጆቻቸውን በባሕር ዳር እንዳለ አሸዋና እንደ ሰማይ ኮከብ ታበዛላቸው ዘንድ ታበዛላቸዋለህ።"
+  },
+  {
+    "number": 4,
+    "text": "ስለ ተናገርሃቸው ስለ እነዚህ ቸርነትህን ከእኛ አታርቅ ስለ ኃጢአታችን በሀገሩ ሁሉ ዛሬ የጐስቈልን ሆን። በዚህ ወራት አለቃ የለም ነቢዩም የለም ንጉሡም የለም ቁርባንም መሥዋዕትም ዕጣን የሚያሸትቱ ካህናትም የሉም በየዋህ ልቡና በቀና ሰውነት ተቀበልልን እንጂ ይቅርታህን ያገኙ ዘንድ በፊትህ ሃይማኖት የሚያጸኑበት አገር የለም። የላሞችንና /ሙሴ አሮን/ የጊደሮችን /ዳዊት ሰሎሞን/ የሰቡ የበዙ በጎችንም /ኢዮስያስ/ መሥዋዕት እንደ ተቀበልህ መስዋዕታችንም ዛሬ በፊትህ እንደዚያ ይሁን። ያመኑብህ ሁሉ እንዳያፍሩ መሥዋዕታችን በአንተ ዘንድ ፍጹም ይሁን። \nአሁንም በፍጹም ልቡናችን እናምንሃለን እንፈራሃለን አታሳፍረን እንጂ ገጸ ረድኤትህንም እንፈልጋለን። ከቁጣ ወደ ምህረት አንደ መመለስ መጠን ይቅርታህን አድርግልን እንደ ቸርነትህም ብዛት በታመራትህ ከመከራው አድነን አቤቱ ለስምህ ምስጋናን ስጠ። በኛ በባሪያዎችህ ክፉ ነገር የሚያደርጉ ሁሉ ይፈሩ በቀማቸውም ሁሉ ይጐስቁሉ ኃይላቸውም ይድከም። በዓለም ሁለና ለሀገሩ ሁሉ የተመሰገንህ ፈጣሪ አንተ ብቻ እንደ ሆንህ ይወቁ አለ።"
+  },
+  {
+    "number": 5,
+    "text": "እነዚያም ብላቴናዎች በንጉሥ ዘንድ ነገር ሠርተው ማጣላታቸውን አልተውም በእሳቱም ድኚ እደሮማር የወይን አረግ ቁልቋል ቅንጭብ የባሕር አረፋ ጨመሩ። ነበልባሉም ከጉድጓድ አርባ ዘጠኝ ክንድ ከፍ ከፍ አለ። እሳቱም እየተመላለሰ በከለዳውያን ምድጃ /ጉድጓድ/ አጠገብ ያገኘውን ሁሉ ያቀጥል ነበር። እግዚአብሔር የላከው መልአክም ከአናንያና ከአዛርያ ከሚሳኤልም ጋር ወደሚነደው ወደ እሳቱ ምድጃ ወርዶ በጉድጓድ ያለውን እሳት መታው።"
+  },
+  {
+    "number": 6,
+    "text": "የእሳቱንም ነበልባል እንደ ቀዘቀዘ ነፋስ አደረገው እነዚንም ሰዎች እሳቱ ምንም አልነካቸውም የራሳቸውን ጠጉር አልበለባቸውም አላስጨነታቸውም።\nያን ጊዜም እነዚ ሦስቱ ሰዎች ሁሉ በአንድ አፍ ፈጽመው አመሰገኑ በእሳት ጉድጓድ መካከል እግዚአብሔርን አመሰገኑት። የአባቶቻችን ፈጣሪ እግዚአብሔር ይክበር ይመስገን የተመሰገነ ነው ለዘላለሙም የከበረ ነው። የከበረ የጌትነቱ ስምም ይክበር ይመስገን የተመሰገነ ነው በዓለሙ ሁሉ የከበረ ነው።"
+  },
+  {
+    "number": 7,
+    "text": "ቅዱስ ቅዱስ ተብለህ በምትመሰገንበት በጽርሐ አርያም አንተ የከበርህ ነህ ለዘላለሙ የተመሰገንህ ነህ። በኪሩቤል ላይ ሆነህ የውቅያኖስ ጥልቆችን የምታይ አንተ የከበርህ ነህ የተመሰገንህ ነህ ለዘላለሙም የከበርህ ነህ። በጌትነትህም ዙፋን አንተ የከበርህ ነህ የተመሰገንህ ነህ ለዘላለሙም የከበርህ ነህ። \nከሰማዮች በላይ ባለ ሰማይም የተመሰገንህ ነህ አንተ ለዘላለሙ ፈጽመህ የከበርህ ነህ። እግዚአብሔር የፈጠራቸው ፍጥረቶች ሁሉ እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለሙም ከፍ ከፍ ያለ ነው። ሰማዮች እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለሙም ከፍ ከፍ ያለ ነው። እግዚአብሔር የፈጠራቸው መላእክት እግዚአብሔርን ያመሰግኑታል እርሱ ለዘላለሙ የተመሰገነ ነው ከፍ ከፍ ያለም ነው።"
+  },
+  {
+    "number": 8,
+    "text": "ከሰማዮች በላይ ያሉ ውኃዎች ሁሉ እግዚአብሔርን ያመሰግኑታል ለዘላለሙ የተመሰገነ ነው ከፍ ከፍ ያለም ነው። ከየእግዚአብሔር ሠራዊት ሁሉ እግዚአብሔርን ያመሰግኑታል እርሱ ለዘላለም የተመሰገነ ነው ከፍ ከፍ ያለም ነው። ፀሐይ ጨረቃ እግዚአብሔርን ያመሰግኑታል እርሱ ለዘላለም የተመሰገነ ነው ከፍ ከፍ ያለም ነው፤ በሰማይ ያሉ ኮከቦች እግዚአብሔርን ያመሰግኑታል እርሱ ለዘላለም የተመሰገነ ነወ ከፍ ከፍ ያለም ነው። የበጎ ጠል የበጎ ዝናም እግዚአብሔርን ያመሰግኑታል እርሱ ለዘላለም የተመሰገነ ነው ከፍ ከፍ ያለም ነው። ነፋሶች ሁሉ እግዚአብሔርን ያመሰግኑታል እርሱ ለዘላለም የተመሰገነ ነው ከፍ ከፍ ያለም ነው።"
+  },
+  {
+    "number": 9,
+    "text": "እሳት ዋዕይ እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለም ከፍ ከፍ ያለም ነው። መዓልትና ሌሊት እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለም ከፍ ከፍ ያለም ነው። የክፉ ጠል የክፉ ጤዛ እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለም ከፍ ከፍ ያለም ነው። ብርድ ውርጭ እግዚአብሔርን ያመሰግኑታል እርሱ ለዘላለም የተመሰገነ ነው ከፍ ከፍ ያለም ነው።"
+  },
+  {
+    "number": 10,
+    "text": "ብርሃን ጨለማ እግዚአብሔርን ያመሰግኑታል እርሱ ለዘላለም የተመሰገነ ነው ከፍ ከፍ ያለም ነው። ደጋ ቆላ እግዚኦብሔርን ያመሰግኑታል እርሱ ለዘላለም የተመሰገነ ነው ከፍ ከፍ ያለም ነው። በረድ ጉም እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለም ከፍ ከፍ ያለም ነው። መብረቅ ደመና እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለም ከፍ ከፍ ያለም ነው።"
+  },
+  {
+    "number": 11,
+    "text": "ምድር እግዚአብሔርን ታመሰግነዋለች እርሱ የተመሰገነ ነው ለዘላለም ከፍ ያለም ነው። ተራሮች ኮረብቶች እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለም ከፍ ከፍ ያለም ነው። በዚህ ዓለም የሚበቅሉ አትክልት ሁሉ እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለም ከፍ ከፍ ያለም ነው። ጥልቆች እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለም ከፍ ከፍ ያለም ነው።"
+  },
+  {
+    "number": 12,
+    "text": "ባሕር ፈሳሾች እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለም ከፍከፍ ያለም ነው። በውኃ ውስጥ የሚመላለስ ፈጥረት ሁሉ እግዚአብሔርን መሰግኑታል እርሱ የተመሰገነ ነው ለዘላለም ከፍ ከፍ ያለም ነው። በሰማይ የሚበሩ ወፎች ሁሉ እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለም ከፍ ከፍ ያለም ነው። አራዊት እንስሳት ሁሉ እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰነገ ነው ለዘላለም ከፍ ከፍ ያለም ነው።"
+  },
+  {
+    "number": 13,
+    "text": "የአዳም ልጆች እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ከፍ ከፍ ያለም ነው። እስራኤል እግዚአብሔርን ያመሰግኑታል። እርሱ የተመሰገነ ነው ለዘላለም ከፍ ከፍ ያለም ነው። እግዚአብሔር የሾማቸው ካህናት  እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለም ከፍ ከፍ ያለም ነው። የእግዚአብሔር ባሪዎች እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለም ከፍ ከፍ ያለም ነው የጻድቃን ሰውነታቸውና ልቡናቸው እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰነ ነው ለዘላለም ከፍ ከፍ ያለም ነው የቀና ልቡና ያላቸው ጻድቃን እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለም ከፍ ከፍ ያለም ነው።"
+  },
+  {
+    "number": 14,
+    "text": "አናንያ አዛርያ ሚሳኤል እግዚአብሔርን ያመሰግኑታል እርሱ የተመሰገነ ነው ለዘላለም ከፍ ከፍ ያለም ነው። እግዚአብሔር ከሞትና ከሲኦል እጅ /ከመቃብር አፍ/ አድኖናልና ከሚነድድ ከምድጃው እሳት አስጥሎናልና ከነበልባሉም መካከል አውጥቶናልና ለእግዚአብሔር ተገዙ ስሙንም አመስግኑት ቸርነቱ ለዘላለም ስለ ሆነ ቸር ነውና። እግዚአብሔርን የምትፈሩ አሕዛብ ሁላችሁ እግዚአብሔርን አመስግኑት ከአማልክት በላይ ላለ አምላክ ተገዙ አመስግኑት ቸርነቱ ለዘላለም ነውና ተገዙለት።"
+  }
+];
+
 function renderBooks(books,id,isNew){const container=document.getElementById(id);container.innerHTML="";books.forEach(([amharic,english,bookId])=>{const b=document.createElement("button");b.className="book-button";b.dataset.search=(amharic+" "+english).toLowerCase();const a=document.createElement("span");a.className="amharic";a.textContent=amharic;const e=document.createElement("span");e.className="english";e.textContent=english;b.append(a,e);b.onclick=()=>isNew?openBook(amharic,english,bookId):openOldBook(amharic,english);container.appendChild(b);});}
+
 function showTestament(which,button){document.getElementById("oldPanel").classList.toggle("hidden",which!=="old");document.getElementById("newPanel").classList.toggle("hidden",which!=="new");document.querySelectorAll(".testament-button").forEach(b=>b.classList.remove("active"));button.classList.add("active");}
+
 function setScreen(screen){document.getElementById("booksScreen").classList.toggle("hidden",screen!=="books");document.getElementById("chaptersScreen").classList.toggle("hidden",screen!=="chapters");document.getElementById("readingScreen").classList.toggle("hidden",screen!=="reading");window.scrollTo({top:0,behavior:"smooth"});}
+
 function buildChapterButtons(chapters){const grid=document.getElementById("chapterGrid");grid.innerHTML="";chapters.forEach(ch=>{const b=document.createElement("button");b.className="chapter-button";b.textContent=ch;b.onclick=()=>openChapter(ch);grid.appendChild(b);});}
+
 function openBook(amharic,english,id){selectedBook={amharic,english,id,old:false};const chapters=scriptureData[id]||{};buildChapterButtons(Object.keys(chapters).map(Number).sort((a,b)=>a-b));document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;setScreen("chapters");}
+
 function openOldBook(amharic,english){
  selectedBook={amharic,english,old:true,dataFile:oldDataFiles[english]||null,chapterOffset:english==="Reproof (Proverbs 25–31)"?24:0};
- const chapters=english==="Jeremiah"?[...Array.from({length:24},(_,i)=>String(i+1)),"25a","25b",...Array.from({length:20},(_,i)=>String(i+26)),...Array.from({length:7},(_,i)=>"LXX "+(i+25)),"52"]:Array.from({length:chapterCounts[english]||1},(_,i)=>String(i+1));
- if(english==="2 Chronicles")chapters.push("Prayer of Manasseh");
+ let chapters;
+ if(english==="Daniel"){
+  chapters=["Susanna",...Array.from({length:12},(_,i)=>String(i+1)),"Bel and the Dragon"];
+ }else{
+  chapters=english==="Jeremiah"?[...Array.from({length:24},(_,i)=>String(i+1)),"25a","25b",...Array.from({length:20},(_,i)=>String(i+26)),...Array.from({length:7},(_,i)=>"LXX "+(i+25)),"52"]:Array.from({length:chapterCounts[english]||1},(_,i)=>String(i+1));
+ }
  buildChapterButtons(chapters);document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;setScreen("chapters");
 }
+
 function addVerses(container,verses){verses.forEach((v,i)=>{const row=document.createElement("div");row.className="verse";const n=document.createElement("span");n.className="verse-number";n.textContent=String(v&&typeof v==="object"&&"number" in v?v.number:i+1);const t=document.createElement("span");t.className="verse-text";t.textContent=(v&&typeof v==="object"&&"text" in v?v.text:v)||"";row.append(n,t);container.appendChild(row);});}
+
 function getJeremiahDisplayVerses(data,label){
  const sourceChapter=(number)=>data.chapters.find(x=>Number(x.chapter)===number)?.verses||[];
  const range=(chapter,first,last)=>{const verses=sourceChapter(chapter);return verses.slice(first-1,last).map((text,index)=>({number:first+index,text}));};
@@ -130,27 +262,70 @@ function getJeremiahDisplayVerses(data,label){
  if(chapter===52)return sourceChapter(52).map((text,index)=>({number:index+1,text}));
  return [];
 }
+
 async function openChapter(chapter){
- const book=selectedBook;document.getElementById("readingBookTitle").textContent=book.amharic+" — "+book.english;document.getElementById("readingChapterTitle").textContent=chapter==="Prayer of Manasseh"?"Prayer of Manasseh":"ምዕራፍ "+chapter;
+ const book=selectedBook;document.getElementById("readingBookTitle").textContent=book.amharic+" — "+book.english;document.getElementById("readingChapterTitle").textContent="ምዕራፍ "+chapter;
  const content=document.getElementById("readingContent");content.innerHTML="";
  if(book.old && book.english==="Psalms" && String(chapter)==="151"){addVerses(content,psalm151Amharic);setScreen("reading");return;}
- if(book.old && book.english==="2 Chronicles" && chapter==="Prayer of Manasseh"){addVerses(content,prayerOfManassehAmharic);setScreen("reading");return;}
+ if(book.old && book.english==="Daniel"){
+  if(String(chapter)==="Susanna"){
+   document.getElementById("readingChapterTitle").textContent="Susanna";
+   addVerses(content,susannaDaniel13);
+   setScreen("reading");
+   return;
+  }
+  if(String(chapter)==="Bel and the Dragon"){
+   document.getElementById("readingChapterTitle").textContent="Bel and the Dragon";
+   addVerses(content,belAndDragonAmharic);
+   setScreen("reading");
+   return;
+  }
+ }
+ if(book.old && book.english==="Enoch"){
+  const note=document.createElement("div");note.className="reader-placeholder";
+  note.textContent="ሄኖክ — ምዕራፍ "+chapter+" (የR. H. Charles 108 ምዕራፍ ክፍፍል)። የተገኘው የአማርኛ ፒዲኤፍ ቅጂ በምዕራፍና በቁጥር አልተከፋፈለም፤ ስለዚህ የዚህን ምዕራፍ ጽሑፍ በትክክል ማሳየት አልተቻለም።";
+  content.appendChild(note);
+  const link=document.createElement("a");link.href="henok.pdf";link.target="_blank";link.rel="noopener";link.textContent="የሄኖክን አማርኛ ፒዲኤፍ ክፈት";link.style.cssText="display:block;text-align:center;color:var(--gold-light);margin:18px auto;text-decoration:underline";content.appendChild(link);
+  const hint=document.createElement("p");hint.className="status";hint.textContent="የምዕራፍ ቁጥሮቹ በR. H. Charles ክፍፍል መሠረት 1–108 ናቸው፤ የአማርኛ ጽሑፉ ምዕራፍና ቁጥር የተለየ ምንጭ ሲገኝ እያንዳንዱን ምዕራፍ በትክክል እናስገባለን።";content.appendChild(hint);
+  setScreen("reading");return;
+ }
  if(book.old){
   if(!book.dataFile){const p=document.createElement("div");p.className="reader-placeholder";p.textContent="የዚህ መጽሐፍ የአማርኛ ጽሑፍ ገና አልተገናኘም።";content.appendChild(p);setScreen("reading");return;}
   const loading=document.createElement("div");loading.className="reader-placeholder";loading.textContent="ጽሑፉን በመጫን ላይ...";content.appendChild(loading);setScreen("reading");
   try{const key=book.dataFile;if(!oldScriptureCache[key]){const response=await fetch(OLD_SOURCE_BASE+encodeURIComponent(key));if(!response.ok)throw Error("HTTP "+response.status);oldScriptureCache[key]=await response.json();}
    if(selectedBook!==book)return;const label=String(chapter);const isJeremiah=book.english==="Jeremiah";const wanted=Number(chapter)+(book.chapterOffset||0);const ch=oldScriptureCache[key].chapters.find(x=>Number(x.chapter)===wanted);content.innerHTML="";
-   const verses=isJeremiah?getJeremiahDisplayVerses(oldScriptureCache[key],label):(ch&&Array.isArray(ch.verses)?ch.verses:null);
+   let verses=isJeremiah?getJeremiahDisplayVerses(oldScriptureCache[key],label):(ch&&Array.isArray(ch.verses)?ch.verses:null);
+   if(book.english==="Daniel" && Number(chapter)===3 && verses && verses.length){
+    const alreadyHasHolyChildren=verses.some(v=>{const verseText=String(v&&typeof v==="object"?v.text:v);return verseText.includes("በጉድጓድ እሳት መካከል")&&verseText.includes("አዛርያም");});
+    if(!alreadyHasHolyChildren){
+     const before=verses.slice(0,23);
+     const after=verses.slice(23);
+     const inserted=holyChildrenAmharic.map((v,i)=>({number:"23"+String.fromCharCode(97+i),text:v.text}));
+     verses=[...before,...inserted,...after];
+    }
+   }
+   if(book.english==="2 Chronicles" && Number(chapter)===33 && verses && verses.length){
+    const before=verses.slice(0,12);
+    const after=verses.slice(13);
+    verses=[...before,{number:"13a",text:manassehIntro},...prayerOfManassehAmharic,{number:"13b",text:manassehOutro},...after];
+   }
    if(!verses||!verses.length){const p=document.createElement("div");p.className="reader-placeholder";p.textContent="ይህ ምዕራፍ በተገኘው የጽሑፍ ምንጭ ውስጥ የለም።";content.appendChild(p);}else addVerses(content,verses);
   }catch(error){content.innerHTML="";const p=document.createElement("div");p.className="reader-placeholder";p.textContent="የአማርኛ ጽሑፉን መጫን አልተቻለም። ኢንተርኔትዎን ያረጋግጡና እንደገና ይሞክሩ።";content.appendChild(p);}
   return;
  }
  const verses=scriptureData[book.id]?.[chapter];if(verses?.length){verses.sort((a,b)=>a.number-b.number).forEach(v=>{const row=document.createElement("div");row.className="verse";const n=document.createElement("span");n.className="verse-number";n.textContent=v.number;const t=document.createElement("span");t.className="verse-text";t.textContent=v.text;row.append(n,t);content.appendChild(row);});}else{const p=document.createElement("div");p.className="reader-placeholder";p.textContent="የዚህ ምዕራፍ ጽሑፍ አልተገኘም።";content.appendChild(p);}setScreen("reading");
 }
-function goToBooks(){setScreen("books");}function goToChapters(){setScreen("chapters");}
+
+function goToBooks(){setScreen("books");}
+function goToChapters(){setScreen("chapters");}
+
 function searchBooks(){const q=document.getElementById("search").value.toLowerCase().trim();document.querySelectorAll(".book-button").forEach(b=>b.classList.toggle("hidden",!b.dataset.search.includes(q)));if(q){document.getElementById("oldPanel").classList.remove("hidden");document.getElementById("newPanel").classList.remove("hidden");}else{document.getElementById("oldPanel").classList.add("hidden");document.getElementById("newPanel").classList.remove("hidden");}}
+
 async function loadScripture(){const status=document.getElementById("loadStatus");try{const response=await fetch(SOURCE_URL,{cache:"no-store"});if(!response.ok)throw Error("HTTP "+response.status);const raw=await response.text(),parsed={};let count=0;raw.split(/\r?\n/).forEach(line=>{if(!line.trim())return;const p=line.split("||");if(p.length<4)return;const [id,ct,vt,...rest]=p;const ch=Number(ct),num=Number(vt),text=rest.join("||");if(!/^(4[0-9]|5[0-9]|6[0-6])N$/.test(id)||!Number.isInteger(ch)||!Number.isInteger(num)||!text)return;parsed[id]??={};parsed[id][ch]??=[];parsed[id][ch].push({number:num,text});count++;});const books=Object.keys(parsed).length,chapters=Object.values(parsed).reduce((n,b)=>n+Object.keys(b).length,0);if(books!==27||chapters!==260||count!==7656)throw Error("NT validation failed");scriptureData=parsed;status.textContent="የሐዲስ ኪዳን ጽሑፍ ተጭኗል።";}catch(e){status.textContent="የሐዲስ ኪዳን ጽሑፍን መጫን አልተቻለም።";}}
-renderBooks(oldBooks,"oldBooks",false);renderBooks(newBooks,"newBooks",true);loadScripture();
+
+renderBooks(oldBooks,"oldBooks",false);
+renderBooks(newBooks,"newBooks",true);
+loadScripture();
 </script>
 </body>
 </html>
