@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="am">
 <head>
@@ -62,53 +61,53 @@ header h1{font-size:21px}
 
 <main>
 <section id="booksScreen">
- <section class="hero">
-  <h2>ቅዱሳት መጻሕፍት</h2>
-  <p>የቅዱሳት መጻሕፍትን ቃል ለማንበብና ለማጥናት</p>
- </section>
+<section class="hero">
+<h2>ቅዱሳት መጻሕፍት</h2>
+<p>የቅዱሳት መጻሕፍትን ቃል ለማንበብና ለማጥናት</p>
+</section>
 
- <div class="search-box">
-  <input type="search" id="search" placeholder="መጽሐፍ ፈልግ / Search books..." oninput="searchBooks()">
- </div>
+<div class="search-box">
+<input type="search" id="search" placeholder="መጽሐፍ ፈልግ / Search books..." oninput="searchBooks()">
+</div>
 
- <div class="testament-buttons">
-  <button class="testament-button" onclick="showTestament('old',this)">ብሉይ ኪዳን</button>
-  <button class="testament-button active" onclick="showTestament('new',this)">ሐዲስ ኪዳን</button>
- </div>
+<div class="testament-buttons">
+<button class="testament-button" onclick="showTestament('old',this)">ብሉይ ኪዳን</button>
+<button class="testament-button active" onclick="showTestament('new',this)">ሐዲስ ኪዳን</button>
+</div>
 
- <section class="book-panel hidden" id="oldPanel">
-  <h2 class="panel-heading">ብሉይ ኪዳን</h2>
-  <div class="status" id="oldStatus">የብሉይ ኪዳን ጽሑፍ ከመረጡት መጽሐፍ ጋር ይጫናል።</div>
-  <div class="book-grid" id="oldBooks"></div>
- </section>
+<section class="book-panel hidden" id="oldPanel">
+<h2 class="panel-heading">ብሉይ ኪዳን</h2>
+<div class="status" id="oldStatus">የብሉይ ኪዳን ጽሑፍ ከመረጡት መጽሐፍ ጋር ይጫናል።</div>
+<div class="book-grid" id="oldBooks"></div>
+</section>
 
- <section class="book-panel" id="newPanel">
-  <h2 class="panel-heading">ሐዲስ ኪዳን</h2>
-  <div class="status" id="loadStatus">የሐዲስ ኪዳን ጽሑፍ በመጫን ላይ...</div>
-  <div class="book-grid" id="newBooks"></div>
- </section>
+<section class="book-panel" id="newPanel">
+<h2 class="panel-heading">ሐዲስ ኪዳን</h2>
+<div class="status" id="loadStatus">የሐዲስ ኪዳን ጽሑፍ በመጫን ላይ...</div>
+<div class="book-grid" id="newBooks"></div>
+</section>
 </section>
 
 <section id="chaptersScreen" class="chapter-panel hidden">
- <button class="back-button" onclick="goToBooks()">← ወደ መጻሕፍት ተመለስ</button>
- <h2 class="screen-title" id="chapterBookTitle"></h2>
- <p class="screen-subtitle">ምዕራፍ ይምረጡ</p>
- <div class="chapter-grid" id="chapterGrid"></div>
+<button class="back-button" onclick="goToBooks()">← ወደ መጻሕፍት ተመለስ</button>
+<h2 class="screen-title" id="chapterBookTitle"></h2>
+<p class="screen-subtitle">ምዕራፍ ይምረጡ</p>
+<div class="chapter-grid" id="chapterGrid"></div>
 </section>
 
 <section id="readingScreen" class="reading-panel hidden">
- <button class="back-button" onclick="goToChapters()">← ወደ ምዕራፎች ተመለስ</button>
- <h2 class="screen-title" id="readingBookTitle"></h2>
- <p class="screen-subtitle" id="readingChapterTitle"></p>
- <div class="reading-content" id="readingContent"></div>
+<button class="back-button" onclick="goToChapters()">← ወደ ምዕራፎች ተመለስ</button>
+<h2 class="screen-title" id="readingBookTitle"></h2>
+<p class="screen-subtitle" id="readingChapterTitle"></p>
+<div class="reading-content" id="readingContent"></div>
 </section>
 </main>
 
 <footer>
- <strong>መጽሐፍ ቅዱስ | ተዋሕዶ</strong>
- <p>በእምነት · በቃሉ · በትውፊት</p>
- <p>Amharic NT. Revised Amharic Bible in XML (2003). Printed version by United Bible Societies (© 1962). E-text in transliterated ASCII format by Lapsley/Brooks Foundation (1994). Unicode UTF-8 transformation and XML-tagging by Dirk Röckmann (2003). With kind permission of the Bible Society of Ethiopia. Every non-commercial work using this data in any form must fully include this copyright statement. Every commercial use of parts or the complete data in any form needs written permission of the Bible Society of Ethiopia.</p>
- <p>Old Testament JSON text source: Henok Hailemariam, amharic-bible-json (MIT License, 2020).</p>
+<strong>መጽሐፍ ቅዱስ | ተዋሕዶ</strong>
+<p>በእምነት · በቃሉ · በትውፊት</p>
+<p>Amharic NT. Revised Amharic Bible in XML (2003). Printed version by United Bible Societies (© 1962). E-text in transliterated ASCII format by Lapsley/Brooks Foundation (1994). Unicode UTF-8 transformation and XML-tagging by Dirk Röckmann (2003). With kind permission of the Bible Society of Ethiopia. Every non-commercial work using this data in any form must fully include this copyright statement. Every commercial use of parts or the complete data in any form needs written permission of the Bible Society of Ethiopia.</p>
+<p>Old Testament JSON text source: Henok Hailemariam, amharic-bible-json (MIT License, 2020).</p>
 </footer>
 
 <script>
@@ -251,10 +250,10 @@ const chapterCounts={
 "1 Samuel (1 Kingdoms)":31,"2 Samuel (2 Kingdoms)":24,
 "1 Kings (3 Kingdoms)":22,"2 Kings (4 Kingdoms)":25,
 "1 Chronicles":29,"2 Chronicles":36,"Jubilees":50,
-"Enoch":108,"Ezra":10,"Nehemiah":13,"Job":42,"Psalms":151,
-"Proverbs (1–24)":24,"Reproof (Proverbs 25–31)":7,
+"Enoch":108,"Ezra":10,"Nehemiah":13,"Job":42,
+"Psalms":151,"Proverbs (1–24)":24,"Reproof (Proverbs 25–31)":7,
 "Ecclesiastes":12,"Song of Solomon":8,"Isaiah":66,
-"Jeremiah":52,"Lamentations":5,"Ezekiel":48,"Daniel":12,
+"Jeremiah":52,"Lamentations":5,"Ezekiel":48,"Daniel":13,
 "Hosea":14,"Amos":9,"Micah":7,"Joel":3,"Obadiah":1,
 "Jonah":4,"Nahum":3,"Habakkuk":3,"Zephaniah":3,
 "Haggai":2,"Zechariah":14,"Malachi":4
@@ -293,6 +292,21 @@ const prayerOfManassehAmharic=[
 
 const manassehIntro="የንጉሡ የሕዝቅያስ ልጅ ምናሴም ጸለየ፤ እንዲህም አለ፦";
 const manassehOutro="እርሱም ተለመነው፥ ጸሎቱንም ሰማው፥ ወደ መንግሥቱም ወደ ኢየሩሳሌም መለሰው፤ ምናሴም እግዚአብሔር እርሱ አምላክ እንደ ሆነ አወቀ።";
+
+const susannaDaniel13 = [
+{number:1,text:"በባቢሎን የሚኖር ስሙ ኢዮአቄም የሚባል አንድ ሰው ነበር። ስሟ ሶስና የምትባል ሚስት አግብቶ ነበር። ይቺውም የኬልቅዮስ ልጅ ናት እጅግ መልክ መልካም ነበረች ፈጣሪዋ እግዚአብሔርንም ትፈራው ነበር እናት አባቷም ደጋግ ሰዎች ነበሩ። ለልጃቸውም ሙሴ የጻፋት ኦሪትን አስተምረዋት ነበር። ባሏ ኢዮአቄም ግን እጅግ ባለጸጋ ነበር በቤቱም አጠገብ የተክል ቦታ ነበረው ከሁሉ እሱ ይከብር ነበርና አይሁድም ወደሱ ይመጡ ነበር።"},
+{number:2,text:"ኃጢአት ከባቢሎን እንደ መጣች ሕዝቡን እንጠብቃቸዋለን ከሚሉ ከግብዞች ወገኖችም እንደ ወጣች እግዚአብሔር ስለነሱ የተናገረባቸው ግብዞች የሚሆኑ ሁለት መምህራን በዚያ ወራት ታዩ። እነሱም በኢዮአቄም ቤት ያገለግሉ ነበር የሚፈራረዱ ሰዎችም ሁሉ ወደሱ ይመጡ ነበር። ሕዝቡ ሁሉ ወደ ቤታቸው ከገቡ በኋላ ቀትር በሆነ ጊዜ ሶስና ወደ ባሏ ተክላ ቦታ ገብታ በዚያ ትመላለስ ነበር። ገብታ በተመላለሰች ጊዜ እነዚያ መምህራን ሁለጊዜ ያይዋት ነበር እሷንም ወደዷት።"},
+{number:3,text:"ልቡናቸውን ለወጡ ሰማይንም እንዳያዩ ዓይናቸውን ግልብጥብጥ አደረጉ /ሰማያዊ እግዚአብሔርን እንዳያስቡ/ እውነተኛ ሕግንም አላሰቡም። ሁለቱም ሁሉ ወደዷት ፈቃዳቸውን መናገር አፍረዋልና። እስበሳቸው በልቡናቸው ያለውን ነገር አልተናገሩም ይደርሱባት ዘንድ ይወዱ ነበር። ያገኟት ዘንድ ሁለጊዜ ይጠብቋት ነበር። አንዱ አንዱን የምሳ ጊዜ ነውና ወደ ቤታችን አንግባ አለው። እየራሳቸው ተለያይተው ሄዱ። ተመልሰውም በጎዳና አንድነት ተገናኙ ሁለቱ ሁሉ ተያዩ። ያንጊዜም ፈቃዳቸውን ተነጋገሩ። ብቻ ለብቻ እሷን የሚያገኙበትን ጊዜ ተቃጠሩ።"},
+{number:4,text:"ከዚህ በኋላ ቀን ሲጠብቋት ሶስና ሁለጊዜም ትገባ እንደ ነበር ከሁለቱ ደንገጡፎቿ ጋራ ገባች አልቧታልና በተክል ውስጥ ትታጠብ ዘንድ ወደደች። ተሠውረው ከሚጠብቋት ከሁለቱ መምህራን በቀር በዚያ ማንም ማን አልነበረም። ዘይት አምጥተው ያጥቧት ዘንድ ልትታጠብ የተክሉንም ደጃፍ በር ይዘጉ ዘንድ ደንገጡሮቿን አዘዘቻቸው። እነሱም እንዳዘዘቻቸው አደረጉ የተክሉን ደጃፍ ዘግተው ያዘዘቻቸውን ያመጡ ዘንድ በሥርጥ ጎዳና ወጡ የተሠወሩ እነዚያን መምህራን ግን አላይዋቸውም ነበር። እነዚያ ደንገጡሮች ከወጡ በኋላ እነዚያ ሁለቱ መምህራን ተነሥተው ወደሷ ሮጡ። እነሆ የተክሉ ደጃፍ ተዘግቷል የሚያይ የለም እንደርስብሽ ዘንድ እንወዳለን እሺ በዩን።"},
+{number:5,text:"ይሀ ካልሆነ ካንቺ ጋራ ሰውን እንዳገኘን ተናግረን እናጣላሻለን ስለዚህ ነገር ደንገጡሮችሽን ካንቺ አስወጥተሽ ሰደድሽ አሏት። ሶስናም አለቀሰች በሁሉም ፈጽሜ ተጨነቅሁ ባደረገውም እሞታለሁ ባላደረገውም አልድንም ከእጃቸው ማምለጥንም አልችልም። እግዚአብሔርን ከምበድል ኃጢአትስ ልሠራ በእጃቸው መውደቅ ይሻለኛል አለች። ሶስና ቃሏን አሰምታ ጮኸች እነዚያም መምህራን ከሷ ጋራ ጮሁ። አንዱ ሮጦ ሄደ የተከሉን ደጃፍ ከፈተ። በቤቷም ያሉ ሰዎች በተክል መካከል ጩኸትን ሰምተው ወጡ ምንም እንደ ሆነች ያዩ ዘንድ በሥርጥ ጎዳናም ሮጡ። እነዚህ ሁለቱ መምህራን ይህንን ነገር በተናገሩ ጊዜ በሶስና እንደዚህ ያለ ነገር ፈጽሞ ተሰምሮ አያውቅም ነበርና ዘመዶቿና ባሮቿ እጅግ አፈሩ።"},
+{number:6,text:"በማግሥቱ ሕዝቡ በባሏ በኢዮአቄም ዘንድ በተሰበሰቡ ጊዜ እነዚያ ሁለቱ መምህራን ሶስናን ይገድሏት ዘንድ ካመፀኛ ልቡናቸው ጋራ መጡ በሕዝቡም ሁሉ ፊት። ያመጧት ዘንድ ወደ ኢዮአቄም ሚስት ወደ ሶስና ላኩ አሉ ወደሷም ላኩባት። እሷም ከናት ካባቷ ከወገኖቿ ከዘመዶቿም ሁሉ ጋራ መጣች። ሶስና ግን እጅግ ደመ ግቡ ነበረች። መልኳም ያማረ ነበር። ዓመፀኞች የሚሆኑ እነዚያም ሁለቱ መምህራን መልኳን ለመጥገብ ክንብንቧንም ይገልጧት ዘንድ አዘዙ። እንብንቧንም ገለጧት። አባቷ እናቷ ቤተ ሰቦቿ የሚያውቋትም ሁሉ አለቀሱላት። እነዚያም ሁለቱ መምህራን በሕዝቤ መካከል ተነሥተው እጆቻቸውን በራሷ ላይ አኖሩ። እሷ ግን ልቡናዋ በእግዚአብሔር አምኗልና እያለቀሰች ወደ ሰማይ አየች። እነዚያም መምህራን ብቻችንን በተክል ውስጥ ስንመላለስ እሷ ከሁለቱ ደንገጡጎቿ ጋራ ገባች ደንገጡሮቿን ልካቸዋለችና የተክሉን ደጃፍ ዘግተው ሄዱ ደንገጡሮቿን ከላከቻቸውም በኋላ።"},
+{number:7,text:"አንድ ጐልማሳ ከተሠወረበት መጥቶ ደረሰባት። እኛ ግን በዚያ ተክል ዳርቻ ሆነ ኃጢአታቸውን አየን ወደነሳቸውም ሮጠን ሄድን አንድነት ተኝተው አገኘናቸው። እኛ ግን እሱን መያዝ ተሳነን እሱ በርትቶብናልና አመለጠን የተክሉን ደጃፍ ከፍቶ ወጣ። እሷን ግን ያዝናት ሰውየው ማን አንደሆነ ጠየቅናት ነገር ግን አልነገረችንም አሉ። የሕዝቡ መምህራን ናቸውና ገዢዎች ናቸውና ባደባባይ የተሰበሰቡ ሰዎች ነገራቸውን አመኗቸው ትሞት ዘንድ ፈረዱባት።"},
+{number:8,text:"ሶስናም ቃሏን አሰምታ ጮኸች ዘለዓለም ጸንተህ ያምትኖር የተሠወረውን የምታውቅ የሚደረገውን ሁሉ ሳይደረግ የምታውቅ ፈጣሪ ሆይ። በሐሰት እንደ ጣሉኝ አንተ ታውቃለህ እነዚህ መምህራን ክፉ ነገርን ባደረጉብኝ ገንዘብ የሠራሁት ኃጢአት ሳይኖር እነሆ እሞታለሁ አለች። እግዚአብሔርም ቃሏን ሰማት። ይገድሏት ዘንድ ሲወስዷት እግዚአብሔር ስሙ ዳንኤል የሚባል የልጅ ልቡናህ አነሣሣ። እኔ ከዚህ ሴት ደም ንጹሕ ነኝ ብሎ ቃሉን አሰምቶ ተናገረ። ሕዝቡም ሁሉ ወደሱ ተመለሱ አንተ የምትናገረው ይህ ነገር ምንድነው አሉ። ዳንኤልም በመካከላቸው ቁም አላዋቆች የምትሆኑ እናንተ የእስራኤል ልጆች ሳትመረምሩ ነገሩን ሳትረዱ በእስራኤል ልጅ እንዲህ አድርጋችሁ እንደዚህ ያለ ፍርድን ትፈርዳላችሁን። እነዚህ መምህራን በሐሰት አጣልተዋታልና ወደ አደባባይ ተመለሱ አላቸው። ሕዝቡም ሁሉ እየሮጡ ወደ አደባባይ ተመለሱ አለቆችም ዳንኤልን እግዚአብሔር አንተን አልቆሃልና በመካከላችን ተቀምጠህ ንገረን አሉት።"},
+{number:9,text:"ዳንኤልም እየራሳቸው አራርቃችሁ አቁሟቸው እኔም ልመርምራቸው አላቸው። አንዱንም አንዱንም አራርቀው አቆሟቸው ከነሳቸውም አንዱን ጠርቶ ዘመንህ አርጅቷል እነዚህም ክፉዎች ናቸው ቀድሞ የሠራሃቸው ኃጢአቶችህ ፍዳውን ይዘው ደረሱብህ። የሐሰት ፍርድን ፈርደሃልና ይሞት በቃውን ይድን በቃ ብለህ ፈርደሃልና ጻድቁን ንጹሑን አትግደል ብሎ እግዚአብሔር የከለከለውን ይድን በቃውን ይሞት በቃ ብለህ ፈርደሃለና ኃጢአቶችህ ፍዳውን ይዘው ደረሱብህ።"},
+{number:10,text:"አሁንም ይቺን ሴት ካየሃት ሁለቱን ሁሉ በምኑ እንጨት ሥር ሲነጋገሩ አየህ ንገረኝ አለው በኮክ ሥር ሲነጋገሩ አየኋቸው አለ። ዳንኤልም በውነት ሐሰትን ተናገርህ የደምህ ፍዳ በራስህ ነው ከመካከልህ ይሰነጥቅ ዘንድ እግዚአብሔር የላከው መልአክ እነሆ ከእግዚአብሔር ታዘዘ አለው። ያን መርምሮ እልፍ አደረገው ሁለተኛውን ያመጡት ዘንድ አዘዘ አመጡት አንተ የይሁዳ ዘር ያይደህ የከነዓን ዘርነህ መልክ አሳተህን ክፉ ፈቃድስ ልቡናህን ግልብጥብጥ አደረገችህን። እሷ እናንተን መከራከር አልቻለችምና የይሁዳ ልጅ እናንተን ፈርታለችና በደላችሁንም ታግሣለችና እናንተ ግን በድላችኋታልና የእስራኤልን ልጅ እንዲህ ታደርግታለችሁን።"},
+{number:11,text:"አሁንም ሁለቱ ሲነጋገሩ ያየህበት እንጨት ምንድነው ነገረኝ አለው ሮማን በሚባል እንጨት ሥር አየኋት አለው። ዳንኤልም አንተም በውነት ሐሰትን ተናገርህ የደምህም ፍዳ በራስህ ነው ሁለታችሁንም ሊያጠፋችሁ ከእኩሌታ ወገብህ ያሰነጥቅህ ዘንድ እነሆ እግዚአብሔር የላከው መልአክ ይጠብቅሃል አለው። ሕዝቡም ሁሉ ቃላቸውን አሰምተው ጮሁ ያመነችበት ሶስና ያዳናት እግዚአብሔርንም አመሰገኑት።"},
+{number:12,text:"ከቃላቸው የተነሣ ዳንኤል ነቅፋቸዋልና መምክርነታቸውንም ሐሰት አድርጎባቸዋልና በነዚያ በሁለቱም መምህራን ላይ በጠላትነት ተነሡባቸው በባልንጀራቸው ክፉ ሥራን እንደ ሠሩ በነሳቸውም በሙሴ ሥርዓት ክፉ ሥራን ሠሩባቸው። በዚያችም ቀን ንጹሕ ደምን አዳኑ። በሷ ክፉ ሥራ አልተገኘምና ስለ ልጃቸው ስለ ሶስና ሚስቱና ኬልቅዩ ከዘመዶቿ ሁሉና ከባሏ ከኢዮአቄም ጋራ እግዚአብሔርን አመሰገኑት። ዳንኤልም ከዚች ቀን ጀምሮ እስከ ጊዜ ሞቱ ድረስ በሕዝቡና በእግዚአብሔር ፊት ገናና ሆነ።"}
+];
 
 function renderBooks(books,id,isNew){
  const container=document.getElementById(id);
@@ -353,11 +367,9 @@ function openOldBook(amharic,english){
   dataFile:oldDataFiles[english]||null,
   chapterOffset:english==="Reproof (Proverbs 25–31)"?24:0
  };
-
  const chapters=english==="Jeremiah"
   ?[...Array.from({length:24},(_,i)=>String(i+1)),"25a","25b",...Array.from({length:20},(_,i)=>String(i+26)),...Array.from({length:7},(_,i)=>"LXX "+(i+25)),"52"]
   :Array.from({length:chapterCounts[english]||1},(_,i)=>String(i+1));
-
  buildChapterButtons(chapters);
  document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;
  setScreen("chapters");
@@ -413,6 +425,12 @@ async function openChapter(chapter){
   return;
  }
 
+ if(book.old && book.english==="Daniel" && String(chapter)==="13"){
+  addVerses(content,susannaDaniel13);
+  setScreen("reading");
+  return;
+ }
+
  if(book.old && book.english==="Enoch"){
   const note=document.createElement("div");
   note.className="reader-placeholder";
@@ -431,7 +449,6 @@ async function openChapter(chapter){
   hint.className="status";
   hint.textContent="የምዕራፍ ቁጥሮቹ በR. H. Charles ክፍፍል መሠረት 1–108 ናቸው፤ የአማርኛ ጽሑፉ ምዕራፍና ቁጥር የተለየ ምንጭ ሲገኝ እያንዳንዱን ምዕራፍ በትክክል እናስገባለን።";
   content.appendChild(hint);
-
   setScreen("reading");
   return;
  }
@@ -504,7 +521,6 @@ async function openChapter(chapter){
  }
 
  const verses=scriptureData[book.id]?.[chapter];
-
  if(verses?.length){
   verses.sort((a,b)=>a.number-b.number).forEach(v=>{
    const row=document.createElement("div");
@@ -547,7 +563,6 @@ async function loadScripture(){
  try{
   const response=await fetch(SOURCE_URL,{cache:"no-store"});
   if(!response.ok)throw Error("HTTP "+response.status);
-
   const raw=await response.text();
   const parsed={};
   let count=0;
@@ -556,14 +571,11 @@ async function loadScripture(){
    if(!line.trim())return;
    const p=line.split("||");
    if(p.length<4)return;
-
    const [id,ct,vt,...rest]=p;
    const ch=Number(ct);
    const num=Number(vt);
    const text=rest.join("||");
-
    if(!/^(4[0-9]|5[0-9]|6[0-6])N$/.test(id)||!Number.isInteger(ch)||!Number.isInteger(num)||!text)return;
-
    parsed[id]??={};
    parsed[id][ch]??=[];
    parsed[id][ch].push({number:num,text});
@@ -572,12 +584,10 @@ async function loadScripture(){
 
   const books=Object.keys(parsed).length;
   const chapters=Object.values(parsed).reduce((n,b)=>n+Object.keys(b).length,0);
-
   if(books!==27||chapters!==260||count!==7656)throw Error("NT validation failed");
 
   scriptureData=parsed;
   status.textContent="የሐዲስ ኪዳን ጽሑፍ ተጭኗል።";
-
  }catch(e){
   status.textContent="የሐዲስ ኪዳን ጽሑፍን መጫን አልተቻለም።";
  }
@@ -586,7 +596,6 @@ async function loadScripture(){
 renderBooks(oldBooks,"oldBooks",false);
 renderBooks(newBooks,"newBooks",true);
 loadScripture();
-
 </script>
 </body>
 </html>
