@@ -204,7 +204,10 @@ function buildChapterButtons(chapters){
  chapters.forEach(ch=>{
   const b=document.createElement("button");
   b.className="chapter-button";
-  b.textContent=ch;
+
+  // Hide "LXX" visually while keeping the original internal chapter label.
+  b.textContent=ch.startsWith("LXX ")?ch.replace("LXX ",""):ch;
+
   b.onclick=()=>openChapter(ch);
   grid.appendChild(b);
  });
@@ -268,8 +271,7 @@ function getJeremiahDisplayVerses(data,label){
  if(label==="LXX 31")return wholeChapter(48);
  if(label==="LXX 32")return range(25,15,38).map((verse,index)=>({...verse,number:index+1}));
 
- // LXX 51: Masoretic Jeremiah 44 followed by Masoretic Jeremiah 45.
- // Both chapters come from the verified Amharic Jeremiah JSON file.
+ // Chapter 51: Masoretic Jeremiah 44 followed by Masoretic Jeremiah 45.
  // Verse numbering continues from chapter 44 into chapter 45.
  if(label==="LXX 51"){
   return [...wholeChapter(44),...wholeChapter(45)]
@@ -288,7 +290,10 @@ function getJeremiahDisplayVerses(data,label){
 async function openChapter(chapter){
  const book=selectedBook;
  document.getElementById("readingBookTitle").textContent=book.amharic+" — "+book.english;
- document.getElementById("readingChapterTitle").textContent="ምዕራፍ "+chapter;
+
+ // Show only the chapter number, without the "LXX" label.
+ const visibleChapter=chapter.startsWith("LXX ")?chapter.replace("LXX ",""):chapter;
+ document.getElementById("readingChapterTitle").textContent="ምዕራፍ "+visibleChapter;
 
  const content=document.getElementById("readingContent");
  content.innerHTML="";
