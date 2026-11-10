@@ -1519,7 +1519,7 @@ const danielOneFix={
    if(verses.some(hasNum)){
     const map={};
     verses.forEach(v=>{map[Number(v.number)]=getText(v);});
-    [3,17].forEach(n=>{if(!map[n]&&danielOneFix[n])map[n]=danielOneFix[n];});
+    [2,17].forEach(n=>{if(!map[n]&&danielOneFix[n])map[n]=danielOneFix[n];});
     out=Object.keys(map).map(Number).sort((a,b)=>a-b).map(n=>({number:n,text:map[n]}));
    }else{
     const arr=verses.map(getText);
