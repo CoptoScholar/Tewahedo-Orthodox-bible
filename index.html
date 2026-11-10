@@ -1710,123 +1710,301 @@ const danielFixesV2={
  });
 })();
 </script>
-<script><script>
-// Marker-style verse highlighting (tan, light yellow, light gold). Saved on this device. Can be removed.
-(function(){
- const STORE="tewahedoHighlights";
- let saved={};
- try{saved=JSON.parse(localStorage.getItem(STORE)||"{}")||{};}catch(e){saved={};}
- function persist(){try{localStorage.setItem(STORE,JSON.stringify(saved));}catch(e){}}
+<script>
+(function () {
+  const STORE = "tewahedoHighlights";
+  let saved = {};
 
- const css=document.createElement("style");
- css.textContent=
-  ".verse{cursor:pointer}"+
-  ".hl-mark{color:inherit}"+
-  ".verse.hl .hl-mark{color:#2b1d10;padding:2px 5px;border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone}"+
-  ".verse.hl-tan .hl-mark{background:#d8c4a0}"+
-  ".verse.hl-yellow .hl-mark{background:#fff1a6}"+
-  ".verse.hl-gold .hl-mark{background:#e8cd7a}"+
-  ".verse.hl-selected{background:rgba(201,164,91,.12)}"+
-  "#hlBar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:1000;background:rgba(20,12,8,.97);border-top:1px solid #c9a45b;padding:12px 12px calc(12px + env(safe-area-inset-bottom,0px));justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}"+
-  "#hlBar button{font-family:inherit;cursor:pointer}"+
-  "#hlBar .sw{width:44px;height:44px;border-radius:50%;border:2px solid #70532d}"+
-  "#hlBar .act{padding:10px 16px;background:#302116;border:1px solid #c9a45b;border-radius:8px;color:#e6c77d;font-size:15px}";
- document.head.appendChild(css);
+  try {
+    saved = JSON.parse(localStorage.getItem(STORE) || "{}") || {};
+  } catch (e) {
+    saved = {};
+  }
 
- let currentRow=null;
- const bar=document.createElement("div");
- bar.id="hlBar";
- [["tan","#d8c4a0"],["yellow","#fff1a6"],["gold","#e8cd7a"]].forEach(([name,color])=>{
-  const b=document.createElement("button");
-  b.className="sw";
-  b.style.background=color;
-  b.setAttribute("aria-label",name);
-  b.onclick=()=>{
-   if(!currentRow)return;
-   saved[currentRow._hlKey]=name;
-   persist();
-   applyColor(currentRow,name);
-   hideBar();
-  };
-  bar.appendChild(b);
- });
- const rem=document.createElement("button");
- rem.className="act";
- rem.textContent="አጥፋ ✕";
- rem.onclick=()=>{
-  if(!currentRow)return;
-  delete saved[currentRow._hlKey];
-  persist();
-  applyColor(currentRow,null);
-  hideBar();
- };
- bar.appendChild(rem);
- const close=document.createElement("button");
- close.className="act";
- close.textContent="ዝጋ";
- close.onclick=()=>hideBar();
- bar.appendChild(close);
- document.body.appendChild(bar);
+  function persist() {
+    try {
+      localStorage.setItem(STORE, JSON.stringify(saved));
+    } catch (e) {}
+  }
 
- function applyColor(row,name){
-  row.classList.remove("hl","hl-tan","hl-yellow","hl-gold");
-  if(name)row.classList.add("hl","hl-"+name);
- }
- function hideBar(){
-  bar.style.display="none";
-  if(currentRow)currentRow.classList.remove("hl-selected");
-  currentRow=null;
- }
- function showBar(row){
-  if(currentRow)currentRow.classList.remove("hl-selected");
-  currentRow=row;
-  row.classList.add("hl-selected");
-  bar.style.display="flex";
- }
+  const css = document.createElement("style");
+  css.textContent = `
+    #readingContent .verse {
+      cursor: pointer;
+    }
 
- function decorate(){
-  const content=document.getElementById("readingContent");
-  const title=document.getElementById("readingChapterTitle").textContent;
-  const book=selectedBook?(selectedBook.english||selectedBook.id||"?"):"?";
-  Array.from(content.querySelectorAll(".verse")).forEach((row,i)=>{
-   if(row._hlDone)return;
-   row._hlDone=true;
-   const t=row.querySelector(".verse-text");
-   if(t&&!t.querySelector(".hl-mark")){
-    const m=document.createElement("span");
-    m.className="hl-mark";
-    m.textContent=t.textContent;
-    t.textContent="";
-    t.appendChild(m);
-   }
-   const numEl=row.querySelector(".verse-number");
-   const num=numEl?numEl.textContent:"";
-   row._hlKey=book+"|"+title+"|"+i+"|"+num;
-   applyColor(row,saved[row._hlKey]);
-   row.addEventListener("click",()=>{
-    const sel=window.getSelection?window.getSelection().toString().trim():"";
-    if(sel)return;
-    showBar(row);
-   });
+    #readingContent .hl-mark {
+      color: inherit;
+      border-radius: 4px;
+      padding: 2px 5px;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    #readingContent .verse.hl .hl-mark {
+      color: #2b1d10;
+    }
+
+    #readingContent .verse.hl-tan .hl-mark {
+      background: #d8c4a0;
+    }
+
+    #readingContent .verse.hl-yellow .hl-mark {
+      background: #fff1a6;
+    }
+
+    #readingContent .verse.hl-gold .hl-mark {
+      background: #e8cd7a;
+    }
+
+    #readingContent .verse.hl-selected {
+      background: rgba(201,164,91,.12);
+    }
+
+    #hlBar {
+      display: none;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 99999;
+      background: rgba(20,12,8,.97);
+      border-top: 1px solid #c9a45b;
+      padding: 12px;
+      padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    #hlBar button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    #hlBar .sw {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid #70532d;
+    }
+
+    #hlBar .act {
+      padding: 10px 16px;
+      background: #302116;
+      border: 1px solid #c9a45b;
+      border-radius: 8px;
+      color: #e6c77d;
+      font-size: 15px;
+    }
+  `;
+
+  document.head.appendChild(css);
+
+  let currentRow = null;
+
+  const bar = document.createElement("div");
+  bar.id = "hlBar";
+
+  function applyColor(row, name) {
+    row.classList.remove(
+      "hl", "hl-tan", "hl-yellow", "hl-gold"
+    );
+
+    if (name) {
+      row.classList.add("hl", "hl-" + name);
+    }
+  }
+
+  function hideBar() {
+    bar.style.display = "none";
+
+    if (currentRow) {
+      currentRow.classList.remove("hl-selected");
+    }
+
+    currentRow = null;
+  }
+
+  function showBar(row) {
+    if (currentRow) {
+      currentRow.classList.remove("hl-selected");
+    }
+
+    currentRow = row;
+    row.classList.add("hl-selected");
+    bar.style.display = "flex";
+  }
+
+  // Color buttons
+  [
+    ["tan", "#d8c4a0"],
+    ["yellow", "#fff1a6"],
+    ["gold", "#e8cd7a"]
+  ].forEach(([name, color]) => {
+    const button = document.createElement("button");
+
+    button.className = "sw";
+    button.style.background = color;
+    button.setAttribute("aria-label", name);
+
+    button.onclick = function (e) {
+      e.stopPropagation();
+
+      if (!currentRow) return;
+
+      saved[currentRow._hlKey] = name;
+      persist();
+      applyColor(currentRow, name);
+      hideBar();
+    };
+
+    bar.appendChild(button);
   });
- }
 
- new MutationObserver(decorate).observe(document.getElementById("readingContent"),{childList:true});
+  // Remove highlight
+  const remove = document.createElement("button");
+  remove.className = "act";
+  remove.textContent = "አጥፋ ✕";
 
- document.addEventListener("click",e=>{
-  if(!currentRow)return;
-  if(bar.contains(e.target))return;
-  if(e.target.closest&&e.target.closest(".verse"))return;
-  hideBar();
- });
+  remove.onclick = function (e) {
+    e.stopPropagation();
 
- const previousSetScreen=setScreen;
- setScreen=function(screen){
-  hideBar();
-  return previousSetScreen(screen);
- };
+    if (!currentRow) return;
+
+    delete saved[currentRow._hlKey];
+    persist();
+    applyColor(currentRow, null);
+    hideBar();
+  };
+
+  bar.appendChild(remove);
+
+  // Close toolbar
+  const close = document.createElement("button");
+  close.className = "act";
+  close.textContent = "ዝጋ";
+  close.onclick = hideBar;
+
+  bar.appendChild(close);
+
+  function getBook() {
+    try {
+      if (typeof selectedBook !== "undefined" && selectedBook) {
+        return selectedBook.english || selectedBook.id || "?";
+      }
+    } catch (e) {}
+
+    return "?";
+  }
+
+  function decorate() {
+    const content = document.getElementById("readingContent");
+
+    if (!content) return;
+
+    const titleElement =
+      document.getElementById("readingChapterTitle");
+
+    const title = titleElement
+      ? titleElement.textContent.trim()
+      : "?";
+
+    const book = getBook();
+
+    content.querySelectorAll(".verse").forEach((row, i) => {
+      const text = row.querySelector(".verse-text");
+
+      if (!text) return;
+
+      // Preserve existing text formatting
+      if (!text.querySelector(".hl-mark")) {
+        const mark = document.createElement("span");
+        mark.className = "hl-mark";
+
+        while (text.firstChild) {
+          mark.appendChild(text.firstChild);
+        }
+
+        text.appendChild(mark);
+      }
+
+      const numberElement =
+        row.querySelector(".verse-number");
+
+      const number = numberElement
+        ? numberElement.textContent.trim()
+        : String(i + 1);
+
+      const key = book + "|" + title + "|" + number;
+
+      row._hlKey = key;
+
+      applyColor(row, saved[key] || null);
+    });
+
+    if (currentRow && !document.contains(currentRow)) {
+      hideBar();
+    }
+  }
+
+  function initialize() {
+    if (!document.body) return;
+
+    document.body.appendChild(bar);
+
+    // Detect verse taps, including dynamically loaded verses
+    document.addEventListener("click", function (e) {
+      const row = e.target.closest(
+        "#readingContent .verse"
+      );
+
+      if (row) {
+        const selection = window.getSelection
+          ? window.getSelection().toString().trim()
+          : "";
+
+        if (selection) return;
+
+        if (row._hlKey) {
+          showBar(row);
+        }
+
+        return;
+      }
+
+      if (bar.contains(e.target)) return;
+
+      hideBar();
+    });
+
+    // Watch for chapter and verse changes
+    const observer = new MutationObserver(function () {
+      decorate();
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    decorate();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      initialize,
+      { once: true }
+    );
+  } else {
+    initialize();
+  }
+
 })();
 </script>
+
 
 </script>
 
