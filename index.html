@@ -1501,42 +1501,51 @@ chapterCounts["Daniel"]=14;
   return originalOpenChapter(chapter);
  };
 })();
-</script><script>
-// Fills in Daniel 1:3 and 1:17 when the source text is missing them.
-const danielOneFix={
- 3:"ንጉሡም ነውር የሌለባቸውንና መልከ መልካሞቹን፥ በጥበብ ሁሉ የሚያስተውሉትን እውቀትም የሞላባቸውን ብልሃተኞችና አስተዋዮች የሆኑትን፥ በንጉሡም ቤት መቆም የሚችሉትን ብላቴኖች ከእስራኤል ልጆች ከነገሥታቱና ከመሳፍንቱ ዘር ያመጣ ዘንድ የለዳውያንንም ትምህርትና ቋንቋ ያስተምሩአቸው ዘንድ ለጃንደረቦች አለቃ ለአስፋኔዝ ነገረ።",
- 17:"ለእነዚህም ለአራቱ ብላቴኖች እግዚአብሔር በትምህርትና በጥበብ ሁሉ እውቀትንና ማስተዋል ሰጣቸው፥ ዳንኤልም በራእይና በሕልም ሁሉ አስተዋይ ነበረ።"
+</script><script></script><script>
+// Fills in missing Daniel verses (1:3 and 2:17) when the source text lacks them.
+const danielFixes={
+ 1:{expected:21,verses:{
+  3:"ንጉሡም ነውር የሌለባቸውንና መልከ መልካሞቹን፥ በጥበብ ሁሉ የሚያስተውሉትን እውቀትም የሞላባቸውን ብልሃተኞችና አስተዋዮች የሆኑትን፥ በንጉሡም ቤት መቆም የሚችሉትን ብላቴኖች ከእስራኤል ልጆች ከነገሥታቱና ከመሳፍንቱ ዘር ያመጣ ዘንድ የለዳውያንንም ትምህርትና ቋንቋ ያስተምሩአቸው ዘንድ ለጃንደረቦች አለቃ ለአስፋኔዝ ነገረ።"
+ }},
+ 2:{expected:49,verses:{
+  17:"PASTE AMHARIC DANIEL 2:17 HERE"
+ }}
 };
 (function(){
  const originalAddVerses=addVerses;
  addVerses=function(container,verses){
-  if(selectedBook&&selectedBook.old&&selectedBook.english==="Daniel"
-   &&document.getElementById("readingChapterTitle").textContent==="ምዕራፍ 1"
-   &&Array.isArray(verses)){
-   const hasNum=v=>v&&typeof v==="object"&&"number" in v;
-   const getText=v=>(v&&typeof v==="object"&&"text" in v)?v.text:v;
-   let out;
-   if(verses.some(hasNum)){
-    const map={};
-    verses.forEach(v=>{map[Number(v.number)]=getText(v);});
-    [2,17].forEach(n=>{if(!map[n]&&danielOneFix[n])map[n]=danielOneFix[n];});
-    out=Object.keys(map).map(Number).sort((a,b)=>a-b).map(n=>({number:n,text:map[n]}));
-   }else{
-    const arr=verses.map(getText);
-    if(arr.length===19){
-     if(danielOneFix[3])arr.splice(2,0,danielOneFix[3]);
-     if(danielOneFix[17])arr.splice(16,0,danielOneFix[17]);
-    }else{
-     if(!arr[2]&&danielOneFix[3])arr[2]=danielOneFix[3];
-     if(!arr[16]&&danielOneFix[17])arr[16]=danielOneFix[17];
+  if(selectedBook&&selectedBook.old&&selectedBook.english==="Daniel"&&Array.isArray(verses)){
+   const m=document.getElementById("readingChapterTitle").textContent.match(/^ምዕራፍ (\d+)$/);
+   const fix=m&&danielFixes[Number(m[1])];
+   if(fix){
+    const wanted=Object.keys(fix.verses).map(Number).filter(n=>fix.verses[n]&&!fix.verses[n].startsWith("PASTE")).sort((a,b)=>a-b);
+    if(wanted.length){
+     const hasNum=v=>v&&typeof v==="object"&&"number" in v;
+     const getText=v=>(v&&typeof v==="object"&&"text" in v)?v.text:v;
+     let out;
+     if(verses.some(hasNum)){
+      const map={};
+      verses.forEach(v=>{map[Number(v.number)]=getText(v);});
+      wanted.forEach(n=>{if(!map[n])map[n]=fix.verses[n];});
+      out=Object.keys(map).map(Number).sort((a,b)=>a-b).map(n=>({number:n,text:map[n]}));
+     }else{
+      const arr=verses.map(getText);
+      if(arr.length===fix.expected-wanted.length){
+       wanted.forEach(n=>arr.splice(n-1,0,fix.verses[n]));
+      }else{
+       wanted.forEach(n=>{if(!arr[n-1])arr[n-1]=fix.verses[n];});
+      }
+      out=arr.map((text,i)=>({number:i+1,text}));
+     }
+     return originalAddVerses(container,out);
     }
-    out=arr.map((text,i)=>({number:i+1,text}));
    }
-   return originalAddVerses(container,out);
   }
   return originalAddVerses(container,verses);
  };
 })();
+</script>
+
 </script>
 
 
