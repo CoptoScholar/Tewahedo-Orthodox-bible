@@ -1640,6 +1640,186 @@ const danielFixesV2={
  };
 })();
 </script>
+<script>
+// Old Testament in the official EOTC Holy Synod order, with combined books.
+(function(){
+ const byEng={};
+ oldBooks.forEach(b=>{byEng[b[1]]=b;});
+ chapterCounts["Esther"]=10;
+ const order=[
+  "Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth",
+  {t:["1 እና 2 ሳሙኤል","1 & 2 Samuel"],p:["1 Samuel (1 Kingdoms)","2 Samuel (2 Kingdoms)"]},
+  {t:["1 እና 2 ነገሥት","1 & 2 Kings"],p:["1 Kings (3 Kingdoms)","2 Kings (4 Kingdoms)"]},
+  "1 Chronicles","2 Chronicles","Jubilees","Enoch",
+  {t:["ዕዝራና ነህምያ","Ezra and Nehemiah"],p:["Ezra","Nehemiah"]},
+  {t:["ዕዝራ ካልዕና ዕዝራ ሱቱኤል","2nd Ezra and Ezra Sutuel"],p:["1 Esra","2 Ezra","Ezra-Shealtiel"]},
+  "Tobit","Judith","Esther","1 Meqabyan",
+  {t:["2 እና 3 መቃብያን","2 & 3 Meqabyan"],p:["2 Meqabyan","3 Meqabyan"]},
+  "Job","Psalms","Proverbs (1–24)","Reproof (Proverbs 25–31)","Wisdom of Solomon",
+  "Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel",
+  "Hosea","Amos","Micah","Joel","Obadiah","Jonah","Nahum","Habakkuk","Zephaniah",
+  "Haggai","Zechariah","Malachi","Sirach"
+ ];
+ function mkButton(amh,eng,search,onclick){
+  const b=document.createElement("button");
+  b.className="book-button";
+  b.dataset.search=search.toLowerCase();
+  const a=document.createElement("span");
+  a.className="amharic";
+  a.textContent=amh;
+  const e=document.createElement("span");
+  e.className="english";
+  e.textContent=eng;
+  b.append(a,e);
+  b.onclick=onclick;
+  return b;
+ }
+ function openCombined(item){
+  const grid=document.getElementById("chapterGrid");
+  grid.innerHTML="";
+  item.p.forEach(eng=>{
+   const info=byEng[eng];
+   if(!info)return;
+   const sub={amharic:info[0],english:eng,old:true,dataFile:oldDataFiles[eng]||null,chapterOffset:0};
+   const head=document.createElement("div");
+   head.textContent=info[0]+" — "+eng;
+   head.style.cssText="grid-column:1/-1;color:var(--gold-light);text-align:center;margin-top:12px";
+   grid.appendChild(head);
+   const n=chapterCounts[eng]||1;
+   for(let i=1;i<=n;i++){
+    const b=document.createElement("button");
+    b.className="chapter-button";
+    b.textContent=i;
+    b.onclick=()=>{selectedBook=sub;openChapter(String(i));};
+    grid.appendChild(b);
+   }
+  });
+  document.getElementById("chapterBookTitle").textContent=item.t[0]+" — "+item.t[1];
+  setScreen("chapters");
+ }
+ const container=document.getElementById("oldBooks");
+ container.innerHTML="";
+ order.forEach(item=>{
+  if(typeof item==="string"){
+   const b=byEng[item];
+   if(b)container.appendChild(mkButton(b[0],b[1],b[0]+" "+b[1],()=>openOldBook(b[0],b[1])));
+  }else{
+   const s=item.p.map(x=>(byEng[x]?byEng[x][0]:"")+" "+x).join(" ")+" "+item.t.join(" ");
+   container.appendChild(mkButton(item.t[0],item.t[1],s,()=>openCombined(item)));
+  }
+ });
+})();
+</script>
+<script>
+// Tap a verse to highlight it (tan, light yellow, light gold). Saved on this device. Can be removed.
+(function(){
+ const STORE="tewahedoHighlights";
+ let saved={};
+ try{saved=JSON.parse(localStorage.getItem(STORE)||"{}")||{};}catch(e){saved={};}
+ function persist(){try{localStorage.setItem(STORE,JSON.stringify(saved));}catch(e){}}
+
+ const css=document.createElement("style");
+ css.textContent=
+  ".verse{cursor:pointer}"+
+  ".verse.hl{border-radius:6px}"+
+  ".verse.hl .verse-number,.verse.hl .verse-text{color:#2b1d10}"+
+  ".verse.hl-tan{background:#d8c4a0}"+
+  ".verse.hl-yellow{background:#fff1a6}"+
+  ".verse.hl-gold{background:#e8cd7a}"+
+  ".verse.hl-selected{outline:2px solid #c9a45b;outline-offset:-2px}"+
+  "#hlBar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:1000;background:rgba(20,12,8,.97);border-top:1px solid #c9a45b;padding:12px 12px calc(12px + env(safe-area-inset-bottom,0px));justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}"+
+  "#hlBar button{font-family:inherit;cursor:pointer}"+
+  "#hlBar .sw{width:44px;height:44px;border-radius:50%;border:2px solid #70532d}"+
+  "#hlBar .act{padding:10px 16px;background:#302116;border:1px solid #c9a45b;border-radius:8px;color:#e6c77d;font-size:15px}";
+ document.head.appendChild(css);
+
+ const bar=document.createElement("div");
+ bar.id="hlBar";
+ const defs=[["tan","#d8c4a0"],["yellow","#fff1a6"],["gold","#e8cd7a"]];
+ defs.forEach(([name,color])=>{
+  const b=document.createElement("button");
+  b.className="sw";
+  b.style.background=color;
+  b.setAttribute("aria-label",name);
+  b.onclick=()=>{
+   if(!currentRow)return;
+   saved[currentRow._hlKey]=name;
+   persist();
+   applyColor(currentRow,name);
+   hideBar();
+  };
+  bar.appendChild(b);
+ });
+ const rem=document.createElement("button");
+ rem.className="act";
+ rem.textContent="አጥፋ ✕";
+ rem.onclick=()=>{
+  if(!currentRow)return;
+  delete saved[currentRow._hlKey];
+  persist();
+  applyColor(currentRow,null);
+  hideBar();
+ };
+ bar.appendChild(rem);
+ const close=document.createElement("button");
+ close.className="act";
+ close.textContent="ዝጋ";
+ close.onclick=()=>hideBar();
+ bar.appendChild(close);
+ document.body.appendChild(bar);
+
+ let currentRow=null;
+ function applyColor(row,name){
+  row.classList.remove("hl","hl-tan","hl-yellow","hl-gold");
+  if(name){row.classList.add("hl","hl-"+name);}
+ }
+ function hideBar(){
+  bar.style.display="none";
+  if(currentRow)currentRow.classList.remove("hl-selected");
+  currentRow=null;
+ }
+ function showBar(row){
+  if(currentRow)currentRow.classList.remove("hl-selected");
+  currentRow=row;
+  row.classList.add("hl-selected");
+  bar.style.display="flex";
+ }
+
+ function decorate(){
+  const content=document.getElementById("readingContent");
+  const title=document.getElementById("readingChapterTitle").textContent;
+  const book=selectedBook?(selectedBook.english||selectedBook.id||"?"):"?";
+  Array.from(content.querySelectorAll(".verse")).forEach((row,i)=>{
+   if(row._hlDone)return;
+   row._hlDone=true;
+   const numEl=row.querySelector(".verse-number");
+   const num=numEl?numEl.textContent:"";
+   row._hlKey=book+"|"+title+"|"+i+"|"+num;
+   applyColor(row,saved[row._hlKey]);
+   row.addEventListener("click",()=>{
+    const sel=window.getSelection?window.getSelection().toString().trim():"";
+    if(sel)return;
+    showBar(row);
+   });
+  });
+ }
+
+ new MutationObserver(decorate).observe(document.getElementById("readingContent"),{childList:true});
+
+ document.addEventListener("click",e=>{
+  if(!currentRow)return;
+  if(bar.contains(e.target))return;
+  if(e.target.closest&&e.target.closest(".verse"))return;
+  hideBar();
+ });
+
+ const previousSetScreen=setScreen;
+ setScreen=function(screen){
+  hideBar();
+  return previousSetScreen(screen);
+ };
+})();
+</script>
 
 </body>
 </html>
