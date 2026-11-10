@@ -78,8 +78,7 @@ const psalm151Amharic = [
 "እርሱ መልአኩን ልኮ አዳነኝ፥ የአባቴን በጎች ከምጠብቅበት ወሰደኝ፤ የተቀደሰ ቅባትን ቀባኝ፤",
 "ወንድሞቼ ግን፥ ያማሩና ያደጉ ነበሩ። እግዚአብሔር ግን በእነርሱ ደስ አላለውም።",
 "ልዩ ወገንን ልገጥመው ወጣሁ። በረከሱ ጣዖቶቹም ረገመኝ።",
-"እኔም ከወንዝ ሦስት ድንጋዮችን አነሣሁ፥ ግንባሩንም በወንጭፍ መታሁት። ያንጊዜም በእግዚአብሔር ኀይል ወደቀ።",
-"በላዩ የነበረውንም ሰይፍ ወሰድሁ፥ የጎልያድንም ቸብቸቦ ቈረጥሁ። ከእስራኤል ልጆችም ስድብን አራቅሁ።"
+"እኔም ከወንዝ ሦስት ድንጋዮችን አነሣሁ፥ ግንባሩንም በወንጭፍ መታሁት። ያንጊዜም በእግዚአብሔር ኀይል ወደቀ። በላዩ የነበረውንም ሰይፍ ወሰድሁ፥ የጎልያድንም ቸብቸቦ ቈረጥሁ። ከእስራኤል ልጆችም ስድብን አራቅሁ።"
 ].map((text, i) => ({number:i+1, text}));
 
 const prayerOfManassehAmharic = [
@@ -100,6 +99,9 @@ const prayerOfManassehAmharic = [
 "በየጊዜውና በሕይወቴ ዘመን ሁሉ አመሰግንሃለሁ። የሰማያት ኃይል ሁሉ አንተን ያመሰግናሉና። ለዘላለምም ምስጋና ለአንተ ይገባል። አሜን።"
 ].map((text, i) => ({number:i+1, text}));
 
+const manassehIntro = "የንጉሡ የሕዝቅያስ ልጅ ምናሴም ጸለየ፤ እንዲህም አለ፦";
+const manassehOutro = "እርሱም ተለመነው፥ ጸሎቱንም ሰማው፥ ወደ መንግሥቱም ወደ ኢየሩሳሌም መለሰው፤ ምናሴም እግዚአብሔር እርሱ አምላክ እንደ ሆነ አወቀ።";
+
 function renderBooks(books,id,isNew){const container=document.getElementById(id);container.innerHTML="";books.forEach(([amharic,english,bookId])=>{const b=document.createElement("button");b.className="book-button";b.dataset.search=(amharic+" "+english).toLowerCase();const a=document.createElement("span");a.className="amharic";a.textContent=amharic;const e=document.createElement("span");e.className="english";e.textContent=english;b.append(a,e);b.onclick=()=>isNew?openBook(amharic,english,bookId):openOldBook(amharic,english);container.appendChild(b);});}
 function showTestament(which,button){document.getElementById("oldPanel").classList.toggle("hidden",which!=="old");document.getElementById("newPanel").classList.toggle("hidden",which!=="new");document.querySelectorAll(".testament-button").forEach(b=>b.classList.remove("active"));button.classList.add("active");}
 function setScreen(screen){document.getElementById("booksScreen").classList.toggle("hidden",screen!=="books");document.getElementById("chaptersScreen").classList.toggle("hidden",screen!=="chapters");document.getElementById("readingScreen").classList.toggle("hidden",screen!=="reading");window.scrollTo({top:0,behavior:"smooth"});}
@@ -108,7 +110,6 @@ function openBook(amharic,english,id){selectedBook={amharic,english,id,old:false
 function openOldBook(amharic,english){
  selectedBook={amharic,english,old:true,dataFile:oldDataFiles[english]||null,chapterOffset:english==="Reproof (Proverbs 25–31)"?24:0};
  const chapters=english==="Jeremiah"?[...Array.from({length:24},(_,i)=>String(i+1)),"25a","25b",...Array.from({length:20},(_,i)=>String(i+26)),...Array.from({length:7},(_,i)=>"LXX "+(i+25)),"52"]:Array.from({length:chapterCounts[english]||1},(_,i)=>String(i+1));
- if(english==="2 Chronicles")chapters.push("Prayer of Manasseh");
  buildChapterButtons(chapters);document.getElementById("chapterBookTitle").textContent=amharic+" — "+english;setScreen("chapters");
 }
 function addVerses(container,verses){verses.forEach((v,i)=>{const row=document.createElement("div");row.className="verse";const n=document.createElement("span");n.className="verse-number";n.textContent=String(v&&typeof v==="object"&&"number" in v?v.number:i+1);const t=document.createElement("span");t.className="verse-text";t.textContent=(v&&typeof v==="object"&&"text" in v?v.text:v)||"";row.append(n,t);container.appendChild(row);});}
@@ -131,16 +132,20 @@ function getJeremiahDisplayVerses(data,label){
  return [];
 }
 async function openChapter(chapter){
- const book=selectedBook;document.getElementById("readingBookTitle").textContent=book.amharic+" — "+book.english;document.getElementById("readingChapterTitle").textContent=chapter==="Prayer of Manasseh"?"Prayer of Manasseh":"ምዕራፍ "+chapter;
+ const book=selectedBook;document.getElementById("readingBookTitle").textContent=book.amharic+" — "+book.english;document.getElementById("readingChapterTitle").textContent="ምዕራፍ "+chapter;
  const content=document.getElementById("readingContent");content.innerHTML="";
  if(book.old && book.english==="Psalms" && String(chapter)==="151"){addVerses(content,psalm151Amharic);setScreen("reading");return;}
- if(book.old && book.english==="2 Chronicles" && chapter==="Prayer of Manasseh"){addVerses(content,prayerOfManassehAmharic);setScreen("reading");return;}
  if(book.old){
   if(!book.dataFile){const p=document.createElement("div");p.className="reader-placeholder";p.textContent="የዚህ መጽሐፍ የአማርኛ ጽሑፍ ገና አልተገናኘም።";content.appendChild(p);setScreen("reading");return;}
   const loading=document.createElement("div");loading.className="reader-placeholder";loading.textContent="ጽሑፉን በመጫን ላይ...";content.appendChild(loading);setScreen("reading");
   try{const key=book.dataFile;if(!oldScriptureCache[key]){const response=await fetch(OLD_SOURCE_BASE+encodeURIComponent(key));if(!response.ok)throw Error("HTTP "+response.status);oldScriptureCache[key]=await response.json();}
    if(selectedBook!==book)return;const label=String(chapter);const isJeremiah=book.english==="Jeremiah";const wanted=Number(chapter)+(book.chapterOffset||0);const ch=oldScriptureCache[key].chapters.find(x=>Number(x.chapter)===wanted);content.innerHTML="";
-   const verses=isJeremiah?getJeremiahDisplayVerses(oldScriptureCache[key],label):(ch&&Array.isArray(ch.verses)?ch.verses:null);
+   let verses=isJeremiah?getJeremiahDisplayVerses(oldScriptureCache[key],label):(ch&&Array.isArray(ch.verses)?ch.verses:null);
+   if(book.english==="2 Chronicles" && Number(chapter)===33 && verses && verses.length){
+    const before=verses.slice(0,12);
+    const after=verses.slice(13);
+    verses=[...before,{number:"13a",text:manassehIntro},...prayerOfManassehAmharic,{number:"13b",text:manassehOutro},...after];
+   }
    if(!verses||!verses.length){const p=document.createElement("div");p.className="reader-placeholder";p.textContent="ይህ ምዕራፍ በተገኘው የጽሑፍ ምንጭ ውስጥ የለም።";content.appendChild(p);}else addVerses(content,verses);
   }catch(error){content.innerHTML="";const p=document.createElement("div");p.className="reader-placeholder";p.textContent="የአማርኛ ጽሑፉን መጫን አልተቻለም። ኢንተርኔትዎን ያረጋግጡና እንደገና ይሞክሩ።";content.appendChild(p);}
   return;
