@@ -1710,8 +1710,8 @@ const danielFixesV2={
  });
 })();
 </script>
-<script>
-// Tap a verse to highlight it (tan, light yellow, light gold). Saved on this device. Can be removed.
+<script><script>
+// Marker-style verse highlighting (tan, light yellow, light gold). Saved on this device. Can be removed.
 (function(){
  const STORE="tewahedoHighlights";
  let saved={};
@@ -1721,22 +1721,22 @@ const danielFixesV2={
  const css=document.createElement("style");
  css.textContent=
   ".verse{cursor:pointer}"+
-  ".verse.hl{border-radius:6px}"+
-  ".verse.hl .verse-number,.verse.hl .verse-text{color:#2b1d10}"+
-  ".verse.hl-tan{background:#d8c4a0}"+
-  ".verse.hl-yellow{background:#fff1a6}"+
-  ".verse.hl-gold{background:#e8cd7a}"+
-  ".verse.hl-selected{outline:2px solid #c9a45b;outline-offset:-2px}"+
+  ".hl-mark{color:inherit}"+
+  ".verse.hl .hl-mark{color:#2b1d10;padding:2px 5px;border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone}"+
+  ".verse.hl-tan .hl-mark{background:#d8c4a0}"+
+  ".verse.hl-yellow .hl-mark{background:#fff1a6}"+
+  ".verse.hl-gold .hl-mark{background:#e8cd7a}"+
+  ".verse.hl-selected{background:rgba(201,164,91,.12)}"+
   "#hlBar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:1000;background:rgba(20,12,8,.97);border-top:1px solid #c9a45b;padding:12px 12px calc(12px + env(safe-area-inset-bottom,0px));justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}"+
   "#hlBar button{font-family:inherit;cursor:pointer}"+
   "#hlBar .sw{width:44px;height:44px;border-radius:50%;border:2px solid #70532d}"+
   "#hlBar .act{padding:10px 16px;background:#302116;border:1px solid #c9a45b;border-radius:8px;color:#e6c77d;font-size:15px}";
  document.head.appendChild(css);
 
+ let currentRow=null;
  const bar=document.createElement("div");
  bar.id="hlBar";
- const defs=[["tan","#d8c4a0"],["yellow","#fff1a6"],["gold","#e8cd7a"]];
- defs.forEach(([name,color])=>{
+ [["tan","#d8c4a0"],["yellow","#fff1a6"],["gold","#e8cd7a"]].forEach(([name,color])=>{
   const b=document.createElement("button");
   b.className="sw";
   b.style.background=color;
@@ -1768,10 +1768,9 @@ const danielFixesV2={
  bar.appendChild(close);
  document.body.appendChild(bar);
 
- let currentRow=null;
  function applyColor(row,name){
   row.classList.remove("hl","hl-tan","hl-yellow","hl-gold");
-  if(name){row.classList.add("hl","hl-"+name);}
+  if(name)row.classList.add("hl","hl-"+name);
  }
  function hideBar(){
   bar.style.display="none";
@@ -1792,6 +1791,14 @@ const danielFixesV2={
   Array.from(content.querySelectorAll(".verse")).forEach((row,i)=>{
    if(row._hlDone)return;
    row._hlDone=true;
+   const t=row.querySelector(".verse-text");
+   if(t&&!t.querySelector(".hl-mark")){
+    const m=document.createElement("span");
+    m.className="hl-mark";
+    m.textContent=t.textContent;
+    t.textContent="";
+    t.appendChild(m);
+   }
    const numEl=row.querySelector(".verse-number");
    const num=numEl?numEl.textContent:"";
    row._hlKey=book+"|"+title+"|"+i+"|"+num;
@@ -1819,6 +1826,8 @@ const danielFixesV2={
   return previousSetScreen(screen);
  };
 })();
+</script>
+
 </script>
 
 </body>
